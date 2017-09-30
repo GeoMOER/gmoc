@@ -1,0 +1,44 @@
+---
+title: "DM-WS-01-01"
+author: "MOC - Data Analysis (T. Nauss, C. Reudenbach)"
+date: "20. Oktober 2016"
+output: html_document
+---
+
+Some playing with R.
+```{r}
+# Task 1
+a <- 2
+b <- 5
+
+# Task 2
+r1 <- a+b
+r2 <- a-b
+r3 <- a*b
+r4 <- a/b
+
+# Task 3
+v1 <- c(r1, r2, r3, r4)
+
+# Task 4
+v1[5] <- a**b
+
+# Task 5
+v1
+
+# Task 6
+v2 <- c("sum", "difference", "product", "division", "power")
+
+# Task 7
+v2
+
+# Task 8 and 9
+df <- data.frame(Results = v1,
+                 Operation = v2)
+
+# Task 10
+df
+
+# Task 11
+df[3,1]
+```

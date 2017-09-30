@@ -1,0 +1,100 @@
+---
+title: "DM-WS-10-01"
+author: "MOC - Data Analysis (T. Nauss, C. Reudenbach)"
+date: "20. Oktober 2016"
+output: html_document
+---
+
+Arima
+```{r}
+if(Sys.info()["sysname"] == "Windows"){
+  filepath_base <- "D:/active/moc/msc-phygeo-data-analysis/"
+} else {
+  filepath_base <- "/media/permanent/active/moc/msc-phygeo-data-analysis/"
+}
+
+path_data <- paste0(filepath_base, "data/")
+path_dwd <- paste0(path_data, "dwd/3164_coelbe/")
+path_rdata <- paste0(path_data, "rdata/")
+path_temp <- paste0(filepath_base, "temp/")
+
+library(forecast)
+
+dwd <- read.table(paste0(path_dwd, "produkt_synop_Terminwerte_20060701_20151231_03164.txt"),
+                  header = TRUE, sep = ";", dec = ".")
+
+# Monthly sums
+dwd$AGG_YM <- substr(dwd$MESS_DATUM, 1, 6)
+nd <- aggregate(dwd$NIEDERSCHLAGSHOEHE, by = list(dwd$AGG_YM), FUN = sum)
+
+# Time series
+ndts <- ts(nd$x, start = c(2006, 7), end = c(2015,12), frequency = 12)
+# plot(ndts, ylab = "Monthly precipitation", type = "h", col = "blue")
+plot(ndts)
+
+# Auto-correlation
+acf(ndts)
+pacf(ndts)
+
+# Training/test seires
+size <- which("201312" == nd$Group.1)
+smpl <- 1:size
+
+train <- nd[smpl,]
+test <- nd[-smpl,]
+
+train <- train$x
+test <- test$x
+
+train_ts <- ts(nd$x, start = c(2006, 7), end = c(2013,12), frequency = 12)
+test_ts <- ts(nd$x, start = c(2014, 1), end = c(2015,12), frequency = 12)
+
+
+
+sgrid <- expand.grid(p = seq(0, 5), d = seq(0, 2), q = seq(0, 5),
+                     ps = seq(0, 2), ds = seq(0, 2), qs = seq(0, 2))
+
+models <- lapply(seq(nrow(sgrid)), function(i){
+  if(i %% 10 == 0) print(paste0("Computing ", i, " of ", nrow(sgrid)))
+  model <- try(arima(train, order = c(sgrid$p[i],sgrid$d[i],sgrid$q[i]), 
+                     seasonal = c(sgrid$ps[i],sgrid$ds[i],sgrid$qs[i])))
+  if (class(model) == "try-error"){
+    return(NULL)
+  } else {
+    return(model)
+  }
+})
+
+cv <- lapply(seq(length(models)), function(i){
+  if(!is.null(models[[i]])){
+    maic <- models[[i]]$aic
+    pred <- predict(models[[i]], n.ahead = 24)
+    rmse <- sqrt(mean((pred$pred - test)**2))
+    return(data.frame(Run = i,
+                      AIC = maic,
+                      RMSE = rmse,
+                      Model = sgrid[i,]))
+  } else {
+    return(NULL)
+  }
+})
+cv <- do.call("rbind", cv)
+head(cv[order(cv$RMSE),])
+
+opt_model <- models[[cv$Run[which(min(cv$RMSE) == cv$RMSE)]]]
+
+opt_model_auto <- models[[cv$Run[cv$Model.p == 2 & cv$Model.d == 0 & cv$Model.q == 2 &
+  cv$Model.ps == 0 & cv$Model.ds == 0 & cv$Model.qs == 0]]]
+
+automodel <- auto.arima(train_ts, max.p = 5, max.q = 5)
+
+plot(forecast(automodel))
+lines(test_ts, col = "red")
+
+opt_pred <- predict(opt_model_auto, n.ahead = 24)
+plot(train, type = "l", xlim = c(0, length(train)+24))
+lines(seq(length(train)+1, length(train)+24), test, col = "red")
+lines(opt_pred$pred, col = "blue")
+lines(opt_pred$pred + opt_pred$se, col = "grey")
+lines(opt_pred$pred - opt_pred$se, col = "grey")
+```

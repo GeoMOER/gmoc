@@ -1,0 +1,101 @@
+<!---
+Version: "2013-10-23"
+Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
+-->
+DA-WS-07-2
+
+Multiple linear regression, forward feature selection
+```{r, warning=FALSE}
+# Set path ---------------------------------------------------------------------
+if(Sys.info()["sysname"] == "Windows"){
+  filepath_base <- "D:/active/moc/msc-phygeo-data-analysis/"
+} else {
+  filepath_base <- "/media/permanent/active/moc/msc-phygeo-data-analysis/"
+}
+
+path_data <- paste0(filepath_base, "data/")
+path_csv <- paste0(path_data, "csv/")
+path_bkg <- paste0(path_data, "bkg/")
+path_vectors <- paste0(path_data, "vectors/")
+path_rdata <- paste0(path_data, "rdata/")
+path_temp <- paste0(filepath_base, "temp/")
+
+
+# Read data files --------------------------------------------------------------
+# Pre-cleaned data from da-ws-04-1
+cp <- readRDS(paste0(path_rdata, "cp_clean.rds"))
+
+
+# Forward feature selection function -------------------------------------------
+forward_feature_selection <- function(train, test, dep, vars, selected_vars = NULL){
+  fwd_fs <- lapply(seq(length(vars)), function(v){
+    if(is.null(selected_vars)){
+      formula <- paste(dep, " ~ ", paste(vars[v], collapse=" + "))
+    } else {
+      formula <- paste(dep, " ~ ", paste(c(selected_vars, vars[v]), collapse=" + "))
+    }
+    
+    lmod <- lm(formula, data = train)
+    pred <- predict(lmod, newdata = test)
+    obsv <- test[, which(names(test) == dep)]
+    resid <- obsv-pred
+    rmse <- round(sqrt(mean((pred - obsv)^2, na.rm = TRUE)), 2)    
+    results <- data.frame(Variable = vars[v],
+                          RMSE = rmse)
+    return(results)
+  })
+  fwd_fs <- do.call("rbind", fwd_fs)
+  
+  if(!is.null(selected_vars)){
+    formula <- paste(dep, " ~ ", paste(selected_vars, collapse=" + "))
+    lmod <- lm(formula, data = train)
+    pred <- predict(lmod, newdata = test)
+    obsv <- test[, which(names(test) == dep)]
+    resid <- obsv-pred
+    rmse <- round(sqrt(mean((pred - obsv)^2, na.rm = TRUE)), 2)    
+    results_selected <- data.frame(
+      Variable = paste0("all: ", paste(selected_vars, collapse=", ")),
+      RMSE = rmse)
+  } else {
+    results_selected <- data.frame(
+      Variable = paste0("all: ", paste(selected_vars, collapse=", ")),
+      RMSE = 1E10)
+  }
+  fwd_fs <- rbind(results_selected, fwd_fs)
+  
+  best_var <- as.character(fwd_fs$Variable[which(fwd_fs$RMSE == min(fwd_fs$RMSE))])
+  return(list(best_var, min(fwd_fs$RMSE), fwd_fs))
+}
+
+
+# Multiple linear model --------------------------------------------------------
+dep <- "Winter_wheat"
+next_vars <- names(cp)[-c(1:5, which(names(cp) == dep))]
+selected_vars <- NULL
+
+set.seed(1)
+smpl <- sample(nrow(cp), 0.8*nrow(cp))
+train <- cp[smpl,]
+test <- cp[-smpl,]
+
+act_run <- forward_feature_selection(train = train,
+                                     test = test, 
+                                     dep = dep, vars = next_vars)
+
+run = TRUE
+
+while(act_run[[3]]$RMSE[1] >= act_run[[2]] & run == TRUE){
+  next_vars <- next_vars[-which(next_vars == act_run[[1]])]
+  selected_vars = c(selected_vars, act_run[[1]])
+  if(length(next_vars) > 0){
+    act_run <- forward_feature_selection(train = train,
+                                     test = test, 
+                                     dep = dep, vars = next_vars,
+                                     selected_vars = selected_vars)
+  } else {
+    run <- FALSE
+  }
+}
+act_run
+
+```

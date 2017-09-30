@@ -1,0 +1,112 @@
+---
+title: "DM-WS-02-01"
+author: "MOC - Data Analysis (T. Nauss, C. Reudenbach)"
+date: "20. Oktober 2016"
+output: html_document
+---
+
+Some control structure examples.
+```{r}
+# Task 1
+n <- 1
+if(n > 1){
+  print("Larger")
+} else {
+  print("Equal or")
+}
+
+# Task 2
+n <- 1
+if(n > 1){
+  print("Larger")
+} else if (n == 1) {
+  print("Equal")
+} else {
+  print("Smaller")
+}
+
+# Task 3
+n <- 2
+if(n%%2 == 0){
+  print("Even")
+} else {
+  print("Odd")
+}
+
+
+# Task 4
+for(n in seq(0, 2, 1)){
+  if(n > 1){
+    print("Larger")
+  } else if (n == 1) {
+    print("Equal")
+  } else {
+    print("Smaller")
+  }
+}
+
+# Task 5
+test <- NULL
+for(n in seq(0, 2, 1)){
+  if(n > 1){
+    test[n+1] <- "Larger"
+  } else if (n == 1) {
+    test[n+1] <- "Equal"
+  } else {
+    test[n+1] <- "Smaller"
+  }
+}
+test
+
+# Task 6
+test <- list()
+for(n in seq(0, 2, 1)){
+  if(n > 1){
+    test[n+1] <- "Larger"
+  } else if (n == 1) {
+    test[n+1] <- "Equal"
+  } else {
+    test[n+1] <- "Smaller"
+  }
+}
+test
+
+# Task 6
+test <- lapply(seq(0, 2, 1), function(n){
+  if(n > 1){
+    test[n+1] <- "Larger"
+  } else if (n == 1) {
+    test[n+1] <- "Equal"
+  } else {
+    test[n+1] <- "Smaller"
+  }
+})
+test
+
+# Task 7
+unlist(test)
+
+
+
+
+# Example from course
+last_numbers_of_all_runs <- NULL
+l <- 0
+for(n in seq(10, 50, 1)){
+  individual_result <- NULL
+  i <- 0
+  while(n > 1){
+    if((n %% 2) == 0){
+      n <- n/2
+    } else {
+      n <- 3 * n + 1
+    }
+    i <- i + 1
+    individual_result[i] <- n
+  }
+  l <- l + 1
+  last_numbers_of_all_runs[[l]] <- 
+    individual_result[(length(individual_result)-2) : length(individual_result)]
+}
+
+```

@@ -1,0 +1,167 @@
+<!---
+Version: "2013-10-23"
+Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
+-->
+As for loops, while loops are repeating structures which enable the execution of 
+certain code blocks for multiple times. The difference is that for while loops 
+the number of necessary repititions is not known at the starting time of the loop.
+
+While loops are executed until a termination condition is reached. In the 
+following example, this condition is given by `a > b`:
+```{r}
+# Set path ---------------------------------------------------------------------
+if(Sys.info()["sysname"] == "Windows"){
+  filepath_base <- "D:/active/moc/msc-phygeo-data_management/"
+} else {
+  filepath_base <- "/media/permanent/active/moc/msc-phygeo-data_management/"
+}
+
+path_data <- paste0(filepath_base, "data/")
+path_csv <- paste0(path_data, "csv/")
+path_rdata <- paste0(path_data, "rdata/")
+path_temp <- paste0(filepath_base, "temp/")
+```
+Obviously, this condition is executed 4 times (i.e. a = 7, 8, 9, 10). After that
+`a + 1` gives 11 which is larger than b and the termination condition is reached.
+
+As for any other loop, nested loops are also possible.
+```{r}
+# Read csv file ----------------------------------------------------------------
+lwsb <- read.table(paste0(path_csv, "115-01-4.csv"),
+                      skip = 9, header = TRUE, sep = ";")
+colnames(lwsb) <- c("Total", 	"Total", 	"Ackerland insgesamt", 	"Ackerland insgesamt", 	
+"mit Dauerkulturen", 	"mit Dauerkulturen", 	"mit Dauergrünland", 	"mit Dauergrünland")
+
+head(lwsb)
+```
+
+```{r}
+summary(lwsb)
+
+```
+
+
+```{r}
+boxplot(lwsb)
+
+lwsb_sub <- lwsb[, c(6, 8)]
+
+lwsb_sub$`mit Dauerkulturen` <- as.numeric(lwsb_sub$`mit Dauerkulturen`)
+lwsb_sub$`mit Dauergrünland` <- as.numeric(lwsb_sub$`mit Dauergrünland`)
+
+aov(lwsb_sub$`mit Dauergrünland`~lwsb_sub$`mit Dauerkulturen`)
+t.test(lwsb_sub$`mit Dauerkulturen`, lwsb_sub$`mit Dauergrünland`)
+
+lws_sub_l <- data.frame(TYPE = c(rep("DK", nrow(lwsb_sub)), rep("DG", nrow(lwsb_sub))),
+           VALUE = c(lwsb_sub$`mit Dauerkulturen`, lwsb_sub$`mit Dauergrünland`))
+lws_sub_l$TYPE <- as.factor(lws_sub_l$TYPE)
+
+summary(aov(lws_sub_l$VALUE~lws_sub_l$TYPE))
+
+
+par_org <- par()
+par(mfrow = c(1,2))
+boxplot(woodhrv[, c(2,7)])
+boxplot(sqrt(woodhrv[, c(2,7)]))
+par(par_org)
+
+
+m <- as.matrix(woodhrv[1:18,2:6])
+attributes(m)$dimnames[[1]] <- woodhrv[1:18, 1]
+dotchart(m, cex = 0.5)
+
+m[,2:7] <- as.numeric(m[,2:7])
+
+```
+
+
+
+```{r}
+par(mfrow = c(2,2))
+plot(woodhrv$Eiche, woodhrv$Buche)
+plot(woodhrv$Kiefer, woodhrv$Buche)
+plot(woodhrv$Fichte, woodhrv$Buche)
+plot(woodhrv$Buntholz, woodhrv$Buche)
+par(par_org)
+
+plot(woodhrv)
+
+log(4)
+log(3)
+
+
+log(4) + log(3)
+log(4*3)
+
+```
+
+
+```{r}
+par(mfrow = c(2,2))
+hist(woodhrv$Eiche)
+hist(woodhrv$Kiefer)
+hist(woodhrv$Fichte)
+hist(woodhrv$Buche)
+par(par_org)
+
+plot(woodhrv)
+
+
+```
+
+```{r}
+var <- "Kiefer"
+
+qqnorm(woodhrv[, var], sub = var)
+qqline(woodhrv[, var], sub = var)
+abline(h=quantile(woodhrv[, var], probs = c(0.25,0.75), na.rm = TRUE), col="red")
+abline(v=qnorm(c(0.25,0.75)), col="red")
+
+shapiro.test(woodhrv[, var])
+
+
+
+par(par_org)
+par(mfrow = c(2,2))
+for(p in c(1, 0.5, 0.25, 0)){
+  if(p != 0){
+    qqnorm((woodhrv[, var]**p-1)/p)
+    qqline((woodhrv[, var]**p-1)/p)  
+  } else {
+    qqnorm(log(woodhrv[, var]))
+    qqline(log(woodhrv[, var]))
+  }
+}
+par(par_org)
+
+```
+
+
+
+```{r}
+
+coplot(Kiefer ~ Fichte | Buche, data = woodhrv)
+
+plot.design(woodhrv)
+
+plot(woodhrv$Fichte, woodhrv$Buche)
+plot(log(woodhrv$Fichte), woodhrv$Buche)
+
+
+```
+ 
+
+```{r}
+
+boxplot(woodhrv, notch = TRUE)
+
+t.test(woodhrv$Buche, woodhrv$Fichte)
+
+summary(aov(Buche ~ Kiefer, data =woodhrv))
+
+summary(lm(Buche ~ Kiefer, data =woodhrv))
+
+plot(Buche ~ Kiefer, data = woodhrv)
+abline(lm(Buche~Kiefer, data = woodhrv))
+
+```

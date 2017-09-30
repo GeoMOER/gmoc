@@ -1,0 +1,62 @@
+<!---
+Version: "2013-10-23"
+Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
+-->
+The following is a short note on converting wide to long format required e.g. for some lattice or ggplot visualizations. The following examples are based on the readily known data set showing the percentage fraction of settlement, recreational, agricultural, and forest areas for each rural district in Germany. The data has been provided through the [Regional Database Germany](https://www.regionalstatistik.de/genesis/online/).
+
+```{r, echo=FALSE, warning=FALSE}
+# Set path ---------------------------------------------------------------------
+if(Sys.info()["sysname"] == "Windows"){
+  filepath_base <- "D:/active/moc/msc-phygeo-data-analysis/"
+} else {
+  filepath_base <- "/media/permanent/active/moc/msc-phygeo-data-analysis/"
+}
+
+path_data <- paste0(filepath_base, "data/")
+path_csv <- paste0(path_data, "csv/")
+path_rdata <- paste0(path_data, "rdata/")
+path_temp <- paste0(filepath_base, "temp/")
+
+
+# Read csv file ----------------------------------------------------------------
+lu <- read.table(paste0(path_csv, "AI001_gebiet_flaeche_bereinigt.csv"),
+                 header = TRUE, sep = ";", dec = ",")
+
+# Clean data -------------------------------------------------------------------
+for(c in colnames(lu)[4:7]){
+lu[, c][lu[, c] == "."] <- NA  
+lu[, c] <- as.numeric(sub(",", ".", as.character(lu[, c])))
+}
+numc <- c("Settlement", "Recreation", "Agriculture", "Forest")
+library(latticeExtra)
+library(reshape2)
+```
+
+```{r, warning=FALSE, message = FALSE}
+library(latticeExtra)
+```
+
+
+We already know that a boxplot is probably the most fundamental way to perform a visual data exploration. Producing it is straight forward in generic plotting:
+Producing a boxplot is staright forward (the x-axis lables are just the column names):
+```{r, warning=FALSE}
+boxplot(lu[, c("Settlement", "Recreation", "Agriculture", "Forest")])
+```
+
+Producing a boxplot in lattice is not so staright forward as in generic plotting if you whish to have multiple variables shown in one plot. Before one can plot it, one has to transform the data into "long" format. In the case of our dataset, this implies to identify the ID variables (i.e. the ones who define the place and time of the measurement). After this is done, the long-format will duplicate them as often as it is required to fit in all values of the other columns (i.e. setellment, recreation, agriculture and forest) and add the respective values in a seperate column.
+
+That's what the data looks like in it's original format:
+```{r, warning=FALSE}
+head(lu)
+```
+
+And this is the data after conversion to long format using the ``reshape2::melt`` function:
+```{r, warning=FALSE}
+lul <- reshape2::melt(lu, id.vars = c("Year", "ID", "Place"))
+head(lul)
+```
+
+Afterwards, the data can also be used e.g. for producing boxplots in lattice:
+```{r, warning=FALSE}
+bwplot(value ~ variable, data = lul)
+```

@@ -1,0 +1,400 @@
+<!---
+Version: "2013-10-23"
+Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
+-->
+While we had already got in contact with some temporal datasets, we did not have a closer formal look on time series analysis. Time series datasets often inhibit some kind of autocorrelation which is a no go for the models we have used so far. The first more formal contact with time series will therefore highlight this characteristics.
+
+To illustrate time series analysis, an air temperature record of the weather station in Coelbe (which is closest to the Marburg university forest) will be used. The data has been supplied by the German weatherservice [German weather service](ftp://ftp-cdc.dwd.de/pub/CDC/observations_germany/).
+
+Just for completeness, the following code shows the modification of the anscombe data set although it is not relevant to know anything about it for the examples below:
+```{r, warning=FALSE, echo=FALSE}
+if(Sys.info()["sysname"] == "Windows"){
+  filepath_base <- "D:/active/moc/msc-phygeo-data-analysis/"
+} else {
+  filepath_base <- "/media/permanent/active/moc/msc-phygeo-data-analysis/"
+}
+
+path_data <- paste0(filepath_base, "data/")
+path_dwd <- paste0(path_data, "dwd/3164_coelbe/")
+path_rdata <- paste0(path_data, "rdata/")
+path_temp <- paste0(filepath_base, "temp/")
+
+# dwd_ta <- read.table(paste0(path_dwd, "produkt_temp_Terminwerte_20060701_20151231_03164.txt"),
+#                             header = TRUE, sep = ";", dec = ".")
+# colnames(dwd_ta)[c(3,7)] <- paste0(colnames(dwd_ta)[c(3,7)], "_TARH")
+# 
+# dwd_rr <- read.table(paste0(path_dwd, "produkt_synop_Terminwerte_20060701_20151231_03164.txt"),
+#                             header = TRUE, sep = ";", dec = ".")
+# colnames(dwd_rr)[c(3,7)] <- paste0(colnames(dwd_rr)[c(3,7)], "_RR")
+# 
+# dwd <- merge(dwd_ta, dwd_rr, all.x = TRUE, all.y = TRUE)
+
+dwd <- read.table(paste0(path_dwd, "produkt_temp_Terminwerte_20060701_20151231_03164.txt"),
+                  header = TRUE, sep = ";", dec = ".")
+```
+
+### A first look on the time series
+The time series shows hourly recordings of 2m air temperature between July 1st 2006 and December 31st 2015. 
+```{r, warning=FALSE}
+head(dwd)
+tail(dwd)
+```
+
+
+```{r, warning=FALSE}
+dwd[!complete.cases(dwd),]
+```
+
+```{r, warning=FALSE}
+dwd$NIEDERSCHLAGSFORM[!complete.cases(dwd)] <- 0
+dwd$NIEDERSCHLAG_GEFALLEN_IND[!complete.cases(dwd)] <- 0
+dwd$NIEDERSCHLAGSHOEHE[!complete.cases(dwd)] <- 0
+
+summary(dwd_ta)
+```
+
+
+```{r, warning=FALSE}
+dwd$DATUM <- strptime(paste0(dwd$MESS_DATUM, "0000"), format = "%Y%m%d%H%M%S")
+head(dwd$DATUM)
+
+plot(dwd$DATUM, dwd$LUFTTEMPERATUR)
+```
+
+
+
+```{r, warning=FALSE}
+dwd$AGG_M <- substr(dwd$MESS_DATUM, 5, 6)
+
+boxplot(dwd$LUFTTEMPERATUR ~ dwd$AGG_M)
+```
+
+```{r, warning=FALSE}
+par_org <- par()
+par(mfrow = c(1,2))
+hist(dwd$LUFTTEMPERATUR, prob = TRUE)
+lines(density(dwd$LUFTTEMPERATUR))
+qqnorm(dwd$LUFTTEMPERATUR)
+par(par_org)
+```
+
+
+```{r, warning=FALSE}
+acf(dwd$LUFTTEMPERATUR)
+acf(dwd$REL_FEUCHTE)
+acf(dwd$NIEDERSCHLAGSHOEHE[!is.na(dwd$NIEDERSCHLAGSHOEHE)])
+```
+
+```{r, warning=FALSE}
+dwd$AGG_JM <- substr(dwd$MESS_DATUM, 1, 6)
+
+lt_agg_jm <- aggregate(dwd$LUFTTEMPERATUR, by = list(dwd$AGG_JM), FUN = mean)
+acf(lt_agg_jm$x)
+
+rh_agg_jm <- aggregate(dwd$REL_FEUCHTE, by = list(dwd$AGG_JM), FUN = mean)
+acf(rh_agg_jm$x)
+
+pr_agg_jm <- aggregate(dwd$NIEDERSCHLAGSHOEHE, by = list(dwd$AGG_JM), FUN = mean)
+acf(pr_agg_jm$x)
+```
+
+```{r, warning=FALSE}
+ccf(lt_agg_jm$x, rh_agg_jm$x)
+```
+
+
+```{r, warning=FALSE}
+coplot(LUFTTEMPERATUR ~ REL_FEUCHTE | AGG_M, data = dwd)
+```
+
+```{r, warning=FALSE}
+lmod <- lm(rh_agg_jm$x ~ lt_agg_jm$x)
+summary(lmod)
+plot(lmod)
+```
+
+```{r, warning=FALSE}
+lmod <- lm(rh_agg_jm$x ~ lt_agg_jm$x + as.factor(substr(rh_agg_jm$Group.1, 5, 6)))
+summary(lmod)
+plot(lmod)
+```
+
+
+```{r, warning=FALSE}
+dlt_agg_jm <- diff(lt_agg_jm$x)
+acf(lt_agg_jm$x)
+acf(dlt_agg_jm)
+
+ddlt_agg_jm <- diff(diff(lt_agg_jm$x))
+acf(ddlt_agg_jm)
+
+ddrh_agg_jm <- diff(diff(rh_agg_jm$x))
+acf(ddrh_agg_jm)
+
+lmod <- lm(ddrh_agg_jm ~ ddlt_agg_jm)
+summary(lmod)
+plot(lmod)
+
+```
+
+
+```{r, warning=FALSE}
+dalt_agg_jm <- diff(lt_agg_jm$x, lag = 12)
+acf(dalt_agg_jm)
+```
+
+
+
+```{r, warning=FALSE}
+acf(ddlt_agg_jm)
+pacf(ddlt_agg_jm)
+
+armod <- ar(ddlt_agg_jm, method = "mle")
+plot(armod$aic, type = "o")
+
+plot(predict(armod, n.ahead = 100)$pred)
+
+arimamod <- arima(lt_agg_jm$x, c(12,2,0))
+arimamod$aic
+tsdiag(arimamod)
+plot(predict(arimamod, n.ahead = 100)$pred)
+
+
+acf(prm_ts)
+pacf(prm_ts)
+armod <- ar(prm_ts, method = "mle")
+plot(armod$aic, type = "o")
+armod
+
+arimamod <- arima(prm_ts, c(2,0,0))
+tsdiag(arimamod)
+
+
+```
+
+
+```{r, warning=FALSE}
+head(lt_agg_jm)
+tail(lt_agg_jm)
+ltm_ts <- ts(lt_agg_jm$x, start = c(2006, 7), end = c(2015, 12), 
+             frequency = 12, deltat = 1/12)
+plot(ltm_ts)
+library(forecast)
+larima <- auto.arima(ltm_ts)
+summary(larima)
+tsdiag(larima)
+Arima(ltm_ts, c(1, 0, 4))
+
+armod <- ar(ddlt_agg_jm, method = "mle")
+plot(armod$aic, type = "o")
+
+
+rhm_ts <- ts(rh_agg_jm$x, start = c(2006, 7), end = c(2015, 12), 
+             frequency = 12, deltat = 1/12)
+larima <- auto.arima(rhm_ts)
+summary(larima)
+tsdiag(larima)
+
+prm_ts <- ts(pr_agg_jm$x, start = c(2006, 7), end = c(2015, 12), 
+             frequency = 12, deltat = 1/12)
+larima <- auto.arima(prm_ts)
+summary(larima)
+tsdiag(larima)
+plot(decompose(prm_ts))
+
+
+prm_tsplot(stl(ltm_ts, "periodic"))
+plot(decompose(ltm_ts))
+plot(decompose(ltm_ts, "multiplicative"))
+
+plot(predict(armod, n.ahead = 100)$pred)
+
+
+arimamod <- arima(lt_agg_jm$x, c(12,2,0))
+arimamod$aic
+tsdiag(arimamod)
+plot(predict(arimamod, n.ahead = 100)$pred)
+
+sim.ar<-arima.sim(list(ar=c(0.4,0.4)),n=1000)
+sim.ma<-arima.sim(list(ma=c(0.6,-0.4)),n=1000)
+```
+
+
+```{r, warning=FALSE}
+par_org <- par()
+par(mfrow = c(1,3))
+par(par_org)
+```
+
+
+```{r, warning=FALSE}
+```
+
+```{r, warning=FALSE}
+```
+
+```{r, warning=FALSE}
+```
+
+
+```{r, warning=FALSE}
+```
+Provided that all the assumptions relevant for linear models are met, x is significant and the model explains about 0.6567 percent of the variation in the data set.
+
+One might think that replacing `lm` with `mgcv:gam` (i.e. the gam function from the mgcv package) would be enough to turn our model in an additive model. However, this is not true. In fact, `gam` with (it's default) gaussian family acts exactly as the `lm` function if the same forumla is supplied. We will show this by plotting the gam-based regression line (dotted, red) on top of the one from the linear model above (grey).
+```{r, warning=FALSE}
+gammod <- gam(y ~ x, data = df, familiy = gaussian())
+
+px <- seq(min(df$x), max(df$x), 0.1)
+gampred <- predict(gammod, list(x = px))
+
+plot(df$x, df$y)
+abline(lmod, col = "grey")
+lines(px, gampred, col = "red", lty=2)
+```
+No difference. Although we need some more code since we have to predict the model values before we can overlay them in the plot. Therefore, the vector `px` is used and initialized with a sequence between the minimum and maximum x value and a step of 0.1. This is also sufficient to visualize more "non-linear" model predictions later.
+
+Let's have a look at the summary:
+```{r, warning=FALSE}
+summary(gammod)
+```
+No surprise. All test statistics are equal (it is the same model!). The only difference is due to some wording since the R squared value in the linear model (0.6567) can no be found in the "deviance explained".
+
+Obviously, there must be more than just swithing a function call to come from linear models to additive models. And there is: while for simple linear models, the equation would be something like y = a+bx, a smoothing term replace the slope b in additive models: y = a+s(x). By adding this term to the `gam` function and using a penalized regression spline (fx = FALSE which is the default), we finally get a first non-linear model:
+```{r, warning=FALSE}
+gammod <- gam(y ~ s(x, fx = FALSE), data = df)
+
+px <- seq(min(df$x), max(df$x), 0.1)
+gampred <- predict(gammod, list(x = px))
+
+plot(df$x, df$y)
+lines(px, gampred, col = "red")
+
+summary(gammod)
+```
+A look on the model performance reveils that the explained deviance has increased. Assuming that all model assumptions, which are actually the same as for linear models (except the linear relationship) are met, the explained deviance has increased to almost 78 percent. In order to check the model assumptions, you can use e.g. the `gam.checked` function.
+
+```{r, warning=FALSE}
+gam.check(gammod)
+```
+
+Speaking of side notes: this is how you can visualize the smoother quickly (you have to add the intercept to get the final prediction values):
+```{r, warning=FALSE}
+plot(gammod)
+```
+
+
+### Optimal smoother selection and reducing the risk of overfitting
+One might wonder, why this and no other smoother has been found in the end. The reason relies in the way, the default penalized regression works (which is beyond the scope of this example but to sum it up: the regression penalizes each added smoothing term, i.e. each reduction in the resulting degrees of freedom of the model). To illustrate what would happen if no penalized but just a simple spline regression would be used, one can set the fx option to TRUE:
+```{r, warning=FALSE}
+gammod <- gam(y ~ s(x, bs = "tp", fx = TRUE), data = df)
+
+px <- seq(min(df$x), max(df$x), 0.1)
+gampred <- predict(gammod, list(x = px))
+
+plot(df$x, df$y)
+lines(px, gampred, col = "red")
+
+summary(gammod)
+```
+Now the function is highly non-linear and 9 degrees of freedom are used for the smooth terms. The explained deviance has increased but overfitting is very likely (the R squared has declined, too, but we should not give to much emphasis on that).
+
+
+If you do not want to use the standard (penalty) model selection, a feasible approach for the additive models might be to select the number of knots and iterate over them in e.g. a leave-many-out cross validation approach. For illustration purposes, the following will just show the iteration and visualize the different model results in one plot:
+```{r, warning=FALSE}
+knots <- seq(3, 19)
+
+palette <- colorRampPalette(colors=c("blue", "green", "red"))
+cols <- palette(length(knots))
+
+plot(df$x, df$y)
+
+for(i in seq(length(knots))){
+  gammod <- gam(y ~ s(x, k = knots[i], fx = TRUE), data = df)
+  px <- seq(min(df$x), max(df$x), 0.1)
+  gampred <- predict(gammod, list(x = px))
+  lines(px, gampred, col = cols[i], lty=2)
+}
+
+legend(13, 7.5, paste("knots", knots, sep = " "), col = cols, lty=2, cex=0.75)
+```
+Now, the smoother requires 9 degrees of freedom (as opposed to 2.8 in the previous example), hence 
+
+
+### LOESS
+While the above examples are more straight forward if one comes from the implementation side of a linear model (i.e. `lm`), the locally weighted scatterplot smoothing (LOESS) is more straight forward from a conceptual point of view. It uses local linear regressions defined on moving subsets of the data set. For example, if the moving window is set to 21 pixels, than only the 10 left and right neighbours of the actually considered value (target) are considered and a linear regression is computed based on this subset. The term weighted indicates that not all of the neighbouring pixels are equally treated but the ones closer to the target are weighted higher. The following shows one example using 75 percent of all the data pairs in order to compute the local regression for each target value:
+```{r, warning=FALSE}
+loessmod <- loess(y ~ x, data = df, span = 0.75)
+
+px <- seq(min(df$x), max(df$x), 0.1)
+loesspred <- predict(loessmod, data.frame(x = px), type = "response")
+
+plot(df$x, df$y)
+lines(px, loesspred, col = "red")
+```
+
+Again, one could iterate over the window size in a e.g. cross-validation approach to identify the best fit. As for the gam model, the following just illustrates the different models:
+```{r, warning=FALSE}
+window <- seq(0.3, 1, 0.01)
+
+palette <- colorRampPalette(colors=c("blue", "green", "red"))
+cols <- palette(length(window))
+
+plot(df$x, df$y)
+
+for(i in seq(length(window))){
+  loessmod <- loess(y ~ x, data = df, span = window[i])
+  px <- seq(min(df$x), max(df$x), 0.1)
+  loesspred <- predict(loessmod, data.frame(x = px))
+  lines(px, loesspred, col = cols[i])
+}
+```
+
+
+```{r, warning=FALSE, echo=FALSE, eval=FALSE}
+knots <- seq(3, 14)
+
+cv <- lapply(knots, function(k){
+  kcv <- lapply(seq(100), function(c){
+
+    set.seed(c)
+    smpl <- sample(nrow(df), nrow(df)*0.8)
+    train <- df[smpl, ]
+    test <- df[-smpl, ]
+    gmod <- gam(y ~ s(x, k = k, fx = TRUE), data = train)
+    pred <- predict(gmod, test)
+    obsv <- test$y
+    data.frame(knots = k,
+               rmse = sqrt(mean((pred - obsv)**2)),
+               rsq = summary(gmod)$r.sq)
+  
+  })
+  
+  kcv <- do.call("rbind", kcv)
+  data.frame(knots = unique(kcv$knots),
+             rmse = mean(kcv$rmse),
+             rmse_sd_plus = mean(kcv$rmse) + sd(kcv$rmse),
+             rmse_sd_minus = mean(kcv$rmse) - sd(kcv$rmse),
+             rsq = mean(kcv$rsq))
+  
+})
+
+cv <- do.call("rbind", cv)
+
+plot(cv$knots, cv$rmse/max(cv$rmse), type = "l", col = "red",
+     ylim = c(min(cv$rmse_sd_minus/max(cv$rmse)), max(cv$rmse_sd_plus/max(cv$rmse))))
+lines(cv$knots, cv$rmse_sd_plus/max(cv$rmse), col = "red", lty = 2)
+lines(cv$knots, cv$rmse_sd_minus/max(cv$rmse), col = "red", lty = 2)
+lines(cv$knots, cv$rsq, col = "blue")
+
+legend(10, 0.6, c("rmse", "r squared"), col = c("red", "blue"), lty = 1)
+
+
+gammod <- gam(y ~ s(x, k = 3, bs = "tp", fx = TRUE), data = df)
+
+px <- seq(min(df$x), max(df$x), 0.1)
+gampred <- predict(gammod, list(x = px))
+
+plot(df$x, df$y)
+lines(px, gampred, col = "red")
+```

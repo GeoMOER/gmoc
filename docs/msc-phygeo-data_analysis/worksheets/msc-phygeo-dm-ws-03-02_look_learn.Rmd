@@ -1,0 +1,46 @@
+---
+title: "DM-WS-03-01"
+author: "MOC - Data Analysis (T. Nauss, C. Reudenbach)"
+date: "20. Oktober 2016"
+output: html_document
+---
+
+Read and write
+```{r}
+# Set path ---------------------------------------------------------------------
+if(Sys.info()["sysname"] == "Windows"){
+  filepath_base <- "D:/active/moc/msc-phygeo-data-analysis/"
+} else {
+  filepath_base <- "/media/permanent/active/moc/msc-phygeo-data-analysis/"
+}
+
+path_data <- paste0(filepath_base, "data/")
+path_csv <- paste0(path_data, "csv/")
+path_rdata <- paste0(path_data, "rdata/")
+path_temp <- paste0(filepath_base, "temp/")
+
+
+# Read csv file and clean data frame -------------------------------------------
+woodhrv <- read.table(paste0(path_csv, "hessen_holzeinschlag_1997-2014_clean.csv"),
+                      skip = 0, header = TRUE, sep = ",")
+woodhrv
+
+
+# Summarize --------------------------------------------------------------------
+summary(woodhrv)
+
+
+# Visualize descriptive summary statistics ------------------------------------
+boxplot(woodhrv)
+
+# Visualize dependencies between two variables ---------------------------------
+# Visualize oak, pine, spruce and colored wood vs. beech in one 2 by 2 plot
+par_org <- par()
+par(mfrow = c(2,2))
+plot(woodhrv$Eiche, woodhrv$Buche)
+plot(woodhrv$Kiefer, woodhrv$Buche)
+plot(woodhrv$Fichte, woodhrv$Buche)
+plot(woodhrv$Buntholz, woodhrv$Buche)
+par(par_org)
+```
+ 

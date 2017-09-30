@@ -1,0 +1,75 @@
+---
+title: "DM-WS-08-01"
+author: "MOC - Data Analysis (T. Nauss, C. Reudenbach)"
+date: "20. Oktober 2016"
+output: html_document
+---
+
+Read and write
+```{r}
+# Set path ---------------------------------------------------------------------
+if(Sys.info()["sysname"] == "Windows"){
+  filepath_base <- "D:/active/moc/msc-phygeo-data-analysis/"
+} else {
+  filepath_base <- "/media/permanent/active/moc/msc-phygeo-data-analysis/"
+}
+
+path_data <- paste0(filepath_base, "data/")
+path_csv <- paste0(path_data, "csv/")
+path_rdata <- paste0(path_data, "rdata/")
+path_temp <- paste0(filepath_base, "temp/")
+
+
+# Load libraries ---------------------------------------------------------------
+library(mgcv)
+
+
+# Read csv file and clean data frame -------------------------------------------
+woodhrv <- read.table(paste0(path_csv, "hessen_holzeinschlag_1997-2014_clean.csv"),
+                      skip = 0, header = TRUE, sep = ",")
+woodhrv
+
+
+# Summarize --------------------------------------------------------------------
+summary(woodhrv)
+
+
+# Compute 100 fold cross validation and model training -------------------------
+knots <- seq(3, 13)
+
+cv <- lapply(knots, function(k){
+  
+  kcv <- lapply(seq(100), function(c){
+
+    set.seed(c)
+    smpl <- sample(nrow(woodhrv), nrow(woodhrv)*0.8)
+    train <- woodhrv[smpl, ]
+    test <- woodhrv[-smpl, ]
+    gmod <- gam(Buche ~ s(Eiche, k = k, fx = TRUE), data = train)
+    pred <- predict(gmod, test)
+    obsv <- test$Buche
+    data.frame(knots = k,
+               rmse = sqrt(mean((pred - obsv)**2)),
+               rsq = summary(gmod)$r.sq)
+  
+  })
+  
+  kcv <- do.call("rbind", kcv)
+  data.frame(knots = unique(kcv$knots),
+             rmse = mean(kcv$rmse),
+             rmse_sd_plus = mean(kcv$rmse) + sd(kcv$rmse),
+             rmse_sd_minus = mean(kcv$rmse) - sd(kcv$rmse),
+             rsq = mean(kcv$rsq))
+  
+})
+
+cv <- do.call("rbind", cv)
+
+plot(cv$knots, cv$rmse/max(cv$rmse), type = "l", col = "red",
+     ylim = c(min(cv$rmse_sd_minus/max(cv$rmse)), max(cv$rmse_sd_plus/max(cv$rmse))))
+lines(cv$knots, cv$rmse_sd_plus/max(cv$rmse), col = "red", lty = 2)
+lines(cv$knots, cv$rmse_sd_minus/max(cv$rmse), col = "red", lty = 2)
+lines(cv$knots, cv$rsq, col = "blue")
+
+legend(10, 0.6, c("rmse", "r squared"), col = c("red", "blue"), lty = 1)
+```

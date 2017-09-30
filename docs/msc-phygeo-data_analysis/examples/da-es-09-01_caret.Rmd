@@ -1,0 +1,93 @@
+<!---
+Version: "2013-10-23"
+Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
+-->
+So far, we have writen most of our (simple) model tuning and variable selection routines from scratch. Now it is time to switch to a very valueable package called [caret](http://topepo.github.io/caret/index.html) which takes care of at least some of our duties.
+
+To illustrate the caret package, we use the iris dataset from the base R package.
+```{r, warning=FALSE}
+library(caret)
+
+head(iris)
+```
+
+First, we create 5 training/testing samples (times = 5) with 80 percent of the data in each training sample.
+```{r, warning=FALSE}
+smpl <- createDataPartition(iris$Species, p = 0.80, list = FALSE, times = 5)
+
+samples <- lapply(seq(ncol(smpl)), function(x){
+  list(train = iris[smpl[,x], ], test = iris[-smpl[,x],])
+})
+```
+
+Now we iterate over the individual training/testing samples. For each sample, we create an additional set of cross-validation folds just based on the respective training sample. These folds will be used to tune our model. Afterwards, we need to define some recursive feature elimination (``rfeControl``) and training (``trainControl``) settings before we can actually train our model (in this example, it is a random forest, rf). The later encompasses both, the variable selection and the model tuning (``rfe``). For details refer to the documentation of caret.
+```{r, warning=FALSE}
+models <- lapply(samples, function(s){
+  resp <- s$train$Species
+  indp <- s$train[, 1:4]
+  
+  # Create splits from the training data for model tuning
+  set.seed(1)
+  cv_splits <- createFolds(resp, k=5, returnTrain = TRUE)
+  
+  # Define controls for recursive feature elimination
+  rfeCntrl <- rfeControl(functions = rfFuncs,
+                         method="cv", index = cv_splits,
+                         returnResamp = "all",
+                         verbose = FALSE,
+                         rerank=FALSE)
+  
+  # Define controls for model tuning
+  trCntr <- trainControl(method="cv", number = 5, repeats = 1, verbose = FALSE)
+  
+  # Tune model and select variables
+  rfe_model <- rfe(indp, resp,
+                   metric = "Accuracy", 
+                   method = "rf", 
+                   sizes = 1:4,
+                   rfeControl = rfeCntrl,
+                   trControl = trCntr, 
+                   verbose = TRUE,
+                   tuneGrid = expand.grid(.mtry = seq(2, 8, 1)))
+})
+```
+
+Each model in the list now looks like this:
+```{r, warning=FALSE}
+models[[1]]
+```
+In the first example, the optimum number of variables is 2 (as indicated by the *) and the best variables for predicting the species is Petal.Width and Petal.Length. There is quite a lot of information stored in the model, e.g. the variable importance (see below). For more information, please refere to the documentation of caret. 
+```{r, warning=FALSE}
+models[[1]]$fit$importance
+```
+
+The model could of course also be used for predictions. Since we split our data into training and testing above, we can now predict some model values using an independent test sample:
+```{r, warning=FALSE}
+indp <- samples[[1]]$train[, 1:4]
+pred <- predict(models[[1]], samples[[1]]$test[, 1:4])
+obsv <- samples[[1]]$test$Species
+
+ctable <- ftable(data.frame(pred$pred, obsv))
+ctable
+```
+The above output could now be used to compute e.g. the Kappa index of agreement (see the function supplied as part of the corresponding remote sensing course):
+
+```{r, warning=FALSE}
+ctable <- ctable/sum(ctable)
+categories <- nrow(ctable)
+
+# Fraction of agreement
+pagrm <- 0
+for(i in seq(categories)){
+  pagrm <- pagrm + ctable[i,i]
+}
+
+# Expected fraction of agreement subject to the observed distribution
+pexpct <- 0
+for(i in seq(categories)){
+  pexpct <- pexpct + sum(ctable[i,]) * sum(ctable[,i])
+}
+
+# Kappa index
+(pagrm - pexpct)/(1 - pexpct)
+```
