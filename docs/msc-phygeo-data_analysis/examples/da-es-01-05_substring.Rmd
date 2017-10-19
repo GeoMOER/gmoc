@@ -1,8 +1,9 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
-#### 
+---
+title: "Extracting substrings"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 
 Extracting or replacing parts of a substring is quite straight forward but
 requires some more typing than e.g. in Python. The main function you will use

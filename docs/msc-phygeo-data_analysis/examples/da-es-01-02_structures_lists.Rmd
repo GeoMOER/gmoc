@@ -1,7 +1,9 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "List basics"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 #### Creation of a lilst
 A list is create using the `list` function. Here are some examples:
 ```{r}
