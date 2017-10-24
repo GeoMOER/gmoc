@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Creating Publication Quality Graphics in R</title>
+  <meta name="description" content="Creating Publication Quality Graphics in R">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Creating Publication Quality Graphics in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Creating Publication Quality Graphics in R" />
+  
+  
+  
+
+<meta name="author" content="Tim Appelhans and Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="data-handling.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Publication Quality Graphics in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="data-handling.html"><a href="data-handling.html"><i class="fa fa-check"></i><b>1</b> Data Handling</a><ul>
+<li class="chapter" data-level="1.1" data-path="subset.html"><a href="subset.html"><i class="fa fa-check"></i><b>1.1</b> Subsetting Data</a></li>
+<li class="chapter" data-level="1.2" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>1.2</b> Aggregating Data</a></li>
+<li class="chapter" data-level="1.3" data-path="sorting-data.html"><a href="sorting-data.html"><i class="fa fa-check"></i><b>1.3</b> Sorting Data</a></li>
+<li class="chapter" data-level="1.4" data-path="merging-data.html"><a href="merging-data.html"><i class="fa fa-check"></i><b>1.4</b> Merging Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-brief-note-on-using-colors.html"><a href="a-brief-note-on-using-colors.html"><i class="fa fa-check"></i><b>2</b> A Brief Note on using Colors</a></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="scatter-plots-lattice.html"><a href="scatter-plots-lattice.html"><i class="fa fa-check"></i><b>3.1</b> Scatter plots (lattice)</a></li>
+<li class="chapter" data-level="3.2" data-path="scatter-plots-ggplot2.html"><a href="scatter-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.2</b> Scatter plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.3" data-path="box-and-whisker-plots-lattice.html"><a href="box-and-whisker-plots-lattice.html"><i class="fa fa-check"></i><b>3.3</b> Box-and-Whisker Plots (lattice)</a></li>
+<li class="chapter" data-level="3.4" data-path="box-and-whisker-plots-ggplot2.html"><a href="box-and-whisker-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.4</b> Box-and-Whisker Plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.5" data-path="histograms-and-density-plots-lattice.html"><a href="histograms-and-density-plots-lattice.html"><i class="fa fa-check"></i><b>3.5</b> Histograms and Density Plots (lattice)</a></li>
+<li class="chapter" data-level="3.6" data-path="histograms-and-density-plots-ggplot2.html"><a href="histograms-and-density-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.6</b> Histograms and Density Plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.7" data-path="plotting-error-bars-lattice.html"><a href="plotting-error-bars-lattice.html"><i class="fa fa-check"></i><b>3.7</b> Plotting Error Bars (lattice)</a></li>
+<li class="chapter" data-level="3.8" data-path="gg-err.html"><a href="gg-err.html"><i class="fa fa-check"></i><b>3.8</b> Plotting Error Bars (ggplot2)</a></li>
+<li class="chapter" data-level="3.9" data-path="plotting-error-bars-base-graphics.html"><a href="plotting-error-bars-base-graphics.html"><i class="fa fa-check"></i><b>3.9</b> Plotting Error Bars (base graphics)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulating-plots-with-grid.html"><a href="manipulating-plots-with-grid.html"><i class="fa fa-check"></i><b>4</b> Manipulating Plots with grid</a><ul>
+<li class="chapter" data-level="4.1" data-path="multiple-plots-per-page.html"><a href="multiple-plots-per-page.html"><i class="fa fa-check"></i><b>4.1</b> Multiple Plots per Page</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulating-existing-plots.html"><a href="manipulating-existing-plots.html"><i class="fa fa-check"></i><b>4.2</b> Manipulating Existing Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="saving.html"><a href="saving.html"><i class="fa fa-check"></i><b>5</b> Saving your Visualizations</a><ul>
+<li class="chapter" data-level="5.1" data-path="tagged-image-file-format.html"><a href="tagged-image-file-format.html"><i class="fa fa-check"></i><b>5.1</b> Tagged Image File Format</a></li>
+<li class="chapter" data-level="5.2" data-path="portable-network-graphics.html"><a href="portable-network-graphics.html"><i class="fa fa-check"></i><b>5.2</b> Portable Network Graphics</a></li>
+<li class="chapter" data-level="5.3" data-path="encapsulated-postscript.html"><a href="encapsulated-postscript.html"><i class="fa fa-check"></i><b>5.3</b> Encapsulated Postscript</a></li>
+<li class="chapter" data-level="5.4" data-path="portable-document-format.html"><a href="portable-document-format.html"><i class="fa fa-check"></i><b>5.4</b> Portable Document Format</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>6</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Creating Publication Quality Graphics in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Creating Publication Quality Graphics in R</h1>
+<h4 class="author"><em><b>Tim Appelhans and Florian Detsch</b></em></h4>
+<h4 class="date"><em>Last modified: 2017-10-24</em></h4>
+</div>
+<div id="preface" class="section level1 unnumbered">
+<h1>Preface</h1>
+<p>This tutorial was initially developed as part of a one-day workshop held within the Ecosystem Informatics PhD program at the University of Marburg. It has constantly evolved over the years and has lately become an annual course in the <a href="https://www.uni-marburg.de/mara/veranstaltungen/workshops/2017/programm_lnw/creating-graphics-using-r?language_sync=1">event calendar</a> of the <a href="https://www.uni-marburg.de/mara">MArburg University Research Academy (MARA)</a>. Hence, it is still being updated regularly and its contents presented hereinafter are published under the creative commons license <a href="http://creativecommons.org/licenses/by-sa/3.0/">‘Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)’</a>.</p>
+<div class="figure">
+<img src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" />
+
+</div>
+<p>The tutorial was originally provided as one big document, but for easier digestion of the content, we have decided to break it into several smaller bits. We hope you find parts of this tutorial, if not all of it useful.</p>
+<p>Comments, feedback, suggestions and bug reports are always welcome and should be directed to <a href="mailto:florian.detsch@staff.uni-marburg.de">florian.detsch{at}staff.uni-marburg.de</a>.</p>
+<p><b>In this workshop we will</b></p>
+<ul>
+<li>learn a few things about handling and preparing our data for the creation of meaningful graphs;</li>
+<li>quickly introduce the two main ways of plot creation in R - base graphics and <b>grid</b> graphics (we will mostly concentrate on the latter later on);</li>
+<li>become familiar with the two main packages for highly flexible data visualization in R - <b>lattice</b> <span class="citation">(Sarkar <a href="#ref-Sarkar2008">2008</a>)</span> and <b>ggplot2</b> <span class="citation">(Wickham <a href="#ref-Wickham2009">2009</a>)</span>;</li>
+<li>learn how to modify the default options of these packages in order to really get what we want;</li>
+<li>learn even more flexibility using the <b>grid</b> package to (i) create visualizations comprising multiple plots on one page and (ii) manipulate existing plots to suit our needs; and</li>
+<li>learn how to save our visualizations in different formats that comply with general publication standards of most academic journals.</li>
+</ul>
+<p>TIP: If you study the code provided in this tutorial closely, you will likely find some additional programming gems here and there which are not specifically introduced in this workshop (such as the first few lines of code in Section <a href="data-handling.html#data-handling">1</a> ;-)).</p>
+<p><b>In this workshop it is assumed that you</b></p>
+<ul>
+<li>already know how to get your data into R (<code>read.table()</code> etc.);</li>
+<li>have a basic understanding how particular parts of your data can be accessed (<code>$</code>, <code>[</code> - in case you do not know what these special characters mean in an R sense, you might want to start at a more basic level, e.g. <a href="http://tryr.codeschool.com/">here</a>); and</li>
+<li>are familiar with the notion of object creation and assignment (using either <code>&lt;-</code> or <code>=</code>).</li>
+</ul>
+<p><b>Note, however, that this workshop is not about statistics (we will only be marginally exposed to very basic statistical principles).</b></p>
+<p><em>Before we start, we would like to highlight a few useful web resources for finding help in case you get stuck with a particular task:</em></p>
+<ul>
+<li>First and foremost, <a href="http://www.google.com">Google is your friend</a> - for R related questions just type something like “r lattice how to change plot background color”. The crux here is that you provide both the programming language (i.e. R) and the name of the package your question is related to (i.e. <b>lattice</b>). This way you will very likely find useful answers (the web is full of knowledgeable geeks).</li>
+<li>Using Google in this way, you will most likely end up at <a href="http://www.stackoverflow.com">StackOverflow</a> at some stage. This is a very helpful platform for all sorts of programming issues with an ever increasing contribution of the R community. To search directly at StackOverflow for R related stuff, type “r” in front of your search.</li>
+<li>For quick reference on the most useful basic functionality of R, use <a href="http://www.statmethods.net" class="uri">http://www.statmethods.net</a>.</li>
+<li><a href="http://www.rseek.org">Rseek</a> is a search site dedicated exclusively to R-related stuff.</li>
+<li><a href="http://www.r-bloggers.com">R-Bloggers</a> is a nice site that provides access to all sorts of blog sites dedicated to R from all around the world (in fact, a lot of the material of this workshop is derived from posts found there).</li>
+<li>Another great tutorial on how to prepare publication quality graphics can be found <a href="http://cellbio.emory.edu/bnanes/figures/">here</a>. This tutorial also uses R as the data analysis tool of choice, but it goes a fair bit further using additional software such as <a href="https://inkscape.org/en/">InkScape</a> for the final touches of the graphics.</li>
+<li>Another resource for creating visualizations, with a particular focus on climatological and atmospheric applications, using R can be found at <a href="http://metvurst.wordpress.com" class="uri">http://metvurst.wordpress.com</a></li>
+<li>To see what we are usually up to at Environmental Informatics Marburg, we refer the interested reader to our <a href="http://www.environmentalinformatics-marburg.de">homepage</a>.</li>
+</ul>
+<p>Finally, please note that we adhere to the format conventions introduced by <span class="citation">Xie (<a href="#ref-Xie2016">2016</a>)</span> in his <a href="https://bookdown.org/yihui/bookdown/">introductory book</a> about the R <b>bookdown</b> package. Accordingly, we do not add prompts (<code>&gt;</code> and <code>+</code>) to the R source code presented herein, and text output is commented out with two hashes (<code>##</code>) by default, for example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;Hello world.</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
+<pre><code>## Hello world.</code></pre>
+<p>This is meant to facilitate copying and running the code, while the text output will be automatically ignored since it is commented out. Package names are in bold text (e.g., <strong>grid</strong>), and inline code and file names are formatted in a typewriter font (e.g., <code>grid::upViewport(0)</code>). Function names are followed by parentheses (e.g., <code>grid::viewport()</code>). The double-colon operator <code>::</code> means accessing a function from a particular package.</p>
+
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Sarkar2008">
+<p>Sarkar, Deepayan. 2008. <em><strong>lattice</strong>: Multivariate Data Visualization with R</em>. Use R! New York: Springer. doi:<a href="https://doi.org/10.1007/978-0-387-75969-2">10.1007/978-0-387-75969-2</a>.</p>
+</div>
+<div id="ref-Wickham2009">
+<p>Wickham, Hadley. 2009. <em><strong>ggplot2</strong>: Elegant Graphics for Data Analysis</em>. Use R! Springer-Verlag New York. doi:<a href="https://doi.org/10.1007/978-0-387-98141-3">10.1007/978-0-387-98141-3</a>.</p>
+</div>
+<div id="ref-Xie2016">
+<p>Xie, Yihui. 2016. <em><strong>bookdown</strong>: Authoring Books and Technical Documents with R Markdown</em>. Chapman &amp; Hall/CRC the R. CRC Press.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="data-handling.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
