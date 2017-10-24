@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Creating Publication Quality Graphics in R</title>
   <meta name="description" content="Creating Publication Quality Graphics in R">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Creating Publication Quality Graphics in R" />
   <meta property="og:type" content="book" />
@@ -169,7 +169,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The full set of details can be retrieved using</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ps.options</span>()</code></pre></div>
 <pre><code>## $onefile
-## [1] TRUE
+## [1] FALSE
 ## 
 ## $family
 ## [1] &quot;Helvetica&quot;
@@ -190,19 +190,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [1] &quot;black&quot;
 ## 
 ## $width
-## [1] 0
+## [1] 7
 ## 
 ## $height
-## [1] 0
+## [1] 7
 ## 
 ## $horizontal
-## [1] TRUE
+## [1] FALSE
 ## 
 ## $pointsize
 ## [1] 12
 ## 
 ## $paper
-## [1] &quot;default&quot;
+## [1] &quot;special&quot;
 ## 
 ## $pagecentre
 ## [1] TRUE
@@ -315,7 +315,7 @@ mar_theme<span class="op">$</span>layout.heights<span class="op">$</span>bottom.
 <span class="kw">print</span>(<span class="kw">xyplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">lwd =</span> <span class="dv">96</span><span class="op">/</span><span class="dv">72</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span>, 
              <span class="dt">lattice.options =</span> mar_theme))</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:seteps-whitespace"></span>
-<img src="_main_files/figure-html/seteps-whitespace-1.svg" alt="A **lattice** lines plot with a 2 pt white margin (at least on the left side)." width="672" />
+<img src="main_files/figure-html/seteps-whitespace-1.svg" alt="A **lattice** lines plot with a 2 pt white margin (at least on the left side)." width="672" />
 <p class="caption">
 Figure 5.1: A <strong>lattice</strong> lines plot with a 2 pt white margin (at least on the left side).
 </p>
@@ -327,7 +327,7 @@ Figure 5.1: A <strong>lattice</strong> lines plot with a 2 pt white margin (at l
 
 <span class="kw">print</span>(p_ggplot)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:change-themes-gg-eps"></span>
-<img src="_main_files/figure-html/change-themes-gg-eps-1.svg" alt="A **ggplot2** lines plot with a 2 pt white margin." width="672" />
+<img src="main_files/figure-html/change-themes-gg-eps-1.svg" alt="A **ggplot2** lines plot with a 2 pt white margin." width="672" />
 <p class="caption">
 Figure 5.2: A <strong>ggplot2</strong> lines plot with a 2 pt white margin.
 </p>

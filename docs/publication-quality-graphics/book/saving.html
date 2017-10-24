@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Creating Publication Quality Graphics in R</title>
   <meta name="description" content="Creating Publication Quality Graphics in R">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Creating Publication Quality Graphics in R" />
   <meta property="og:type" content="book" />
@@ -180,6 +180,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <pre><code>## [1] 11</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># turn device off</span>
 <span class="kw">invisible</span>(<span class="kw">dev.off</span>())</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
 <p>We see that neither <strong>lattice</strong> nor <strong>ggplot2</strong> adhere to the specified point size, whereas base graphics do. Let’s try this for the other devices, too. First, <code>png()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">png</span>(<span class="st">&quot;test.png&quot;</span>, <span class="dt">family =</span> <span class="st">&quot;ArialMT&quot;</span>, <span class="dt">units =</span> <span class="st">&quot;cm&quot;</span>,
      <span class="dt">width =</span> <span class="fl">17.35</span>, <span class="dt">height =</span> <span class="fl">23.35</span>, <span class="dt">pointsize =</span> <span class="dv">18</span>, <span class="dt">res =</span> <span class="dv">300</span>)
@@ -194,6 +195,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <pre><code>## [1] 11</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># turn device off</span>
 <span class="kw">invisible</span>(<span class="kw">dev.off</span>())</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
 <p>As you can see, <code>png()</code> behaves similar to <code>tiff()</code>. Now for <code>eps()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">postscript</span>(<span class="st">&quot;test.eps&quot;</span>, <span class="dt">family =</span> <span class="st">&quot;ArialMT&quot;</span>,
            <span class="dt">width =</span> <span class="fl">17.35</span> <span class="op">/</span><span class="st"> </span><span class="fl">2.54</span>, <span class="dt">height =</span> <span class="fl">23.35</span> <span class="op">/</span><span class="st"> </span><span class="fl">2.54</span>, <span class="dt">pointsize =</span> <span class="dv">18</span>)

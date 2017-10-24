@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Creating Publication Quality Graphics in R</title>
   <meta name="description" content="Creating Publication Quality Graphics in R">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Creating Publication Quality Graphics in R" />
   <meta property="og:type" content="book" />
@@ -176,7 +176,7 @@ pal &lt;-<span class="st"> </span><span class="cf">function</span>(col, <span cl
 <p>So here’s the Spectral palette from ColorBrewer interpolated over 100 colors:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pal</span>(<span class="kw">clrs_spec</span>(<span class="dv">100</span>))</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:spectr-pal"></span>
-<img src="_main_files/figure-html/spectr-pal-1.svg" alt="A diverging rainbow color palette from [ColorBrewer](http://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3)." width="768" />
+<img src="main_files/figure-html/spectr-pal-1.svg" alt="A diverging rainbow color palette from [ColorBrewer](http://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3)." width="768" />
 <p class="caption">
 Figure 2.1: A diverging rainbow color palette from <a href="http://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3">ColorBrewer</a>.
 </p>
@@ -184,7 +184,7 @@ Figure 2.1: A diverging rainbow color palette from <a href="http://colorbrewer2.
 <p>And this is what it looks like in greyscale:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pal</span>(<span class="kw">desaturate</span>(<span class="kw">clrs_spec</span>(<span class="dv">100</span>)))</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:spectr-pal-grey"></span>
-<img src="_main_files/figure-html/spectr-pal-grey-1.svg" alt="Same palette as above in grey-scale." width="768" />
+<img src="main_files/figure-html/spectr-pal-grey-1.svg" alt="Same palette as above in grey-scale." width="768" />
 <p class="caption">
 Figure 2.2: Same palette as above in grey-scale.
 </p>
@@ -196,7 +196,7 @@ Figure 2.2: Same palette as above in grey-scale.
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pal</span>(<span class="kw">rainbow</span>(<span class="dv">100</span>))</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:rainb-pal"></span>
-<img src="_main_files/figure-html/rainb-pal-1.svg" alt="The classic rainbow color palette." width="768" />
+<img src="main_files/figure-html/rainb-pal-1.svg" alt="The classic rainbow color palette." width="768" />
 <p class="caption">
 Figure 2.3: The classic rainbow color palette.
 </p>
@@ -205,7 +205,7 @@ Figure 2.3: The classic rainbow color palette.
 <p>When converted to greyscale, this palette produces a hell of a mess:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pal</span>(<span class="kw">desaturate</span>(<span class="kw">rainbow</span>(<span class="dv">100</span>)))</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:rainb-pal-grey"></span>
-<img src="_main_files/figure-html/rainb-pal-grey-1.svg" alt="Same palette as above in grey-scale." width="768" />
+<img src="main_files/figure-html/rainb-pal-grey-1.svg" alt="Same palette as above in grey-scale." width="768" />
 <p class="caption">
 Figure 2.4: Same palette as above in grey-scale.
 </p>
@@ -214,7 +214,7 @@ Figure 2.4: Same palette as above in grey-scale.
 <p><code>hcl()</code> produces so-called perceptually uniform color palettes and is therefore much better suited to represent sequential data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pal</span>(<span class="kw">clrs_hcl</span>(<span class="dv">100</span>))</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:hcl-pal"></span>
-<img src="_main_files/figure-html/hcl-pal-1.svg" alt="An HCL based multi-hue color palette with increasing luminance towards the red end." width="768" />
+<img src="main_files/figure-html/hcl-pal-1.svg" alt="An HCL based multi-hue color palette with increasing luminance towards the red end." width="768" />
 <p class="caption">
 Figure 2.5: An HCL based multi-hue color palette with increasing luminance towards the red end.
 </p>
@@ -222,7 +222,7 @@ Figure 2.5: An HCL based multi-hue color palette with increasing luminance towar
 <p>We see that the different hues are spread constantly over the palette and therefore it is easy to estimate distances between data values from the changes in color. The fact that we also vary luminance here means that we get a very light color at one end (in our case, the red end which is more of a pink tone than red). This might, at first sight, not seem very aesthetically pleasing, yet it enables us to encode our data even in greyscale:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pal</span>(<span class="kw">desaturate</span>(<span class="kw">clrs_hcl</span>(<span class="dv">100</span>)))</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:hcl-pal-grey"></span>
-<img src="_main_files/figure-html/hcl-pal-grey-1.svg" alt="Same palette as above in grey-scale." width="768" />
+<img src="main_files/figure-html/hcl-pal-grey-1.svg" alt="Same palette as above in grey-scale." width="768" />
 <p class="caption">
 Figure 2.6: Same palette as above in grey-scale.
 </p>

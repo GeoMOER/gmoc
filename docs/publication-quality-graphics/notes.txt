@@ -1,2 +1,0 @@
-- plotCI()
-- delete non-required graphics from root folder
