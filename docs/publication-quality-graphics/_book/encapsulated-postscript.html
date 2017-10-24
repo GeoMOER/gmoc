@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Creating Publication Quality Graphics in R</title>
+  <meta name="description" content="Creating Publication Quality Graphics in R">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Creating Publication Quality Graphics in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Creating Publication Quality Graphics in R" />
+  
+  
+  
+
+<meta name="author" content="Tim Appelhans and Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="portable-network-graphics.html">
+<link rel="next" href="portable-document-format.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Publication Quality Graphics in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="data-handling.html"><a href="data-handling.html"><i class="fa fa-check"></i><b>1</b> Data Handling</a><ul>
+<li class="chapter" data-level="1.1" data-path="subset.html"><a href="subset.html"><i class="fa fa-check"></i><b>1.1</b> Subsetting Data</a></li>
+<li class="chapter" data-level="1.2" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>1.2</b> Aggregating Data</a></li>
+<li class="chapter" data-level="1.3" data-path="sorting-data.html"><a href="sorting-data.html"><i class="fa fa-check"></i><b>1.3</b> Sorting Data</a></li>
+<li class="chapter" data-level="1.4" data-path="merging-data.html"><a href="merging-data.html"><i class="fa fa-check"></i><b>1.4</b> Merging Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-brief-note-on-using-colors.html"><a href="a-brief-note-on-using-colors.html"><i class="fa fa-check"></i><b>2</b> A Brief Note on using Colors</a></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="scatter-plots-lattice.html"><a href="scatter-plots-lattice.html"><i class="fa fa-check"></i><b>3.1</b> Scatter plots (lattice)</a></li>
+<li class="chapter" data-level="3.2" data-path="scatter-plots-ggplot2.html"><a href="scatter-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.2</b> Scatter plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.3" data-path="box-and-whisker-plots-lattice.html"><a href="box-and-whisker-plots-lattice.html"><i class="fa fa-check"></i><b>3.3</b> Box-and-Whisker Plots (lattice)</a></li>
+<li class="chapter" data-level="3.4" data-path="box-and-whisker-plots-ggplot2.html"><a href="box-and-whisker-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.4</b> Box-and-Whisker Plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.5" data-path="histograms-and-density-plots-lattice.html"><a href="histograms-and-density-plots-lattice.html"><i class="fa fa-check"></i><b>3.5</b> Histograms and Density Plots (lattice)</a></li>
+<li class="chapter" data-level="3.6" data-path="histograms-and-density-plots-ggplot2.html"><a href="histograms-and-density-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.6</b> Histograms and Density Plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.7" data-path="plotting-error-bars-lattice.html"><a href="plotting-error-bars-lattice.html"><i class="fa fa-check"></i><b>3.7</b> Plotting Error Bars (lattice)</a></li>
+<li class="chapter" data-level="3.8" data-path="gg-err.html"><a href="gg-err.html"><i class="fa fa-check"></i><b>3.8</b> Plotting Error Bars (ggplot2)</a></li>
+<li class="chapter" data-level="3.9" data-path="plotting-error-bars-base-graphics.html"><a href="plotting-error-bars-base-graphics.html"><i class="fa fa-check"></i><b>3.9</b> Plotting Error Bars (base graphics)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulating-plots-with-grid.html"><a href="manipulating-plots-with-grid.html"><i class="fa fa-check"></i><b>4</b> Manipulating Plots with grid</a><ul>
+<li class="chapter" data-level="4.1" data-path="multiple-plots-per-page.html"><a href="multiple-plots-per-page.html"><i class="fa fa-check"></i><b>4.1</b> Multiple Plots per Page</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulating-existing-plots.html"><a href="manipulating-existing-plots.html"><i class="fa fa-check"></i><b>4.2</b> Manipulating Existing Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="saving.html"><a href="saving.html"><i class="fa fa-check"></i><b>5</b> Saving your Visualizations</a><ul>
+<li class="chapter" data-level="5.1" data-path="tagged-image-file-format.html"><a href="tagged-image-file-format.html"><i class="fa fa-check"></i><b>5.1</b> Tagged Image File Format</a></li>
+<li class="chapter" data-level="5.2" data-path="portable-network-graphics.html"><a href="portable-network-graphics.html"><i class="fa fa-check"></i><b>5.2</b> Portable Network Graphics</a></li>
+<li class="chapter" data-level="5.3" data-path="encapsulated-postscript.html"><a href="encapsulated-postscript.html"><i class="fa fa-check"></i><b>5.3</b> Encapsulated Postscript</a></li>
+<li class="chapter" data-level="5.4" data-path="portable-document-format.html"><a href="portable-document-format.html"><i class="fa fa-check"></i><b>5.4</b> Portable Document Format</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>6</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Creating Publication Quality Graphics in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="encapsulated-postscript" class="section level2">
+<h2><span class="header-section-number">5.3</span> Encapsulated Postscript</h2>
+<p>As mentioned earlier, the proper way of saving vector-based graphics (such as line graphs, point graphs, or basically anything with not too many graphical features, e.g. polygons) is using a vector graphics-based device. Here, we will consider “(encapsulated) postscript” (<code>.eps</code>) and “portable document format” (<code>.pdf</code>).</p>
+<p>For R’s <code>postscript</code> device, the relevant default settings are as follows (PLOS ONE requirements in brackets):</p>
+<ul>
+<li>width and heigth: <code>0</code> (max. 6.83 by 9.19)</li>
+<li>units: inches (n.a.)</li>
+<li>pointsize: <code>12</code> (6 to 12)</li>
+<li>bg (background): <code>&quot;transparent&quot;</code> (white)</li>
+<li>family: <code>&quot;Helvetica&quot;</code> (Arial, Times, Symbol)</li>
+<li>onefile: <code>TRUE</code> (n.a., yet likely only one file is acceptable)</li>
+<li>horizontal: <code>TRUE</code> (both is accepted)</li>
+<li>paper: <code>&quot;default&quot;</code>, check via <code>getOption(&quot;papersize&quot;)</code> (n.a.)</li>
+<li>colormodel: <code>&quot;srgb&quot;</code> (RGB, so <code>sRGB</code> should be fine)</li>
+</ul>
+<p>The full set of details can be retrieved using</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ps.options</span>()</code></pre></div>
+<pre><code>## $onefile
+## [1] TRUE
+## 
+## $family
+## [1] &quot;Helvetica&quot;
+## 
+## $title
+## [1] &quot;R Graphics Output&quot;
+## 
+## $fonts
+## NULL
+## 
+## $encoding
+## [1] &quot;default&quot;
+## 
+## $bg
+## [1] &quot;transparent&quot;
+## 
+## $fg
+## [1] &quot;black&quot;
+## 
+## $width
+## [1] 0
+## 
+## $height
+## [1] 0
+## 
+## $horizontal
+## [1] TRUE
+## 
+## $pointsize
+## [1] 12
+## 
+## $paper
+## [1] &quot;default&quot;
+## 
+## $pagecentre
+## [1] TRUE
+## 
+## $print.it
+## [1] FALSE
+## 
+## $command
+## [1] &quot;default&quot;
+## 
+## $colormodel
+## [1] &quot;srgb&quot;
+## 
+## $useKerning
+## [1] TRUE
+## 
+## $fillOddEven
+## [1] FALSE</code></pre>
+<p>Changing these is basically the way to handle device setup when printing to <code>.eps</code>. These default settings can be changed using <code>setEPS()</code>. And here is where it gets a little awkward. If you run <code>setEPS()</code> without any arguments, the defaults listed above will change slightly.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setEPS</span>()
+<span class="kw">ps.options</span>()</code></pre></div>
+<pre><code>## $onefile
+## [1] FALSE
+## 
+## $family
+## [1] &quot;Helvetica&quot;
+## 
+## $title
+## [1] &quot;R Graphics Output&quot;
+## 
+## $fonts
+## NULL
+## 
+## $encoding
+## [1] &quot;default&quot;
+## 
+## $bg
+## [1] &quot;transparent&quot;
+## 
+## $fg
+## [1] &quot;black&quot;
+## 
+## $width
+## [1] 7
+## 
+## $height
+## [1] 7
+## 
+## $horizontal
+## [1] FALSE
+## 
+## $pointsize
+## [1] 12
+## 
+## $paper
+## [1] &quot;special&quot;
+## 
+## $pagecentre
+## [1] TRUE
+## 
+## $print.it
+## [1] FALSE
+## 
+## $command
+## [1] &quot;default&quot;
+## 
+## $colormodel
+## [1] &quot;srgb&quot;
+## 
+## $useKerning
+## [1] TRUE
+## 
+## $fillOddEven
+## [1] FALSE</code></pre>
+<p>Notably,</p>
+<ul>
+<li><code>onefile</code> is now <code>FALSE</code> as is <code>horizontal</code>,</li>
+<li><code>paper</code> changes from <code>default</code> to <code>special</code>, and</li>
+<li><code>height</code> and <code>width</code> are no longer <code>0</code>, but <code>7</code> inches.</li>
+</ul>
+<p>Apart from <code>onefile</code>, this should be fine. Especially when utilizing layered plotting approaches like we do here (i.e. <strong>lattice</strong> and <strong>ggplot2</strong>), <code>onefile</code> should be set to <code>TRUE</code> as otherwise we may well end up with multi-page <code>.eps</code> files. However, <code>setEPS()</code> will not let us change this, which requires us to set this manually for each device.</p>
+<p>Hence, in order to comply with PLOS ONE we need:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setEPS</span>(<span class="dt">bg =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">family =</span> <span class="st">&quot;Times&quot;</span>, <span class="dt">width =</span> <span class="fl">6.83</span>)
+<span class="kw">postscript</span>(<span class="st">&quot;test_la.eps&quot;</span>, <span class="dt">onefile =</span> <span class="ot">TRUE</span>)
+
+<span class="kw">print</span>(p_lattice)
+
+<span class="kw">invisible</span>(<span class="kw">dev.off</span>())</code></pre></div>
+<p>All the tweaking of the plot layout applies here just the same (e.g. adjusting the axis tick labelling font sizes etc.).</p>
+<p>For vector graphics, resolution is irrelevant as the elements are actual lines or points and not pixels. Therefore, we need to start thinking about lines and points now. And here things are again a little “special” in R. The base size for points is 1/72 inch (standard), but for lines it is 1/96 inch. This means that when we specify a line width of 1 via <code>lwd = 1</code>, we are really getting a line width of 0.75 as <code>72/96 = 0.75</code>. In light of the PLOS ONE requirements for lines to be at least 0.5 pt this will mean that when we set <code>lwd = 0.5</code> we are actually producing a line that is too thin (0.375 pt). On the other hand, setting <code>lwd = 2</code> means that we still adhere to the guidelines as the result will only be 1.5 pt in width.</p>
+<p>If we wanted to address this issue, we could do something like this (using a simple lines plot as an example):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setEPS</span>(<span class="dt">bg =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">family =</span> <span class="st">&quot;Times&quot;</span>, <span class="dt">width =</span> <span class="fl">6.83</span>)
+<span class="kw">postscript</span>(<span class="st">&quot;test_la_line.eps&quot;</span>, <span class="dt">onefile =</span> <span class="ot">TRUE</span>)
+
+<span class="kw">print</span>(<span class="kw">xyplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">lwd =</span> <span class="dv">96</span><span class="op">/</span><span class="dv">72</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span>))
+
+<span class="kw">invisible</span>(<span class="kw">dev.off</span>())</code></pre></div>
+<p>Obviously, the line width adjustment can also be done globally in the theme setup.</p>
+<p>As a final tweak, we will see how to change the white space around a plot in <strong>lattice</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mar_theme &lt;-<span class="st"> </span><span class="kw">lattice.options</span>()
+mar_theme<span class="op">$</span>layout.widths<span class="op">$</span>left.padding<span class="op">$</span>x &lt;-<span class="st"> </span><span class="dv">2</span>
+mar_theme<span class="op">$</span>layout.widths<span class="op">$</span>left.padding<span class="op">$</span>units &lt;-<span class="st"> &quot;points&quot;</span>
+mar_theme<span class="op">$</span>layout.widths<span class="op">$</span>right.padding<span class="op">$</span>x &lt;-<span class="st"> </span><span class="dv">2</span>
+mar_theme<span class="op">$</span>layout.widths<span class="op">$</span>right.padding<span class="op">$</span>units &lt;-<span class="st"> &quot;points&quot;</span>
+mar_theme<span class="op">$</span>layout.heights<span class="op">$</span>top.padding<span class="op">$</span>x &lt;-<span class="st"> </span><span class="dv">2</span>
+mar_theme<span class="op">$</span>layout.heights<span class="op">$</span>top.padding<span class="op">$</span>units &lt;-<span class="st"> &quot;points&quot;</span>
+mar_theme<span class="op">$</span>layout.heights<span class="op">$</span>bottom.padding<span class="op">$</span>x &lt;-<span class="st"> </span><span class="dv">2</span>
+mar_theme<span class="op">$</span>layout.heights<span class="op">$</span>bottom.padding<span class="op">$</span>units &lt;-<span class="st"> &quot;points&quot;</span>
+
+<span class="kw">print</span>(<span class="kw">xyplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">lwd =</span> <span class="dv">96</span><span class="op">/</span><span class="dv">72</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span>, 
+             <span class="dt">lattice.options =</span> mar_theme))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:seteps-whitespace"></span>
+<img src="_main_files/figure-html/seteps-whitespace-1.svg" alt="A **lattice** lines plot with a 2 pt white margin (at least on the left side)." width="672" />
+<p class="caption">
+Figure 5.1: A <strong>lattice</strong> lines plot with a 2 pt white margin (at least on the left side).
+</p>
+</div>
+<p>This will, however, only really provide a 2 pt white space on the left side of the plot. There are some indications as to some bugs in setting these layout parameters, so whether this is intended or not remains unclear for now. We will keep digging and update this tutorial as soon as we come up with a proper solution.</p>
+<p>In <strong>ggplot2</strong>, the margin adjustment can again be done using <code>theme_update()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">20</span>))
+<span class="kw">theme_update</span>(<span class="dt">plot.margin =</span> <span class="kw">unit</span>(<span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dt">units =</span> <span class="st">&quot;points&quot;</span>))
+
+<span class="kw">print</span>(p_ggplot)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:change-themes-gg-eps"></span>
+<img src="_main_files/figure-html/change-themes-gg-eps-1.svg" alt="A **ggplot2** lines plot with a 2 pt white margin." width="672" />
+<p class="caption">
+Figure 5.2: A <strong>ggplot2</strong> lines plot with a 2 pt white margin.
+</p>
+</div>
+<p>You might say that the approach taken by <strong>ggplot2</strong> regarding the margin adjustment is favorable as we don’t need to provide the desired values to each entry of the <code>lattice.options()</code>. There is, however, an equivalent function in <strong>lattice</strong> called <code>trellis.par.set()</code>.</p>
+<p>Personally, we prefer the assignment approach (<code>&lt;-</code>) as it usually involves a little more poking around in the various settings, which means you are likely to understand things in a little more detail.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="portable-network-graphics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="portable-document-format.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

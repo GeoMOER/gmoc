@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Creating Publication Quality Graphics in R</title>
+  <meta name="description" content="Creating Publication Quality Graphics in R">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Creating Publication Quality Graphics in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Creating Publication Quality Graphics in R" />
+  
+  
+  
+
+<meta name="author" content="Tim Appelhans and Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="data-visualization.html">
+<link rel="next" href="scatter-plots-ggplot2.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Publication Quality Graphics in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="data-handling.html"><a href="data-handling.html"><i class="fa fa-check"></i><b>1</b> Data Handling</a><ul>
+<li class="chapter" data-level="1.1" data-path="subset.html"><a href="subset.html"><i class="fa fa-check"></i><b>1.1</b> Subsetting Data</a></li>
+<li class="chapter" data-level="1.2" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>1.2</b> Aggregating Data</a></li>
+<li class="chapter" data-level="1.3" data-path="sorting-data.html"><a href="sorting-data.html"><i class="fa fa-check"></i><b>1.3</b> Sorting Data</a></li>
+<li class="chapter" data-level="1.4" data-path="merging-data.html"><a href="merging-data.html"><i class="fa fa-check"></i><b>1.4</b> Merging Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-brief-note-on-using-colors.html"><a href="a-brief-note-on-using-colors.html"><i class="fa fa-check"></i><b>2</b> A Brief Note on using Colors</a></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="scatter-plots-lattice.html"><a href="scatter-plots-lattice.html"><i class="fa fa-check"></i><b>3.1</b> Scatter plots (lattice)</a></li>
+<li class="chapter" data-level="3.2" data-path="scatter-plots-ggplot2.html"><a href="scatter-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.2</b> Scatter plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.3" data-path="box-and-whisker-plots-lattice.html"><a href="box-and-whisker-plots-lattice.html"><i class="fa fa-check"></i><b>3.3</b> Box-and-Whisker Plots (lattice)</a></li>
+<li class="chapter" data-level="3.4" data-path="box-and-whisker-plots-ggplot2.html"><a href="box-and-whisker-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.4</b> Box-and-Whisker Plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.5" data-path="histograms-and-density-plots-lattice.html"><a href="histograms-and-density-plots-lattice.html"><i class="fa fa-check"></i><b>3.5</b> Histograms and Density Plots (lattice)</a></li>
+<li class="chapter" data-level="3.6" data-path="histograms-and-density-plots-ggplot2.html"><a href="histograms-and-density-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.6</b> Histograms and Density Plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.7" data-path="plotting-error-bars-lattice.html"><a href="plotting-error-bars-lattice.html"><i class="fa fa-check"></i><b>3.7</b> Plotting Error Bars (lattice)</a></li>
+<li class="chapter" data-level="3.8" data-path="gg-err.html"><a href="gg-err.html"><i class="fa fa-check"></i><b>3.8</b> Plotting Error Bars (ggplot2)</a></li>
+<li class="chapter" data-level="3.9" data-path="plotting-error-bars-base-graphics.html"><a href="plotting-error-bars-base-graphics.html"><i class="fa fa-check"></i><b>3.9</b> Plotting Error Bars (base graphics)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulating-plots-with-grid.html"><a href="manipulating-plots-with-grid.html"><i class="fa fa-check"></i><b>4</b> Manipulating Plots with grid</a><ul>
+<li class="chapter" data-level="4.1" data-path="multiple-plots-per-page.html"><a href="multiple-plots-per-page.html"><i class="fa fa-check"></i><b>4.1</b> Multiple Plots per Page</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulating-existing-plots.html"><a href="manipulating-existing-plots.html"><i class="fa fa-check"></i><b>4.2</b> Manipulating Existing Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="saving.html"><a href="saving.html"><i class="fa fa-check"></i><b>5</b> Saving your Visualizations</a><ul>
+<li class="chapter" data-level="5.1" data-path="tagged-image-file-format.html"><a href="tagged-image-file-format.html"><i class="fa fa-check"></i><b>5.1</b> Tagged Image File Format</a></li>
+<li class="chapter" data-level="5.2" data-path="portable-network-graphics.html"><a href="portable-network-graphics.html"><i class="fa fa-check"></i><b>5.2</b> Portable Network Graphics</a></li>
+<li class="chapter" data-level="5.3" data-path="encapsulated-postscript.html"><a href="encapsulated-postscript.html"><i class="fa fa-check"></i><b>5.3</b> Encapsulated Postscript</a></li>
+<li class="chapter" data-level="5.4" data-path="portable-document-format.html"><a href="portable-document-format.html"><i class="fa fa-check"></i><b>5.4</b> Portable Document Format</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>6</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Creating Publication Quality Graphics in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="scatter-plots-lattice" class="section level2">
+<h2><span class="header-section-number">3.1</span> Scatter plots (lattice)</h2>
+<p>Even with all the enhancements and progress made in the field of computer based graphics in recent years, or even decades, the best (as most intuitive) way to show the relationship between two continuous variables remains the scatter plot. Just like for the smoothest ride, the best shape of the wheel is still round.</p>
+<p>If, from our original <code>diamonds</code> data set, we wanted to see the relation between price and carat of the diamonds (or more precisely how price is influenced by carat), we would use a scatter plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">scatter_lattice &lt;-<span class="st"> </span><span class="kw">xyplot</span>(price <span class="op">~</span><span class="st"> </span>carat, <span class="dt">data =</span> diamonds)
+scatter_lattice</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:scatter-lattice"></span>
+<img src="_main_files/figure-html/scatter-lattice-1.svg" alt="A basic scatter plot produced with **lattice**." width="80%" />
+<p class="caption">
+Figure 3.1: A basic scatter plot produced with <strong>lattice</strong>.
+</p>
+</div>
+<p>What we see is that, generally, lower carat values tend to be cheaper. However, there is a lot of scatter, especially at the high price end, i.e. there are diamonds of 1 carat that cost just as much as diamonds of 4 or more carat. So maybe this is a function of the cut? Let’s see…</p>
+<p><strong>lattice</strong> is a very powerful package that provides a lot of flexibility and power to create all sorts of tailor-made statistical plots. In particular, it is designed to provide an easy-to-use framework for the representation of some variable(s) conditioned on some other variable(s). This means, that we can easily show the same relationship from figure 1, but this time for each of the different quality levels (the variable <code>cut</code> in the <code>diamonds</code> data set) into which diamonds are classified. These conditional subsets are called ‘panels’ in <strong>lattice</strong>.</p>
+<p>This is done using the <code>|</code> character just after the formula expression. So the complete formula would read:</p>
+<pre><code>y ~ x | g</code></pre>
+<p>In other words, <code>y</code> is a function of <code>x</code> conditional to the values in <code>g</code> (where <code>g</code> is usually a factorial variable). The code below shows how all of this can be achieved, viz.</p>
+<ul>
+<li>plot <code>price ~ carat</code> conditional to <code>cut</code>,</li>
+<li>draw the regression line for each panel, and</li>
+<li>also provide the R-squared value for each panel.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">scatter_lattice &lt;-<span class="st"> </span><span class="kw">xyplot</span>(price <span class="op">~</span><span class="st"> </span>carat <span class="op">|</span><span class="st"> </span>cut, 
+                          <span class="dt">data =</span> diamonds, 
+                          <span class="dt">panel =</span> <span class="cf">function</span>(x, y, ...) {
+                            <span class="kw">panel.xyplot</span>(x, y, ...)
+                            lm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x)
+                            lm1sum &lt;-<span class="st"> </span><span class="kw">summary</span>(lm1)
+                            r2 &lt;-<span class="st"> </span>lm1sum<span class="op">$</span>adj.r.squared
+                            <span class="kw">panel.abline</span>(<span class="dt">a =</span> lm1<span class="op">$</span>coefficients[<span class="dv">1</span>], 
+                                         <span class="dt">b =</span> lm1<span class="op">$</span>coefficients[<span class="dv">2</span>])
+                            <span class="kw">panel.text</span>(<span class="dt">labels =</span> 
+                                         <span class="kw">bquote</span>(<span class="kw">italic</span>(R)<span class="op">^</span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span>
+<span class="st">                                                  </span>.(<span class="kw">format</span>(r2, 
+                                                           <span class="dt">digits =</span> <span class="dv">3</span>))),
+                                       <span class="dt">x =</span> <span class="dv">4</span>, <span class="dt">y =</span> <span class="dv">1000</span>)
+                            },
+                          <span class="dt">xscale.components =</span> xscale.components.subticks,
+                          <span class="dt">yscale.components =</span> yscale.components.subticks,
+                          <span class="dt">as.table =</span> <span class="ot">TRUE</span>)
+
+scatter_lattice</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:scatter-lattice-with-panels-and-line"></span>
+<img src="_main_files/figure-html/scatter-lattice-with-panels-and-line-1.svg" alt="A panel plot showing regression lines for each panel produced with **lattice**." width="672" />
+<p class="caption">
+Figure 3.2: A panel plot showing regression lines for each panel produced with <strong>lattice</strong>.
+</p>
+</div>
+<p>This is where <strong>lattice</strong> becomes a bit more challenging, yet how do they say: with great power comes great complexity… Okay, maybe we didn’t get this quote completely correct, but it certainly reflects the nature of <strong>lattice</strong>’s flexibility: A lot of things are possible, but they need a bit more effort than accepting the default settings.</p>
+<p>Basically, what we have done here is to provide a so-called panel function (actually, we have provided 3 of them). But let’s look at this step-by-step…</p>
+<p>As <strong>lattice</strong> is geared towards providing plots in small multiples (as <a href="https://www.edwardtufte.com/tufte/">Edward Tufte</a> calls them) or panels, it provides an argument called <code>panel</code> to which we can assign certain functions that will be evaluated separately for each of the panels. There’s a variety of pre-defined panel functions (such as the ones we used here - <code>panel.xyplot()</code>, <code>panel.abline()</code>, <code>panel.text()</code>), but we can also define our own panel functions. This is why <strong>lattice</strong> is so versatile and powerful. Basically, writing panel functions is just like writing any other function in R (though some limitations do exist).</p>
+<p>The important thing to note here is that <code>x</code> and <code>y</code> in the context of panel functions refer to the <code>x</code> and <code>y</code> variables we define in the plot definition, i.e. <code>x = carat</code> and <code>y = price</code>. So, for the panel functions we can use this shorthand, like as we are doing in defining our linear model as <code>lm1 &lt;- lm(y ~ x)</code>. This linear model will be calculated separately for each of the panels, which are basically nothing else than subsets of our data corresponding to the different levels of cut. Maybe it helps to think of this as a certain type of for loop:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (level <span class="cf">in</span> <span class="kw">levels</span>(cut)) 
+  lm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(price <span class="op">~</span><span class="st"> </span>carat)</code></pre></div>
+<p>This then enables us to access the outcome of this linear model separately for each panel and we can use <code>panel.abline()</code> to draw a line in each panel corresponding to the calculated model coefficients (i.e. intercept (<code>a</code>) and slope (<code>b</code>). Hence, we are drawing the regression line which represents the line of least squares for each panel separately.</p>
+<p>The same holds true for the calculation and plotting of the adjusted R-squared value for each linear model per panel. In this case we use the <code>panel.text()</code> function to ‘write’ the corresponding value into each of the panel boxes. The location of the text is determined by the <code>x =</code> and <code>y =</code> arguments. This is where some care needs to be taken, as in the <code>panel.text()</code> call <code>x</code> and <code>y</code> don’t refer to the <code>x</code> and <code>y</code> variables of the global plot function <code>xyplot()</code> anymore, but rather represent the locations of where to position the text within each of the panel boxes in the units used for each of the axes (in our case <code>x = 4</code> and <code>y = 1000</code>).</p>
+<p>There’s two more things to note with regard to panel functions:</p>
+<ol style="list-style-type: decimal">
+<li><p>In order to draw what we originally intended to draw, i.e. the scatter plot, we need to provide a panel function that represents our initial intention. In our case this is the rather blank call <code>panel.xyplot(x, y, ...)</code>. Without this, the points of our plot will not be drawn and we will get a plot that only shows the regression line and the text (feel free to try it!). This seems like a good place to introduce one of the most awkward (from a programming point of view) but at the same time most awesome (from a users point of view) things in the R language. The three magic dots (<code>...</code>) are a shorthand for “everything else that is possible in a certain function”. This is both a very lazy and at the same time a very convenient way of passing arguments to a function. Basically, this enables us to provide any additional argument that the function might be able to understand. Any argument that <code>xyplot()</code> is able to evaluate (understand) can be passed in addition to <code>x</code> and <code>y</code>. Try it out yourself by, for example, specifying <code>col = &quot;red&quot;</code>. If we had not included <code>...</code> in the <code>panel = function(x, y, ...)</code> call, the <code>col =</code> definition would not be possible. Anyway, this is only a side note that is not really related to the topic at hand, so let’s move on….</p></li>
+<li><p>The order in which panel functions are supplied does matter. This means that the first panel function will be evaluated (and drawn) first, then the second, then the third and so on. Hence, if we were to plot the points of our plot on top of everything else, we would need to provide the <code>panel.xyplot()</code> function as the last of the panel functions.</p></li>
+</ol>
+<p>Right, so now we have seen how to use panel functions to calculate and draw things specific to each panel. One thing that you might dislike about <strong>lattice</strong> is the default graphical parameter settings, in particular colors. However, changing these is rather straightforward. We can easily create our own themes by replacing the default values for each of the graphical parameters individually and saving these as our own themes. The function that lets us access the default (or already modified) graphical parameter settings is called <code>trellis.par.get()</code>. By assigning this to a new object, we can modify every entry of the default settings to our liking (remember <code>str()</code> provides a ‘road map’ for accessing individual bits of an object).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_theme &lt;-<span class="st"> </span><span class="kw">trellis.par.get</span>()
+my_theme<span class="op">$</span>strip.background<span class="op">$</span>col &lt;-<span class="st"> &quot;grey80&quot;</span>
+my_theme<span class="op">$</span>plot.symbol<span class="op">$</span>pch &lt;-<span class="st"> </span><span class="dv">16</span>
+my_theme<span class="op">$</span>plot.symbol<span class="op">$</span>col &lt;-<span class="st"> &quot;grey60&quot;</span>
+my_theme<span class="op">$</span>plot.polygon<span class="op">$</span>col &lt;-<span class="st"> &quot;grey90&quot;</span>
+
+l_sc &lt;-<span class="st"> </span><span class="kw">update</span>(scatter_lattice, <span class="dt">par.settings =</span> my_theme, 
+               <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>),
+               <span class="dt">between =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="fl">0.3</span>, <span class="dt">y =</span> <span class="fl">0.3</span>))
+
+<span class="kw">print</span>(l_sc)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:latt-panel-scat2"></span>
+<img src="_main_files/figure-html/latt-panel-scat2-1.svg" alt="A panel plot with modified settings of the **lattice** layout." width="672" />
+<p class="caption">
+Figure 3.3: A panel plot with modified settings of the <strong>lattice</strong> layout.
+</p>
+</div>
+<p>Apart from showing us how to change the graphical parameter settings, the above code chunk also highlights one of the very handy properties of <strong>lattice</strong> (which is also true for <strong>ggplot2</strong>). We are able to store any plot we create in an object and can refer to this object later. This enables us to simply <code>update()</code> the object rather than having to define it over (and over) again.</p>
+<p>Like many other packages, <strong>lattice</strong> has a companion called <strong>latticeExtra</strong> <span class="citation">(Sarkar and Andrews <a href="#ref-Sarkar2016">2016</a>)</span>. This package provides several additions and extensions to the core functionality of <strong>lattice</strong>. One of the very handy additions is a panel function called <code>panel.smoother()</code> which enables us to evaluate several linear and non-linear models for each panel individually. This means that we actually don’t need to calculate these models ‘by hand’ for each panel, but can use this pre-defined function to evaluate them. This is demonstrated in the next code chunk.</p>
+<p>Note that we are still calculating the linear model in order to be able to provide the R-squared value for each panel. We don’t need <code>panel.abline()</code> to draw the regression line anymore. Actually, this is done using <code>panel.smoother()</code> which also provides us with an estimation of the standard error related to the mean estimation of <code>y</code> for each <code>x</code>. This may be hard to see, but there is a confidence band of the standard error plotted around the regression line in each panel.</p>
+<p>For an overview of possible models to be specified using <code>panel.smoother()</code>, see the corresponding help pages (<code>?panel.smoother</code>) from <strong>latticeExtra</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">scatter_lattice &lt;-<span class="st"> </span><span class="kw">xyplot</span>(price <span class="op">~</span><span class="st"> </span>carat <span class="op">|</span><span class="st"> </span>cut, 
+                          <span class="dt">data =</span> diamonds, 
+                          <span class="dt">panel =</span> <span class="cf">function</span>(x, y, ...) {
+                            <span class="kw">panel.xyplot</span>(x, y, ...)
+                            lm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x)
+                            lm1sum &lt;-<span class="st"> </span><span class="kw">summary</span>(lm1)
+                            r2 &lt;-<span class="st"> </span>lm1sum<span class="op">$</span>adj.r.squared
+                            <span class="kw">panel.text</span>(<span class="dt">labels =</span> 
+                                         <span class="kw">bquote</span>(<span class="kw">italic</span>(R)<span class="op">^</span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span>
+<span class="st">                                                  </span>.(<span class="kw">format</span>(r2, 
+                                                           <span class="dt">digits =</span> <span class="dv">3</span>))),
+                                       <span class="dt">x =</span> <span class="dv">4</span>, <span class="dt">y =</span> <span class="dv">1000</span>)
+                            <span class="kw">panel.smoother</span>(x, y, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, 
+                                           <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, 
+                                           <span class="dt">col.se =</span> <span class="st">&quot;black&quot;</span>,
+                                           <span class="dt">alpha.se =</span> <span class="fl">0.3</span>)
+                            },
+                          <span class="dt">xscale.components =</span> xscale.components.subticks,
+                          <span class="dt">yscale.components =</span> yscale.components.subticks,
+                          <span class="dt">as.table =</span> <span class="ot">TRUE</span>)
+
+l_sc &lt;-<span class="st"> </span><span class="kw">update</span>(scatter_lattice, <span class="dt">par.settings =</span> my_theme)
+
+<span class="kw">print</span>(l_sc)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:latt-panel-smooth-scat"></span>
+<img src="_main_files/figure-html/latt-panel-smooth-scat-1.svg" alt="A panel plot showing regression lines and confidence intervals for each **lattice** panel." width="672" />
+<p class="caption">
+Figure 3.4: A panel plot showing regression lines and confidence intervals for each <strong>lattice</strong> panel.
+</p>
+</div>
+<p>Having a look at the scatter plots we have produced so far, there is an obvious problem. There are so many points that it is impossible to determine their actual distribution. One way to address this problem could be to plot each point in a semi-transparent manner. We have tried this potential solution and found that it does not help a great deal (but please, feel free to try this out for yourselves). Hence, we need another way to address the over-plotting of points.</p>
+<p>A potential remedy is to map the 2-dimensional space, in which we create our plot, to a regular grid and estimate the point density in each of the cells. This can be done using a so-called 2-dimensional kernel density estimator. We won’t have the time to go into much detail about this method here, but we will see how this can be done…</p>
+<p>What is important for our purpose is that we actually need to estimate this twice. Once globally, meaning for the whole data set, in order to find the absolute extremes (minimum and maximum) of our data distribution. This is important for the color mapping, because the values of each panel need to be mapped to a common scale in order to interpret them. In other words, this way we are making sure that the similar values of our data are represented by similar shades of, let’s say red. However, in order to be able to estimate the density for each of our panels we also need to do the same calculation in our panel function.</p>
+<p>Essentially what we are creating is a gridded data set (like a photo) of the density of points within each of the defined pixels. The <strong>lattice</strong> function for plotting gridded data is called <code>levelplot()</code>. Here’s the code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xy &lt;-<span class="st"> </span><span class="kw">kde2d</span>(<span class="dt">x =</span> diamonds<span class="op">$</span>carat, <span class="dt">y =</span> diamonds<span class="op">$</span>price, <span class="dt">n =</span> <span class="dv">100</span>) 
+xy_tr &lt;-<span class="st"> </span><span class="kw">con2tr</span>(xy)
+offset &lt;-<span class="st"> </span><span class="kw">max</span>(xy_tr<span class="op">$</span>z) <span class="op">*</span><span class="st"> </span><span class="fl">0.2</span>
+z_range &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(xy_tr<span class="op">$</span>z), <span class="kw">max</span>(xy_tr<span class="op">$</span>z) <span class="op">+</span><span class="st"> </span>offset, offset <span class="op">*</span><span class="st"> </span><span class="fl">0.01</span>)
+
+l_sc &lt;-<span class="st"> </span><span class="kw">update</span>(scatter_lattice, <span class="dt">aspect =</span> <span class="dv">1</span>, <span class="dt">par.settings =</span> my_theme, 
+               <span class="dt">between =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="fl">0.3</span>, <span class="dt">y =</span> <span class="fl">0.3</span>),
+               <span class="dt">panel=</span><span class="cf">function</span>(x,y) {
+                 xy &lt;-<span class="st"> </span><span class="kw">kde2d</span>(x,y, <span class="dt">n =</span> <span class="dv">100</span>) 
+                 xy.tr &lt;-<span class="st"> </span><span class="kw">con2tr</span>(xy)                 
+                 <span class="kw">panel.levelplot</span>(xy_tr<span class="op">$</span>x, xy_tr<span class="op">$</span>y, xy_tr<span class="op">$</span>z, <span class="dt">asp =</span> <span class="dv">1</span>,
+                                 <span class="dt">subscripts =</span> <span class="kw">seq</span>(<span class="kw">nrow</span>(xy_tr)), 
+                                 <span class="dt">contour =</span> <span class="ot">FALSE</span>, <span class="dt">region =</span> <span class="ot">TRUE</span>, 
+                                 <span class="dt">col.regions =</span> <span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, 
+                                                 <span class="kw">rev</span>(<span class="kw">clrs_hcl</span>(<span class="dv">10000</span>))),
+                                 <span class="dt">at =</span> z_range)
+                 lm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x)
+                 lm1sum &lt;-<span class="st"> </span><span class="kw">summary</span>(lm1)
+                 r2 &lt;-<span class="st"> </span>lm1sum<span class="op">$</span>adj.r.squared
+                 <span class="kw">panel.abline</span>(<span class="dt">a =</span> lm1<span class="op">$</span>coefficients[<span class="dv">1</span>], 
+                              <span class="dt">b =</span> lm1<span class="op">$</span>coefficients[<span class="dv">2</span>])
+                 <span class="kw">panel.text</span>(<span class="dt">labels =</span> 
+                              <span class="kw">bquote</span>(<span class="kw">italic</span>(R)<span class="op">^</span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span>
+<span class="st">                                       </span>.(<span class="kw">format</span>(r2, <span class="dt">digits =</span> <span class="dv">3</span>))),
+                            <span class="dt">x =</span> <span class="dv">4</span>, <span class="dt">y =</span> <span class="dv">1000</span>)
+                 } 
+               ) 
+
+<span class="kw">print</span>(l_sc)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:latt-dens-scat"></span>
+<img src="_main_files/figure-html/latt-dens-scat-1.svg" alt="A **lattice** panel plot of the point density within each panel created by `panel.levelplot()`." width="672" />
+<p class="caption">
+Figure 3.5: A <strong>lattice</strong> panel plot of the point density within each panel created by <code>panel.levelplot()</code>.
+</p>
+</div>
+<p>It should not go unnoted that there is a panel function in <strong>lattice</strong> that does this for you. The function is called <code>panel.smoothScatter()</code> and unless we need to specify a custom color palette, this is more than sufficient. As a hint, if you want to use this panel function with your own color palette, you need to make sure that your palette starts with white as otherwise things will look really weird…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_sc_smooth &lt;-<span class="st"> </span><span class="kw">update</span>(scatter_lattice, <span class="dt">aspect =</span> <span class="dv">1</span>, 
+                      <span class="dt">par.settings =</span> my_theme, 
+                      <span class="dt">between =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="fl">0.3</span>, <span class="dt">y =</span> <span class="fl">0.3</span>),
+                      <span class="dt">panel =</span> panel.smoothScatter)
+
+<span class="kw">print</span>(l_sc_smooth)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:latt-smooth-scat"></span>
+<img src="_main_files/figure-html/latt-smooth-scat-1.svg" alt="A **lattice** panel plot of the point density within each panel created by `panel.smoothScatter()`." width="672" />
+<p class="caption">
+Figure 3.6: A <strong>lattice</strong> panel plot of the point density within each panel created by <code>panel.smoothScatter()</code>.
+</p>
+</div>
+<p>This representation of our data basically adds another dimension to our plot which enables us to see that no matter which quality, most of the diamonds are actually of low carat and low price. Whether this is good or bad news depends on your interpretation (and the size of your wallet, of course).</p>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Sarkar2016">
+<p>Sarkar, Deepayan, and Felix Andrews. 2016. <em><strong>latticeExtra</strong>: Extra Graphical Utilities Based on Lattice</em>. <a href="https://CRAN.R-project.org/package=latticeExtra" class="uri">https://CRAN.R-project.org/package=latticeExtra</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="scatter-plots-ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

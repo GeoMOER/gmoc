@@ -1,0 +1,418 @@
+# Saving your Visualizations {#saving}
+
+Saving graphics in R is, in theory, straightforward. We simply need to call a suitable device. There are a number of different plotting devices available. Here, we will introduce four examples: `tiff()`, `png()`, `postscript()`, and `pdf()`. The latter two should be used for vector graphics (e.g. line plots, point plots, polygon plots etc.), whereas `tiff()` and `png()` are preferable for raster graphics (e.g. photos, our density scatter plot in Figures \@ref(fig:latt-dens-scat) and \@ref(fig:gg-dens-scat), or anything pixel based).
+
+All the graphics devices in R basically work the same way:
+
+1. Open the respective device (postscript, png, etc.),
+2. Plot (or in our case `print()`) the plot objects, and
+3. Close the device using `dev.off()` - otherwise the file will not be written to the hard drive.
+
+In code, this is:
+
+```{r device, message=FALSE, eval = FALSE}
+png("some_filename.png", width = 10, height = 10, units = "cm", res = 300)
+## here goes your plotting routine, e.g.: xyplot(1:10 ~ 1:10)
+dev.off()
+```
+
+Sounds rather easy, but as they say, the devil is in the details... Unfortunately, neither **lattice** nor **ggplot2** graphics play very well with the respective graphics devices. Consider the following setting where we want to produce a `.tiff` output with a resolution of 300 dpi, a width of 17.35 cm, a height of 23.35 cm, the font family "ArialMT" and a point size of 18.
+
+Instead of saving a graph, however, we only check whether the point size of 18 is passed correctly to the respective plotting environment (i.e. base **graphics**, **lattice**, and **ggplot2**).
+
+```{r graphical-paramters-tiff, message=FALSE}
+tiff("test.tif", family = "ArialMT", units = "cm",
+     width = 17.35, height = 23.35, pointsize = 18, res = 300)
+
+# query base graphics graphical parameter text size (pointsize)
+par()$ps
+
+# query lattice text size
+trellis.par.get()$fontsize$text
+
+# query ggplot2 text size
+theme_bw()$text$size
+
+# turn device off
+invisible(dev.off())
+```
+
+```{r test-remove, echo = FALSE, message = FALSE}
+if (file.exists("test.tif"))
+    file.remove("test.tif")
+```
+
+We see that neither **lattice** nor **ggplot2** adhere to the specified point size, whereas base graphics do. Let's try this for the other devices, too. First, `png()`:
+
+```{r graphical-paramters-png, message=FALSE}
+png("test.png", family = "ArialMT", units = "cm",
+     width = 17.35, height = 23.35, pointsize = 18, res = 300)
+# query base graphics graphical parameter text size (pointsize)
+par()$ps
+
+# query lattice text size
+trellis.par.get()$fontsize$text
+
+# query ggplot2 text size
+theme_bw()$text$size
+
+# turn device off
+invisible(dev.off())
+```
+
+```{r test-remove-2, echo = FALSE, message = FALSE}
+if (file.exists("test.png"))
+    file.remove("test.png")
+```
+
+As you can see, `png()` behaves similar to `tiff()`. Now for `eps()`:
+
+```{r graphical-paramters-eps, message=FALSE}
+postscript("test.eps", family = "ArialMT",
+           width = 17.35 / 2.54, height = 23.35 / 2.54, pointsize = 18)
+# query base graphics graphical parameter text size (pointsize)
+par()$ps
+
+# query lattice text size
+trellis.par.get()$fontsize$text
+
+# query ggplot2 text size
+theme_bw()$text$size
+
+# turn device off
+invisible(dev.off())
+```
+
+```{r test-remove-3, echo = FALSE, message = FALSE}
+if (file.exists("test.eps"))
+    file.remove("test.eps")
+```
+
+Finally, for `pdf()`:
+
+```{r graphical-paramters-pdf, message=FALSE}
+pdf("test.pdf", family = "ArialMT",
+    width = 17.35 / 2.54, height = 23.35 / 2.54, pointsize = 18)
+# query base graphics graphical parameter text size (pointsize)
+par()$ps
+
+# query lattice text size
+trellis.par.get()$fontsize$text
+
+# query ggplot2 text size
+theme_bw()$text$size
+
+# turn device off
+invisible(dev.off()) # dev.off() is sufficient, invisible() suppresses text output
+```
+
+```{r test-remove-4, echo = FALSE, message = FALSE}
+if (file.exists("test.pdf"))
+    file.remove("test.pdf")
+```
+
+... and we see that only base **graphics** really adhere to the supplied font size.
+
+Alright, this was only a small exercise to highlight the fact that it is not straightforward to get that fine control over graphics output in R. But before we dive into this deeper, we will first need to know what it is that we want to achieve, meaning we need a precise definition of the guidelines our graphics output should adhere to. Generally, academic journals provide formatting guidelines for both figures and tables. These, however, differ from journal to journal so that it is impossible to come up with a one-fits-all solution here. Therefore, we will pick one of these guides to highlight the process of achieving the desired formatting which can then be adapted to any other formatting guide. Even though this is - in R terms - not directly related to exporting visualizations through different devices, these finer controls will be covered her. In the end, from an academic publishing point of view, this is exactly the point where we need to start thinking about these formatting issues.
+
+Depending on the journal the formatting guidelines can be quite detailed, though some journals allow for more flexibility. Generally, there are a few parameters that the majority of journals define in their formatting guides. These include (but are surely not limited to):
+
+* file types
+* font size
+* font family (font type)
+* dimensions
+* resolution (in case of raster graphics)
+
+In case of more rigid formatting guidelines, further rules may be imposed on:
+
+* color mode
+* background color
+* lines and strokes
+* file size
+* orientation
+
+As an example, we will use the [artwork guidelines](http://www.plosone.org/static/figureGuidelines#figures) from PLOS ONE, for which more details are listed [here](http://www.plosone.org/static/figureSpecifications). For `.tiff` images, the requirements are as follows:
+
+* __width:__ 8.30 cm (one-column images), 17.35 (two-column images)
+* __maximum height:__ 23.35 cm (caption will not fit on the same page then)
+* __minimum resolution:__ 300 ppi
+* __compression:__ LZW
+* __color mode:__ RGB (millions of colors), 8 bits per channel
+* __background:__ white, not transparent
+* __layers:__ a single layer called "Background"
+* __font type, size:__ Arial, Times or Symbol, 6 to 12 pt
+* __lines:__ line width between 0.5 to 1.5 pt
+* __white space:__ a 2 pt white space around each figure is recommended
+* __file size:__ 10 MB max
+
+Additionally, some general remarks on software related issues can be found [here](http://www.plosone.org/static/figureInstructions), in which it reads:
+
+> Numerous programs can create figures but are not dedicated to working with graphics. These may be limited in their capability to create TIFFs or EPSs that comply with PLOS specifications. Such applications include ChemDraw, Haploview, PyMol, R, ImageMagick, Corel Draw, GeneSpring, Matlab, Origin, Prism, Sigmaplot, and Stata. To create a high-quality TIFF from images created in other applications, use the instructions below to convert to PDF and then to TIFF or EPS.
+
+This basically means that we should not directly export our graphics from R to either `.tiff` or `.eps` (the only two file formats accepted by PLOS ONE), but rather save them as `.pdf` and then follow [this guide](http://www.plosone.org/static/figureInstructions#convertingfigs) on how to convert the `.pdf` to the accepted formats. Here, we will cover all of these, so whether you send an original R `.tiff` or convert it from the R `.pdf` is completely up to you.
+
+Okay, so let's start with the `tiff()` device...
+
+
+## Tagged Image File Format
+
+In all of the following chapters, we will use very basic **lattice** and **ggplot2** plot objects:
+
+```{r basic-plots-tiff}
+p_lattice <- xyplot(price ~ carat, data = diamonds)
+p_ggplot <- ggplot(aes(x = carat, y = price), data = diamonds) +
+  geom_point()
+```
+
+Okay, so we have our basic plot objects that we want to export as `.tiff` images. Note that graphics of points and lines are usually preferred as vector graphics (`.eps` or `.pdf`), but for the sake of demonstration, we will not care about this right now and export our scatter plot as `.tiff` anyway (`.eps` and `.pdf` examples follow). In all the examples that follow, we will produce figures that are of maximum width (17.35 cm) and height (23.35 cm) according to the PLOS ONE specifications. Furthermore, we will always first see how this is done with **lattice**, then with **ggplot2**.
+
+For `.tiff` artworks, the default settings are as follows (PLOS ONE requirements in brackets):
+
+* width and heigth: `480` by `480` (max. 2049 by 2758)
+* units: pixels, or `"px"` (n.a.)
+* pointsize: `12` (6 - 12)
+* compression: `"none"` (LZW)
+* bg (background): `"white"` (white)
+* res (resolution): n.a., which basically means 72 ppi (300 - 600 ppi)
+* type: system dependent (check with `getOption("bitmapType")`)
+* family: system dependent, on Linux X11 it is `"Helvetica"` (Arial, Times, Symbol)
+
+If we want to use units different from pixels for our width and height specifications, we need to supply a target resolution through `res = ...`. 
+
+So, the first thing to do is open the `tiff()` device. In order to comply with PLOS ONE, we set
+
+* `width` to 17.35,
+* `height` to 23.35,
+* `res` to 300, and
+* `compression` to "lzw".
+
+```{r open-device-tiff, message=FALSE, eval=FALSE}
+tiff("test_la.tif", width = 17.35, height = 23.35, units = "cm", res = 300,
+     compression = "lzw")
+```
+
+then, we render our plot object:
+
+```{r plot-tiff, message=FALSE, eval=FALSE}
+print(p_lattice)
+```
+
+and finally, we close our device:
+
+```{r close-tiff, message=FALSE, eval=FALSE}
+dev.off()
+```
+
+This will create a `.tiff` image of our plot with a text point size of 12 for the axis labels, a point size of 10 for the axis tick labels and a point size of 14 for the plot title (if supplied). As we have seen, both **lattice** and **ggplot2** ignore any parameter passed to the device via `pointsize = ...`. Therefore, in case we want to change the point size of the text in our plot, we need to achieve this in another way. 
+
+In the following setup we will change the default font size to 20 pt and the axis tick labels to _italic_.
+
+```{r change-pointsize-tiff, message=FALSE, eval=TRUE}
+tiff_theme <- trellis.par.get()
+tiff_theme$fontsize$text <- 20
+tiff_theme$axis.text$font <- 3
+
+print(update(p_lattice, par.settings = tiff_theme))
+```
+
+In order to export the graphic we simply wrap the above code between our `tiff()` and `dev.off()` calls (note here that we change the default font family to "Times" - check the exported image):
+
+```{r export-lattice-tiff, message=FALSE, eval=FALSE}
+tiff("test_la.tif", width = 17.35, height = 23.35, units = "cm", res = 300,
+     compression = "lzw")
+
+tiff_theme <- trellis.par.get()
+tiff_theme$fontsize$text <- 20
+tiff_theme$axis.text$font <- 3
+
+print(update(p_lattice, par.settings = tiff_theme))
+
+invisible(dev.off())
+```
+
+This, however, does change the axis label text to a point size of `20`, but the axis ticks are labelled with a point size of `16`. This is because **lattice** uses so-called "character expansion" (short `cex`) factors for different regions of the plot. Axis tick labels have `cex = 0.8` and the title has `cex = 1.2`. Therefore, the tick labels will be `fontsize * cex` (i.e. `20 * 0.8`) in point size. We can, however, change this as well. 
+
+In the following we will change the axis font size to 10 and the axis tick label font size to 17.5:
+
+```{r change-relative-pointsize-tiff, message=FALSE, eval=TRUE}
+tiff_theme <- trellis.par.get()
+
+tiff_theme$fontsize$text <- 12 # set back to base fontsize 12
+
+tiff_theme$par.xlab.text$cex <- 10/12
+tiff_theme$par.ylab.text$cex <- 10/12
+
+tiff_theme$axis.text$cex <- 17.5/12
+
+print(update(p_lattice, par.settings = tiff_theme))
+```
+
+The same also applies if you use `panel.text()` or `panel.key()`. Use the `cex` parameter to adjust the font size you want your text to be.
+
+Okay, so much for **lattice**. Let's see how we can change things in **ggplot2**. The equivalent to **lattice**'s `par.settings` are the different `theme`s in **ggplot2**. We have already seen this in the text size queries in Section \@ref(saving). However, the way we set the font size is not at all equivalent as we are not allowed to assign a new value to a particular theme as `theme_bw()$text$size <- 5`. Instead, **ggplot2** provides functionality to set the font size via `theme_set()` with the parameter `base_size`:
+
+```{r change-pointsize-gg-tiff, message=FALSE, eval=TRUE}
+theme_set(theme_bw(base_size = 25))
+
+print(p_ggplot +
+        theme_bw())
+```
+
+Apart from `theme_set()` which changes the theme globally, there is also a function called `theme_update()` which changes parameters for the current theme in use. Once you change to a different theme, these settings will be neglected. 
+
+_Note, we need to supply the absolute point sizes to these functions, not the relative expansion factors!_
+
+```{r change-themes-gg-tiff, message=FALSE, eval=TRUE}
+theme_set(theme_bw(base_size = 10))
+theme_update(axis.text = element_text(size = 17.5, face = "italic"))
+
+print(p_ggplot)
+print(p_ggplot + 
+        theme_grey())
+```
+
+The export procedure will then be equivalent to before:
+
+```{r save-gg-tiff, message=FALSE, eval=FALSE}
+tiff("test_gg.tif", width = 17.35, height = 23.35, units = "cm", res = 300,
+     compression = "lzw")
+theme_set(theme_bw(base_size = 10))
+theme_update(axis.text = element_text(size = 17.5, face = "italic"))
+
+print(p_ggplot)
+invisible(dev.off())
+```
+
+Right, so now we know how to modify the standard settings shipped with both **lattice** and **ggplot2**. This will be pretty much the same for the other devices...
+
+
+## Portable Network Graphics
+
+For `.png` files, things are very similar to `.tiff` except that we don't need to specify a compression:
+
+```{r save-gg-png, message=FALSE, eval=FALSE}
+png("test_gg.png", width = 17.35, height = 23.35, units = "cm", res = 300)
+theme_set(theme_bw(base_size = 10))
+theme_update(axis.text = element_text(size = 17.5, face = "italic"))
+
+print(p_ggplot)
+invisible(dev.off())
+```
+
+
+## Encapsulated Postscript
+
+As mentioned earlier, the proper way of saving vector-based graphics (such as line graphs, point graphs, or basically anything with not too many graphical features, e.g. polygons) is using a vector graphics-based device. Here, we will consider "(encapsulated) postscript" (`.eps`) and "portable document format" (`.pdf`).
+
+For R's `postscript` device, the relevant default settings are as follows (PLOS ONE requirements in brackets):
+
+* width and heigth: `0` (max. 6.83 by 9.19)
+* units: inches (n.a.)
+* pointsize: `12` (6 to 12)
+* bg (background): `"transparent"` (white)
+* family: `"Helvetica"` (Arial, Times, Symbol)
+* onefile: `TRUE` (n.a., yet likely only one file is acceptable)
+* horizontal: `TRUE` (both is accepted)
+* paper: `"default"`, check via `getOption("papersize")` (n.a.)
+* colormodel: `"srgb"` (RGB, so `sRGB` should be fine)
+
+The full set of details can be retrieved using
+
+```{r psoptions}
+ps.options()
+```
+
+Changing these is basically the way to handle device setup when printing to `.eps`. These default settings can be changed using `setEPS()`. And here is where it gets a little awkward. If you run `setEPS()` without any arguments, the defaults listed above will change slightly.
+
+```{r seteps}
+setEPS()
+ps.options()
+```
+
+Notably, 
+
+* `onefile` is now `FALSE` as is `horizontal`, 
+* `paper` changes from `default` to `special`, and 
+* `height` and `width` are no longer `0`, but `7` inches. 
+
+Apart from `onefile`, this should be fine. Especially when utilizing layered plotting approaches like we do here (i.e. **lattice** and **ggplot2**), `onefile` should be set to `TRUE` as otherwise we may well end up with multi-page `.eps` files. However, `setEPS()` will not let us change this, which requires us to set this manually for each device.
+
+Hence, in order to comply with PLOS ONE we need:
+
+```{r seteps-detail, eval = FALSE}
+setEPS(bg = "white", family = "Times", width = 6.83)
+postscript("test_la.eps", onefile = TRUE)
+
+print(p_lattice)
+
+invisible(dev.off())
+```
+
+All the tweaking of the plot layout applies here just the same (e.g. adjusting the axis tick labelling font sizes etc.). 
+
+For vector graphics, resolution is irrelevant as the elements are actual lines or points and not pixels. Therefore, we need to start thinking about lines and points now. And here things are again a little "special" in R. The base size for points is 1/72 inch (standard), but for lines it is 1/96 inch. This means that when we specify a line width of 1 via `lwd = 1`, we are really getting a line width of 0.75 as `72/96 = 0.75`. In light of the PLOS ONE requirements for lines to be at least 0.5 pt this will mean that when we set `lwd = 0.5` we are actually producing a line that is too thin (0.375 pt). On the other hand, setting `lwd = 2` means that we still adhere to the guidelines as the result will only be 1.5 pt in width. 
+
+If we wanted to address this issue, we could do something like this (using a simple lines plot as an example):
+
+```{r seteps-line-width, eval = FALSE}
+setEPS(bg = "white", family = "Times", width = 6.83)
+postscript("test_la_line.eps", onefile = TRUE)
+
+print(xyplot(1:10 ~ 1:10, type = "l", lwd = 96/72 * 2))
+
+invisible(dev.off())
+```
+
+Obviously, the line width adjustment can also be done globally in the theme setup.
+
+As a final tweak, we will see how to change the white space around a plot in **lattice**:
+
+```{r seteps-whitespace, tidy = FALSE, fig.cap = "A **lattice** lines plot with a 2 pt white margin (at least on the left side).", fig.align = 'center'}
+mar_theme <- lattice.options()
+mar_theme$layout.widths$left.padding$x <- 2
+mar_theme$layout.widths$left.padding$units <- "points"
+mar_theme$layout.widths$right.padding$x <- 2
+mar_theme$layout.widths$right.padding$units <- "points"
+mar_theme$layout.heights$top.padding$x <- 2
+mar_theme$layout.heights$top.padding$units <- "points"
+mar_theme$layout.heights$bottom.padding$x <- 2
+mar_theme$layout.heights$bottom.padding$units <- "points"
+
+print(xyplot(1:10 ~ 1:10, type = "l", lwd = 96/72 * 2, 
+             lattice.options = mar_theme))
+```
+
+This will, however, only really provide a 2 pt white space on the left side of the plot. There are some indications as to some bugs in setting these layout parameters, so whether this is intended or not remains unclear for now. We will keep digging and update this tutorial as soon as we come up with a proper solution.
+
+In **ggplot2**, the margin adjustment can again be done using `theme_update()`:
+
+```{r change-themes-gg-eps, message=FALSE, eval=TRUE, tidy = FALSE, fig.cap = "A **ggplot2** lines plot with a 2 pt white margin.", fig.align = 'center'}
+theme_set(theme_bw(base_size = 20))
+theme_update(plot.margin = unit(rep(2, 4), units = "points"))
+
+print(p_ggplot)
+```
+
+You might say that the approach taken by **ggplot2** regarding the margin adjustment is favorable as we don't need to provide the desired values to each entry of the `lattice.options()`. There is, however, an equivalent function in **lattice** called `trellis.par.set()`.
+
+Personally, we prefer the assignment approach (`<-`) as it usually involves a little more poking around in the various settings, which means you are likely to understand things in a little more detail.
+
+
+## Portable Document Format
+
+`pdf()` basically works the same as `postscript()`. Both produce vector graphics output. The default settings can be checked with:
+
+```{r pdfoptions}
+pdf.options()
+```
+
+However, there is no equivalent to `setEPS()`. Therefore, we need to provide all device specifications and changes of the default settings directly in the device setup call:
+
+```{r setpdf-line-width, eval = FALSE}
+pdf("test_la_line.pdf", onefile = TRUE, bg = "white", 
+    family = "Times", width = 6.83)
+
+print(xyplot(1:10 ~ 1:10, type = "l", lwd = 96/72 * 2))
+
+invisible(dev.off())
+```

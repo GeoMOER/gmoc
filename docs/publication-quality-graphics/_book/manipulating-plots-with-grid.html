@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Creating Publication Quality Graphics in R</title>
+  <meta name="description" content="Creating Publication Quality Graphics in R">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Creating Publication Quality Graphics in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Creating Publication Quality Graphics in R" />
+  
+  
+  
+
+<meta name="author" content="Tim Appelhans and Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="plotting-error-bars-base-graphics.html">
+<link rel="next" href="multiple-plots-per-page.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Publication Quality Graphics in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="data-handling.html"><a href="data-handling.html"><i class="fa fa-check"></i><b>1</b> Data Handling</a><ul>
+<li class="chapter" data-level="1.1" data-path="subset.html"><a href="subset.html"><i class="fa fa-check"></i><b>1.1</b> Subsetting Data</a></li>
+<li class="chapter" data-level="1.2" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>1.2</b> Aggregating Data</a></li>
+<li class="chapter" data-level="1.3" data-path="sorting-data.html"><a href="sorting-data.html"><i class="fa fa-check"></i><b>1.3</b> Sorting Data</a></li>
+<li class="chapter" data-level="1.4" data-path="merging-data.html"><a href="merging-data.html"><i class="fa fa-check"></i><b>1.4</b> Merging Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-brief-note-on-using-colors.html"><a href="a-brief-note-on-using-colors.html"><i class="fa fa-check"></i><b>2</b> A Brief Note on using Colors</a></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="scatter-plots-lattice.html"><a href="scatter-plots-lattice.html"><i class="fa fa-check"></i><b>3.1</b> Scatter plots (lattice)</a></li>
+<li class="chapter" data-level="3.2" data-path="scatter-plots-ggplot2.html"><a href="scatter-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.2</b> Scatter plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.3" data-path="box-and-whisker-plots-lattice.html"><a href="box-and-whisker-plots-lattice.html"><i class="fa fa-check"></i><b>3.3</b> Box-and-Whisker Plots (lattice)</a></li>
+<li class="chapter" data-level="3.4" data-path="box-and-whisker-plots-ggplot2.html"><a href="box-and-whisker-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.4</b> Box-and-Whisker Plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.5" data-path="histograms-and-density-plots-lattice.html"><a href="histograms-and-density-plots-lattice.html"><i class="fa fa-check"></i><b>3.5</b> Histograms and Density Plots (lattice)</a></li>
+<li class="chapter" data-level="3.6" data-path="histograms-and-density-plots-ggplot2.html"><a href="histograms-and-density-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.6</b> Histograms and Density Plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.7" data-path="plotting-error-bars-lattice.html"><a href="plotting-error-bars-lattice.html"><i class="fa fa-check"></i><b>3.7</b> Plotting Error Bars (lattice)</a></li>
+<li class="chapter" data-level="3.8" data-path="gg-err.html"><a href="gg-err.html"><i class="fa fa-check"></i><b>3.8</b> Plotting Error Bars (ggplot2)</a></li>
+<li class="chapter" data-level="3.9" data-path="plotting-error-bars-base-graphics.html"><a href="plotting-error-bars-base-graphics.html"><i class="fa fa-check"></i><b>3.9</b> Plotting Error Bars (base graphics)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulating-plots-with-grid.html"><a href="manipulating-plots-with-grid.html"><i class="fa fa-check"></i><b>4</b> Manipulating Plots with grid</a><ul>
+<li class="chapter" data-level="4.1" data-path="multiple-plots-per-page.html"><a href="multiple-plots-per-page.html"><i class="fa fa-check"></i><b>4.1</b> Multiple Plots per Page</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulating-existing-plots.html"><a href="manipulating-existing-plots.html"><i class="fa fa-check"></i><b>4.2</b> Manipulating Existing Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="saving.html"><a href="saving.html"><i class="fa fa-check"></i><b>5</b> Saving your Visualizations</a><ul>
+<li class="chapter" data-level="5.1" data-path="tagged-image-file-format.html"><a href="tagged-image-file-format.html"><i class="fa fa-check"></i><b>5.1</b> Tagged Image File Format</a></li>
+<li class="chapter" data-level="5.2" data-path="portable-network-graphics.html"><a href="portable-network-graphics.html"><i class="fa fa-check"></i><b>5.2</b> Portable Network Graphics</a></li>
+<li class="chapter" data-level="5.3" data-path="encapsulated-postscript.html"><a href="encapsulated-postscript.html"><i class="fa fa-check"></i><b>5.3</b> Encapsulated Postscript</a></li>
+<li class="chapter" data-level="5.4" data-path="portable-document-format.html"><a href="portable-document-format.html"><i class="fa fa-check"></i><b>5.4</b> Portable Document Format</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>6</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Creating Publication Quality Graphics in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manipulating-plots-with-grid" class="section level1">
+<h1><span class="header-section-number">4</span> Manipulating Plots with grid</h1>
+<p>Okay, so now we have seen how to produce a variety of widely used plot types using both <strong>lattice</strong> and <strong>ggplot2</strong>. We hope that, apart from the specifics, you also obtained a general idea of how these two packages work and how you may use the various things we’ve touched upon in scenarios other than the ones provided here.</p>
+<p>Now, we’re moving on to a more basic and much more flexible level of modifying, constructing and arranging graphs. Both <strong>lattice</strong> and <strong>ggplot2</strong> are based on the <strong>grid</strong> package. This means that we can use this package to fundamentally modify whatever we’ve produced (remember, we’re always storing our plots in objects) in a much more flexible way than provided by any of these packages.</p>
+<p>With his <strong>grid</strong> package, Paul Murrell has achieved nothing less than a highly sophisticated and, in our opinion, much more flexible and powerful plotting framework for R. This has also been ‘officially’ recognized by the R Core Team as Paul is now a member of the very same (at least to our knowledge) and his <strong>grid</strong> package is shipped with the base version of R. This means that we don’t have to install the package anymore (however, we still have to load it via <code>library(grid)</code>).</p>
+<p>In order to fully appreciate the possibilities of the <strong>grid</strong> package, it helps to think of this package as a package for drawing things. Yes, we’re not producing statistical plots as such (for this we have <strong>lattice</strong> and <strong>ggplot2</strong>), we’re actually <em>drawing</em> things!</p>
+<p>The fundamental features of the <strong>grid</strong> package are the “viewports”. By default, the whole plotting area, may it be the standard R or any other such plotting device (e.g. <code>png()</code>), is considered as the root viewport (basically like the <code>home/&lt;username&gt;</code> folder on Linux or the <code>C:\Users\&lt;username&gt;</code> folder on Windows). In this viewport we now have the possibility to specify other viewports which are relative to the root viewport (just like the <code>Users\&lt;username&gt;\Documents</code> folder on Windows or <code>home/&lt;username&gt;/Downloads</code> under Linux).</p>
+<p>The very important thing to realize here is that in order to do anything in this folder (be it creating another sub-folder, or simply saving a file, or whatever), we first need to <em>create</em> the folder and then we need to <em>navigate</em> into it. If you keep this in mind, you will quickly understand the fundamental principle of <strong>grid</strong>.</p>
+<p>When we start using the <strong>grid</strong> package, we always start with the ‘root’ viewport. This is already available, it is created for us, so we don’t need to do anything. This is our starting point. The really neat thing about <strong>grid</strong> is that each viewport is, by default, defined as ranging from 0 to 1 in both x and y direction. For example, the lower left corner is defined as <code>x = 0</code> and <code>y = 0</code>. Accordingly, the lower right corner is <code>x = 1</code> and <code>y = 0</code>, the upper right corner is <code>x = 1</code> and <code>y = 1</code> and so on…</p>
+<p>It is, however, possible to specify a myriad of different unit systems (type <code>?grid::unit</code> to get an overview of what is available). We usually stick to the default settings called <code>npc</code> (‘Normalised Parent Coordinates’) which range from 0 to 1 in each direction, as this makes setting up viewports very intuitive (as demonstrated above).</p>
+<p>A viewport needs some basic specifications for it to be located somewhere in the plotting area (the current viewport). These are:</p>
+<ul>
+<li><code>x</code> - location along the x-axis</li>
+<li><code>y</code> - location along the y -axis</li>
+<li><code>width</code> - width of the viewport</li>
+<li><code>height</code> - height of the viewport</li>
+<li><code>just</code> - justification of the viewport in both x and y directions</li>
+</ul>
+<p>Here, <code>width</code> and <code>height</code> should be rather self-explanatory. On the other hand, <code>x</code>, <code>y</code> and <code>just</code> are a bit more mind-bending. By default, <code>x = y = 0.5</code> and <code>just = cemtre</code>. This means that the new viewport will be positioned at <code>x = 0.5</code> and <code>y = 0.5</code>. The default of <code>just</code> is <code>centre</code> which means that a new viewport will be created at the midpoint of the current viewport (<code>x, y</code>) and centered on this point. It helps to think of the <code>just</code> specification in the same way that you provide your text justification in an Office software (left, right, centre &amp; justified). Let’s try a first example which should highlight the way this works.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(grid)
+<span class="kw">grid.newpage</span>() <span class="co"># open a new (i.e. empty) &#39;root&#39; viewport</span>
+
+<span class="kw">grid.rect</span>()
+<span class="kw">grid.text</span>(<span class="st">&quot;this is the root vp&quot;</span>, <span class="dt">x =</span> <span class="fl">0.5</span>, <span class="dt">y =</span> <span class="fl">0.95</span>, 
+          <span class="dt">just =</span> <span class="kw">c</span>(<span class="st">&quot;centre&quot;</span>, <span class="st">&quot;top&quot;</span>))
+
+our_first_vp &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">x =</span> <span class="fl">0.5</span>, <span class="dt">y =</span> <span class="fl">0.5</span>, 
+                         <span class="dt">height =</span> <span class="fl">0.5</span>, <span class="dt">width =</span> <span class="fl">0.5</span>,
+                         <span class="dt">just =</span> <span class="kw">c</span>(<span class="st">&quot;centre&quot;</span>, <span class="st">&quot;centre&quot;</span>))
+
+<span class="kw">pushViewport</span>(our_first_vp)
+
+<span class="kw">grid.rect</span>(<span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="st">&quot;pink&quot;</span>))
+<span class="kw">grid.text</span>(<span class="st">&quot;this is our first vp&quot;</span>, <span class="dt">x =</span> <span class="fl">0.5</span>, <span class="dt">y =</span> <span class="fl">0.95</span>, 
+          <span class="dt">just =</span> <span class="kw">c</span>(<span class="st">&quot;centre&quot;</span>, <span class="st">&quot;top&quot;</span>))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:grid-first-vp"></span>
+<img src="_main_files/figure-html/grid-first-vp-1.svg" alt="Producing a standard viewport using **grid**." width="672" />
+<p class="caption">
+Figure 4.1: Producing a standard viewport using <strong>grid</strong>.
+</p>
+</div>
+<p>Okay, so now we have created a new viewport in the middle of the current (i.e. ‘root’) viewport that is half the height and half the width of its root. Afterwards, we navigated into this new viewport using <code>pushViewport()</code> and drew a pink-filled rectangle spanning the entire area using <code>grid.rect()</code>.</p>
+<p>Note that we didn’t leave the viewport yet. This means that, whatever we do now, will happen in the currently active viewport (i.e. the pink one). To illustrate this, we will simply repeat the exact same code from above once more.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">our_first_vp &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">x =</span> <span class="fl">0.5</span>, <span class="dt">y =</span> <span class="fl">0.5</span>, 
+                         <span class="dt">height =</span> <span class="fl">0.5</span>, <span class="dt">width =</span> <span class="fl">0.5</span>,
+                         <span class="dt">just =</span> <span class="kw">c</span>(<span class="st">&quot;centre&quot;</span>, <span class="st">&quot;centre&quot;</span>))
+
+<span class="kw">pushViewport</span>(our_first_vp)
+
+<span class="kw">grid.rect</span>(<span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="st">&quot;cornflowerblue&quot;</span>))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:grid-second-vp"></span>
+<img src="_main_files/figure-html/grid-second-vp-1.svg" alt="Producing a second viewport using **grid**." width="672" />
+<p class="caption">
+Figure 4.2: Producing a second viewport using <strong>grid</strong>.
+</p>
+</div>
+<p>In more practical terms, this means that whatever viewport we are currently in, this one defines our reference system (0 to 1). In case you don’t believe that, we can repeat this procedure five times more…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {
+  our_first_vp &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">x =</span> <span class="fl">0.5</span>, <span class="dt">y =</span> <span class="fl">0.5</span>, 
+                           <span class="dt">height =</span> <span class="fl">0.5</span>, <span class="dt">width =</span> <span class="fl">0.5</span>,
+                           <span class="dt">just =</span> <span class="kw">c</span>(<span class="st">&quot;centre&quot;</span>, <span class="st">&quot;centre&quot;</span>))
+  
+  <span class="kw">pushViewport</span>(our_first_vp)
+  
+  <span class="kw">grid.circle</span>(<span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="kw">colors</span>()[i<span class="op">*</span><span class="dv">3</span>]))
+}</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:grid-several-vps"></span>
+<img src="_main_files/figure-html/grid-several-vps-1.svg" alt="Producing several viewports using **grid**." width="672" />
+<p class="caption">
+Figure 4.3: Producing several viewports using <strong>grid</strong>.
+</p>
+</div>
+<p>Now that should be proof enough! We are cascading down viewports always creating a rectangle that fills half the ‘mother’ viewport at each step. Yet, as the ‘mother’ viewport becomes smaller and smaller, our rectangles also become smaller along the way (programmers would actually call these steps iterations, but we won’t be bothered here…).</p>
+<p>So, how do we navigate back? If we counted correctly, we went down 7 rabbit holes. In order to get out of these again, we need to use <code>upViewport(7)</code> and, in order to verify that we are back in ‘root’, we may ask <strong>grid</strong> what viewport we are currently in.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">upViewport</span>(<span class="dv">7</span>)
+
+<span class="kw">current.viewport</span>()</code></pre></div>
+<pre><code>## viewport[ROOT]</code></pre>
+<p>Sweet, we’re back in the ‘root’ viewport… (by the way, <code>upViewport(0)</code> would have taken us right up to the ‘root’ viewport without the requirement for counting, see <code>?grid::upViewport</code>).</p>
+<p>Now, let’s see how this <code>just</code> parameter works. As you have seen we are now in the ‘root’ viewport. Let’s try to draw another rectangle that sits right at the top left corner of the pink one. In theory the lower right corner of this viewport should be located at <code>x = 0.25</code> and <code>y = 0.75</code>. If we specify it like this, we need to adjust the justification, because we do not want to center it on these coordinates. If these coordinates are the point of origin, this viewport should be justified right horizontally and bottom vertically. And the space we have to plot should be <code>0.25</code> vertically and <code>0.25</code> horizontally. Let’s try this…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top_left_vp &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">x =</span> <span class="fl">0.25</span>, <span class="dt">y =</span> <span class="fl">0.75</span>, 
+                        <span class="dt">height =</span> <span class="fl">0.25</span>, <span class="dt">width =</span> <span class="fl">0.25</span>,
+                        <span class="dt">just =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>))
+
+<span class="kw">pushViewport</span>(top_left_vp)
+
+<span class="kw">grid.rect</span>(<span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:grid-top-left-vp"></span>
+<img src="_main_files/figure-html/grid-top-left-vp-1.svg" alt="Producing yet another viewport using **grid**." width="672" />
+<p class="caption">
+Figure 4.4: Producing yet another viewport using <strong>grid</strong>.
+</p>
+</div>
+<p>You should have understood two things now:</p>
+<ol style="list-style-type: decimal">
+<li>How to create and navigate between viewports, and</li>
+<li>Why it was said earlier that <strong>grid</strong> is a package for drawing.</li>
+</ol>
+<p>Assuming that you have understood these two points, let’s make use of the first one and use this incredibly flexible plotting framework for arranging multiple plots on one page.</p> 
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="plotting-error-bars-base-graphics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multiple-plots-per-page.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Creating Publication Quality Graphics in R</title>
+  <meta name="description" content="Creating Publication Quality Graphics in R">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Creating Publication Quality Graphics in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Creating Publication Quality Graphics in R" />
+  
+  
+  
+
+<meta name="author" content="Tim Appelhans and Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="saving.html">
+<link rel="next" href="portable-network-graphics.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Publication Quality Graphics in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="data-handling.html"><a href="data-handling.html"><i class="fa fa-check"></i><b>1</b> Data Handling</a><ul>
+<li class="chapter" data-level="1.1" data-path="subset.html"><a href="subset.html"><i class="fa fa-check"></i><b>1.1</b> Subsetting Data</a></li>
+<li class="chapter" data-level="1.2" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>1.2</b> Aggregating Data</a></li>
+<li class="chapter" data-level="1.3" data-path="sorting-data.html"><a href="sorting-data.html"><i class="fa fa-check"></i><b>1.3</b> Sorting Data</a></li>
+<li class="chapter" data-level="1.4" data-path="merging-data.html"><a href="merging-data.html"><i class="fa fa-check"></i><b>1.4</b> Merging Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-brief-note-on-using-colors.html"><a href="a-brief-note-on-using-colors.html"><i class="fa fa-check"></i><b>2</b> A Brief Note on using Colors</a></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="scatter-plots-lattice.html"><a href="scatter-plots-lattice.html"><i class="fa fa-check"></i><b>3.1</b> Scatter plots (lattice)</a></li>
+<li class="chapter" data-level="3.2" data-path="scatter-plots-ggplot2.html"><a href="scatter-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.2</b> Scatter plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.3" data-path="box-and-whisker-plots-lattice.html"><a href="box-and-whisker-plots-lattice.html"><i class="fa fa-check"></i><b>3.3</b> Box-and-Whisker Plots (lattice)</a></li>
+<li class="chapter" data-level="3.4" data-path="box-and-whisker-plots-ggplot2.html"><a href="box-and-whisker-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.4</b> Box-and-Whisker Plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.5" data-path="histograms-and-density-plots-lattice.html"><a href="histograms-and-density-plots-lattice.html"><i class="fa fa-check"></i><b>3.5</b> Histograms and Density Plots (lattice)</a></li>
+<li class="chapter" data-level="3.6" data-path="histograms-and-density-plots-ggplot2.html"><a href="histograms-and-density-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.6</b> Histograms and Density Plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.7" data-path="plotting-error-bars-lattice.html"><a href="plotting-error-bars-lattice.html"><i class="fa fa-check"></i><b>3.7</b> Plotting Error Bars (lattice)</a></li>
+<li class="chapter" data-level="3.8" data-path="gg-err.html"><a href="gg-err.html"><i class="fa fa-check"></i><b>3.8</b> Plotting Error Bars (ggplot2)</a></li>
+<li class="chapter" data-level="3.9" data-path="plotting-error-bars-base-graphics.html"><a href="plotting-error-bars-base-graphics.html"><i class="fa fa-check"></i><b>3.9</b> Plotting Error Bars (base graphics)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulating-plots-with-grid.html"><a href="manipulating-plots-with-grid.html"><i class="fa fa-check"></i><b>4</b> Manipulating Plots with grid</a><ul>
+<li class="chapter" data-level="4.1" data-path="multiple-plots-per-page.html"><a href="multiple-plots-per-page.html"><i class="fa fa-check"></i><b>4.1</b> Multiple Plots per Page</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulating-existing-plots.html"><a href="manipulating-existing-plots.html"><i class="fa fa-check"></i><b>4.2</b> Manipulating Existing Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="saving.html"><a href="saving.html"><i class="fa fa-check"></i><b>5</b> Saving your Visualizations</a><ul>
+<li class="chapter" data-level="5.1" data-path="tagged-image-file-format.html"><a href="tagged-image-file-format.html"><i class="fa fa-check"></i><b>5.1</b> Tagged Image File Format</a></li>
+<li class="chapter" data-level="5.2" data-path="portable-network-graphics.html"><a href="portable-network-graphics.html"><i class="fa fa-check"></i><b>5.2</b> Portable Network Graphics</a></li>
+<li class="chapter" data-level="5.3" data-path="encapsulated-postscript.html"><a href="encapsulated-postscript.html"><i class="fa fa-check"></i><b>5.3</b> Encapsulated Postscript</a></li>
+<li class="chapter" data-level="5.4" data-path="portable-document-format.html"><a href="portable-document-format.html"><i class="fa fa-check"></i><b>5.4</b> Portable Document Format</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>6</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Creating Publication Quality Graphics in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tagged-image-file-format" class="section level2">
+<h2><span class="header-section-number">5.1</span> Tagged Image File Format</h2>
+<p>In all of the following chapters, we will use very basic <strong>lattice</strong> and <strong>ggplot2</strong> plot objects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p_lattice &lt;-<span class="st"> </span><span class="kw">xyplot</span>(price <span class="op">~</span><span class="st"> </span>carat, <span class="dt">data =</span> diamonds)
+p_ggplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price), <span class="dt">data =</span> diamonds) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p>Okay, so we have our basic plot objects that we want to export as <code>.tiff</code> images. Note that graphics of points and lines are usually preferred as vector graphics (<code>.eps</code> or <code>.pdf</code>), but for the sake of demonstration, we will not care about this right now and export our scatter plot as <code>.tiff</code> anyway (<code>.eps</code> and <code>.pdf</code> examples follow). In all the examples that follow, we will produce figures that are of maximum width (17.35 cm) and height (23.35 cm) according to the PLOS ONE specifications. Furthermore, we will always first see how this is done with <strong>lattice</strong>, then with <strong>ggplot2</strong>.</p>
+<p>For <code>.tiff</code> artworks, the default settings are as follows (PLOS ONE requirements in brackets):</p>
+<ul>
+<li>width and heigth: <code>480</code> by <code>480</code> (max. 2049 by 2758)</li>
+<li>units: pixels, or <code>&quot;px&quot;</code> (n.a.)</li>
+<li>pointsize: <code>12</code> (6 - 12)</li>
+<li>compression: <code>&quot;none&quot;</code> (LZW)</li>
+<li>bg (background): <code>&quot;white&quot;</code> (white)</li>
+<li>res (resolution): n.a., which basically means 72 ppi (300 - 600 ppi)</li>
+<li>type: system dependent (check with <code>getOption(&quot;bitmapType&quot;)</code>)</li>
+<li>family: system dependent, on Linux X11 it is <code>&quot;Helvetica&quot;</code> (Arial, Times, Symbol)</li>
+</ul>
+<p>If we want to use units different from pixels for our width and height specifications, we need to supply a target resolution through <code>res = ...</code>.</p>
+<p>So, the first thing to do is open the <code>tiff()</code> device. In order to comply with PLOS ONE, we set</p>
+<ul>
+<li><code>width</code> to 17.35,</li>
+<li><code>height</code> to 23.35,</li>
+<li><code>res</code> to 300, and</li>
+<li><code>compression</code> to “lzw”.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tiff</span>(<span class="st">&quot;test_la.tif&quot;</span>, <span class="dt">width =</span> <span class="fl">17.35</span>, <span class="dt">height =</span> <span class="fl">23.35</span>, <span class="dt">units =</span> <span class="st">&quot;cm&quot;</span>, <span class="dt">res =</span> <span class="dv">300</span>,
+     <span class="dt">compression =</span> <span class="st">&quot;lzw&quot;</span>)</code></pre></div>
+<p>then, we render our plot object:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(p_lattice)</code></pre></div>
+<p>and finally, we close our device:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dev.off</span>()</code></pre></div>
+<p>This will create a <code>.tiff</code> image of our plot with a text point size of 12 for the axis labels, a point size of 10 for the axis tick labels and a point size of 14 for the plot title (if supplied). As we have seen, both <strong>lattice</strong> and <strong>ggplot2</strong> ignore any parameter passed to the device via <code>pointsize = ...</code>. Therefore, in case we want to change the point size of the text in our plot, we need to achieve this in another way.</p>
+<p>In the following setup we will change the default font size to 20 pt and the axis tick labels to <em>italic</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tiff_theme &lt;-<span class="st"> </span><span class="kw">trellis.par.get</span>()
+tiff_theme<span class="op">$</span>fontsize<span class="op">$</span>text &lt;-<span class="st"> </span><span class="dv">20</span>
+tiff_theme<span class="op">$</span>axis.text<span class="op">$</span>font &lt;-<span class="st"> </span><span class="dv">3</span>
+
+<span class="kw">print</span>(<span class="kw">update</span>(p_lattice, <span class="dt">par.settings =</span> tiff_theme))</code></pre></div>
+<p><img src="_main_files/figure-html/change-pointsize-tiff-1.svg" width="672" /></p>
+<p>In order to export the graphic we simply wrap the above code between our <code>tiff()</code> and <code>dev.off()</code> calls (note here that we change the default font family to “Times” - check the exported image):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tiff</span>(<span class="st">&quot;test_la.tif&quot;</span>, <span class="dt">width =</span> <span class="fl">17.35</span>, <span class="dt">height =</span> <span class="fl">23.35</span>, <span class="dt">units =</span> <span class="st">&quot;cm&quot;</span>, <span class="dt">res =</span> <span class="dv">300</span>,
+     <span class="dt">compression =</span> <span class="st">&quot;lzw&quot;</span>)
+
+tiff_theme &lt;-<span class="st"> </span><span class="kw">trellis.par.get</span>()
+tiff_theme<span class="op">$</span>fontsize<span class="op">$</span>text &lt;-<span class="st"> </span><span class="dv">20</span>
+tiff_theme<span class="op">$</span>axis.text<span class="op">$</span>font &lt;-<span class="st"> </span><span class="dv">3</span>
+
+<span class="kw">print</span>(<span class="kw">update</span>(p_lattice, <span class="dt">par.settings =</span> tiff_theme))
+
+<span class="kw">invisible</span>(<span class="kw">dev.off</span>())</code></pre></div>
+<p>This, however, does change the axis label text to a point size of <code>20</code>, but the axis ticks are labelled with a point size of <code>16</code>. This is because <strong>lattice</strong> uses so-called “character expansion” (short <code>cex</code>) factors for different regions of the plot. Axis tick labels have <code>cex = 0.8</code> and the title has <code>cex = 1.2</code>. Therefore, the tick labels will be <code>fontsize * cex</code> (i.e. <code>20 * 0.8</code>) in point size. We can, however, change this as well.</p>
+<p>In the following we will change the axis font size to 10 and the axis tick label font size to 17.5:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tiff_theme &lt;-<span class="st"> </span><span class="kw">trellis.par.get</span>()
+
+tiff_theme<span class="op">$</span>fontsize<span class="op">$</span>text &lt;-<span class="st"> </span><span class="dv">12</span> <span class="co"># set back to base fontsize 12</span>
+
+tiff_theme<span class="op">$</span>par.xlab.text<span class="op">$</span>cex &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">/</span><span class="dv">12</span>
+tiff_theme<span class="op">$</span>par.ylab.text<span class="op">$</span>cex &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">/</span><span class="dv">12</span>
+
+tiff_theme<span class="op">$</span>axis.text<span class="op">$</span>cex &lt;-<span class="st"> </span><span class="fl">17.5</span><span class="op">/</span><span class="dv">12</span>
+
+<span class="kw">print</span>(<span class="kw">update</span>(p_lattice, <span class="dt">par.settings =</span> tiff_theme))</code></pre></div>
+<p><img src="_main_files/figure-html/change-relative-pointsize-tiff-1.svg" width="672" /></p>
+<p>The same also applies if you use <code>panel.text()</code> or <code>panel.key()</code>. Use the <code>cex</code> parameter to adjust the font size you want your text to be.</p>
+<p>Okay, so much for <strong>lattice</strong>. Let’s see how we can change things in <strong>ggplot2</strong>. The equivalent to <strong>lattice</strong>’s <code>par.settings</code> are the different <code>theme</code>s in <strong>ggplot2</strong>. We have already seen this in the text size queries in Section <a href="saving.html#saving">5</a>. However, the way we set the font size is not at all equivalent as we are not allowed to assign a new value to a particular theme as <code>theme_bw()$text$size &lt;- 5</code>. Instead, <strong>ggplot2</strong> provides functionality to set the font size via <code>theme_set()</code> with the parameter <code>base_size</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">25</span>))
+
+<span class="kw">print</span>(p_ggplot <span class="op">+</span>
+<span class="st">        </span><span class="kw">theme_bw</span>())</code></pre></div>
+<p><img src="_main_files/figure-html/change-pointsize-gg-tiff-1.svg" width="672" /></p>
+<p>Apart from <code>theme_set()</code> which changes the theme globally, there is also a function called <code>theme_update()</code> which changes parameters for the current theme in use. Once you change to a different theme, these settings will be neglected.</p>
+<p><em>Note, we need to supply the absolute point sizes to these functions, not the relative expansion factors!</em></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">10</span>))
+<span class="kw">theme_update</span>(<span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="fl">17.5</span>, <span class="dt">face =</span> <span class="st">&quot;italic&quot;</span>))
+
+<span class="kw">print</span>(p_ggplot)</code></pre></div>
+<p><img src="_main_files/figure-html/change-themes-gg-tiff-1.svg" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(p_ggplot <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">theme_grey</span>())</code></pre></div>
+<p><img src="_main_files/figure-html/change-themes-gg-tiff-2.svg" width="672" /></p>
+<p>The export procedure will then be equivalent to before:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tiff</span>(<span class="st">&quot;test_gg.tif&quot;</span>, <span class="dt">width =</span> <span class="fl">17.35</span>, <span class="dt">height =</span> <span class="fl">23.35</span>, <span class="dt">units =</span> <span class="st">&quot;cm&quot;</span>, <span class="dt">res =</span> <span class="dv">300</span>,
+     <span class="dt">compression =</span> <span class="st">&quot;lzw&quot;</span>)
+<span class="kw">theme_set</span>(<span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">10</span>))
+<span class="kw">theme_update</span>(<span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="fl">17.5</span>, <span class="dt">face =</span> <span class="st">&quot;italic&quot;</span>))
+
+<span class="kw">print</span>(p_ggplot)
+<span class="kw">invisible</span>(<span class="kw">dev.off</span>())</code></pre></div>
+<p>Right, so now we know how to modify the standard settings shipped with both <strong>lattice</strong> and <strong>ggplot2</strong>. This will be pretty much the same for the other devices…</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="saving.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="portable-network-graphics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

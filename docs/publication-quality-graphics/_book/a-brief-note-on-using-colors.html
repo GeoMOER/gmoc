@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Creating Publication Quality Graphics in R</title>
+  <meta name="description" content="Creating Publication Quality Graphics in R">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Creating Publication Quality Graphics in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Creating Publication Quality Graphics in R" />
+  
+  
+  
+
+<meta name="author" content="Tim Appelhans and Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="merging-data.html">
+<link rel="next" href="data-visualization.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Publication Quality Graphics in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="data-handling.html"><a href="data-handling.html"><i class="fa fa-check"></i><b>1</b> Data Handling</a><ul>
+<li class="chapter" data-level="1.1" data-path="subset.html"><a href="subset.html"><i class="fa fa-check"></i><b>1.1</b> Subsetting Data</a></li>
+<li class="chapter" data-level="1.2" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>1.2</b> Aggregating Data</a></li>
+<li class="chapter" data-level="1.3" data-path="sorting-data.html"><a href="sorting-data.html"><i class="fa fa-check"></i><b>1.3</b> Sorting Data</a></li>
+<li class="chapter" data-level="1.4" data-path="merging-data.html"><a href="merging-data.html"><i class="fa fa-check"></i><b>1.4</b> Merging Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-brief-note-on-using-colors.html"><a href="a-brief-note-on-using-colors.html"><i class="fa fa-check"></i><b>2</b> A Brief Note on using Colors</a></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="scatter-plots-lattice.html"><a href="scatter-plots-lattice.html"><i class="fa fa-check"></i><b>3.1</b> Scatter plots (lattice)</a></li>
+<li class="chapter" data-level="3.2" data-path="scatter-plots-ggplot2.html"><a href="scatter-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.2</b> Scatter plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.3" data-path="box-and-whisker-plots-lattice.html"><a href="box-and-whisker-plots-lattice.html"><i class="fa fa-check"></i><b>3.3</b> Box-and-Whisker Plots (lattice)</a></li>
+<li class="chapter" data-level="3.4" data-path="box-and-whisker-plots-ggplot2.html"><a href="box-and-whisker-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.4</b> Box-and-Whisker Plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.5" data-path="histograms-and-density-plots-lattice.html"><a href="histograms-and-density-plots-lattice.html"><i class="fa fa-check"></i><b>3.5</b> Histograms and Density Plots (lattice)</a></li>
+<li class="chapter" data-level="3.6" data-path="histograms-and-density-plots-ggplot2.html"><a href="histograms-and-density-plots-ggplot2.html"><i class="fa fa-check"></i><b>3.6</b> Histograms and Density Plots (ggplot2)</a></li>
+<li class="chapter" data-level="3.7" data-path="plotting-error-bars-lattice.html"><a href="plotting-error-bars-lattice.html"><i class="fa fa-check"></i><b>3.7</b> Plotting Error Bars (lattice)</a></li>
+<li class="chapter" data-level="3.8" data-path="gg-err.html"><a href="gg-err.html"><i class="fa fa-check"></i><b>3.8</b> Plotting Error Bars (ggplot2)</a></li>
+<li class="chapter" data-level="3.9" data-path="plotting-error-bars-base-graphics.html"><a href="plotting-error-bars-base-graphics.html"><i class="fa fa-check"></i><b>3.9</b> Plotting Error Bars (base graphics)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulating-plots-with-grid.html"><a href="manipulating-plots-with-grid.html"><i class="fa fa-check"></i><b>4</b> Manipulating Plots with grid</a><ul>
+<li class="chapter" data-level="4.1" data-path="multiple-plots-per-page.html"><a href="multiple-plots-per-page.html"><i class="fa fa-check"></i><b>4.1</b> Multiple Plots per Page</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulating-existing-plots.html"><a href="manipulating-existing-plots.html"><i class="fa fa-check"></i><b>4.2</b> Manipulating Existing Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="saving.html"><a href="saving.html"><i class="fa fa-check"></i><b>5</b> Saving your Visualizations</a><ul>
+<li class="chapter" data-level="5.1" data-path="tagged-image-file-format.html"><a href="tagged-image-file-format.html"><i class="fa fa-check"></i><b>5.1</b> Tagged Image File Format</a></li>
+<li class="chapter" data-level="5.2" data-path="portable-network-graphics.html"><a href="portable-network-graphics.html"><i class="fa fa-check"></i><b>5.2</b> Portable Network Graphics</a></li>
+<li class="chapter" data-level="5.3" data-path="encapsulated-postscript.html"><a href="encapsulated-postscript.html"><i class="fa fa-check"></i><b>5.3</b> Encapsulated Postscript</a></li>
+<li class="chapter" data-level="5.4" data-path="portable-document-format.html"><a href="portable-document-format.html"><i class="fa fa-check"></i><b>5.4</b> Portable Document Format</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>6</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Creating Publication Quality Graphics in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a-brief-note-on-using-colors" class="section level1">
+<h1><span class="header-section-number">2</span> A Brief Note on using Colors</h1>
+<p>Before we start plotting our data, we need to spend some time to have a closer look at color representation of certain variables. A careful study of color spaces (e.g. <span class="citation">Zeileis, Hornik, and Murrell (<a href="#ref-Zeileis2009">2009</a>)</span>, <a href="http://hclwizard.org/hcl-color-scheme/">HCLwizard</a>, <a href="http://vis4.net/blog/posts/avoid-equidistant-hsv-colors/">Aisch (2011)</a> or <a href="https://en.wikipedia.org/wiki/HSL_and_HSV">Wikipedia</a>) leads to the conclusion that the HCL color space is preferable when mapping a variable to color (be it factorial or continuous).</p>
+<p>This color space is readily available in R through the package <strong>colorspace</strong> and the function of interest is called <code>hcl()</code>.</p>
+<p>In the code chunk that follows we will create a color palette that varies in both color (hue) and also luminance (brightness) so that this can be distinguished even in grey-scale (printed) versions of the plot. As a reference color palette we will use the ‘Spectral’ palette from <a href="http://colorbrewer2.org">ColorBrewer</a> which is also a multi-hue palette but represents a diverging color palette. Hence, each end of the palette will look rather similar when converted to greyscale.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RColorBrewer)
+
+clrs_spec &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(<span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">11</span>, <span class="st">&quot;Spectral&quot;</span>)))
+clrs_hcl &lt;-<span class="st"> </span><span class="cf">function</span>(n) {
+  <span class="kw">hcl</span>(<span class="dt">h =</span> <span class="kw">seq</span>(<span class="dv">230</span>, <span class="dv">0</span>, <span class="dt">length.out =</span> n), 
+      <span class="dt">c =</span> <span class="dv">60</span>, <span class="dt">l =</span> <span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">90</span>, <span class="dt">length.out =</span> n), 
+      <span class="dt">fixup =</span> <span class="ot">TRUE</span>)
+  }
+
+### function to plot a color palette
+pal &lt;-<span class="st"> </span><span class="cf">function</span>(col, <span class="dt">border =</span> <span class="st">&quot;transparent&quot;</span>, ...)
+{
+ n &lt;-<span class="st"> </span><span class="kw">length</span>(col)
+ <span class="kw">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),
+      <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, ...)
+ <span class="kw">rect</span>(<span class="dv">0</span><span class="op">:</span>(n<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>n, <span class="dv">0</span>, <span class="dv">1</span><span class="op">:</span>n<span class="op">/</span>n, <span class="dv">1</span>, <span class="dt">col =</span> col, <span class="dt">border =</span> border)
+}</code></pre></div>
+<p>So here’s the Spectral palette from ColorBrewer interpolated over 100 colors:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pal</span>(<span class="kw">clrs_spec</span>(<span class="dv">100</span>))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:spectr-pal"></span>
+<img src="_main_files/figure-html/spectr-pal-1.svg" alt="A diverging rainbow color palette from [ColorBrewer](http://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3)." width="768" />
+<p class="caption">
+Figure 2.1: A diverging rainbow color palette from <a href="http://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3">ColorBrewer</a>.
+</p>
+</div>
+<p>And this is what it looks like in greyscale:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pal</span>(<span class="kw">desaturate</span>(<span class="kw">clrs_spec</span>(<span class="dv">100</span>)))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:spectr-pal-grey"></span>
+<img src="_main_files/figure-html/spectr-pal-grey-1.svg" alt="Same palette as above in grey-scale." width="768" />
+<p class="caption">
+Figure 2.2: Same palette as above in grey-scale.
+</p>
+</div>
+<p>We see that this palette varies in lightness from a very bright center to darker ends on each side. Note, that the red end is slightly darker than the blue end.</p>
+<p>This is quite ok in case we want to show some diverging data (deviations from a zero point, for example the mean). However, if we are dealing with a sequential measure, such as temperature, or in our case the density of points plotted per some grid cell, we really need to use a sequential color palette. There are two common problems with sequential palettes:</p>
+<ol style="list-style-type: decimal">
+<li>We need to create a palette that maps the data accurately. This means that the perceived distances between the different hues utilized need to reflect the distances between our data points. AND this distance needs to be constant, no matter between which two point of the palette we want to estimate their distance. Let us consider the following example showing a classic ‘rainbow’ palette (<a href="https://www.mathworks.com/products/matlab.html">MATLAB</a> refers to this as ‘jet colors’):</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pal</span>(<span class="kw">rainbow</span>(<span class="dv">100</span>))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:rainb-pal"></span>
+<img src="_main_files/figure-html/rainb-pal-1.svg" alt="The classic rainbow color palette." width="768" />
+<p class="caption">
+Figure 2.3: The classic rainbow color palette.
+</p>
+</div>
+<p>It becomes obvious that there are several thin bands in this color palette (yellow, aquamarine, purple) which do not map the distances between variable values accurately. That is, the distance between two values located in or around the yellow region of the palette will seem to change faster than, for example, somewhere in the green region (and red and blue).</p>
+<p>When converted to greyscale, this palette produces a hell of a mess:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pal</span>(<span class="kw">desaturate</span>(<span class="kw">rainbow</span>(<span class="dv">100</span>)))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:rainb-pal-grey"></span>
+<img src="_main_files/figure-html/rainb-pal-grey-1.svg" alt="Same palette as above in grey-scale." width="768" />
+<p class="caption">
+Figure 2.4: Same palette as above in grey-scale.
+</p>
+</div>
+<p>Note, that this palette is maybe the most widely used color coding palette for mapping a sequential continuous variable to color. We will see further examples later on… We hope you get the idea that this is not a good way of mapping a sequential variable to color!</p>
+<p><code>hcl()</code> produces so-called perceptually uniform color palettes and is therefore much better suited to represent sequential data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pal</span>(<span class="kw">clrs_hcl</span>(<span class="dv">100</span>))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:hcl-pal"></span>
+<img src="_main_files/figure-html/hcl-pal-1.svg" alt="An HCL based multi-hue color palette with increasing luminance towards the red end." width="768" />
+<p class="caption">
+Figure 2.5: An HCL based multi-hue color palette with increasing luminance towards the red end.
+</p>
+</div>
+<p>We see that the different hues are spread constantly over the palette and therefore it is easy to estimate distances between data values from the changes in color. The fact that we also vary luminance here means that we get a very light color at one end (in our case, the red end which is more of a pink tone than red). This might, at first sight, not seem very aesthetically pleasing, yet it enables us to encode our data even in greyscale:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pal</span>(<span class="kw">desaturate</span>(<span class="kw">clrs_hcl</span>(<span class="dv">100</span>)))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:hcl-pal-grey"></span>
+<img src="_main_files/figure-html/hcl-pal-grey-1.svg" alt="Same palette as above in grey-scale." width="768" />
+<p class="caption">
+Figure 2.6: Same palette as above in grey-scale.
+</p>
+</div>
+<p>As a general suggestion, we encourage you to make use of the HCL color space whenever you can. But most importantly, it is essential to do some thinking before mapping data to color. The most basic question you always need to ask yourself is probably</p>
+<blockquote>
+<p>What is the nature of the data that I want to show? More precisely, is it sequential, diverging, or qualitative?</p>
+</blockquote>
+<p>Once you know this, it is easy to choose the appropriate color palette for the mapping. A good place to start for choosing palettes that are perceptually well thought through is <a href="http://www.colorbrewer2.org">ColorBrewer</a>.</p>
+
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Zeileis2009">
+<p>Zeileis, Achim, Kurt Hornik, and Paul Murrell. 2009. “Escaping RGBland: Selecting Colors for Statistical Graphics.” <em>Computational Statistics and Data Analysis</em> 53: 3259–70. doi:<a href="https://doi.org/10.1016/j.csda.2008.11.033">10.1016/j.csda.2008.11.033</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="merging-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

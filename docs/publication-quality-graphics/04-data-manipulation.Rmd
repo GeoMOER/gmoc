@@ -1,0 +1,327 @@
+# Manipulating Plots with grid
+
+Okay, so now we have seen how to produce a variety of widely used plot types using both **lattice** and **ggplot2**. We hope that, apart from the specifics, you also obtained a general idea of how these two packages work and how you may use the various things we've touched upon in scenarios other than the ones provided here.
+
+Now, we're moving on to a more basic and much more flexible level of modifying, constructing and arranging graphs. Both **lattice** and **ggplot2** are based on the **grid** package. This means that we can use this package to fundamentally modify whatever we've produced (remember, we're always storing our plots in objects) in a much more flexible way than provided by any of these packages.
+
+With his **grid** package, Paul Murrell has achieved nothing less than a highly sophisticated and, in our opinion, much more flexible and powerful plotting framework for R. This has also been 'officially' recognized by the R Core Team as Paul is now a member of the very same (at least to our knowledge) and his **grid** package is shipped with the base version of R. This means that we don't have to install the package anymore (however, we still have to load it via ```library(grid)```).
+
+In order to fully appreciate the possibilities of the **grid** package, it helps to think of this package as a package for drawing things. Yes, we're not producing statistical plots as such (for this we have **lattice** and **ggplot2**), we're actually _drawing_ things!
+
+The fundamental features of the **grid** package are the "viewports". By default, the whole plotting area, may it be the standard R or any other such plotting device (e.g. `png()`), is considered as the root viewport (basically like the ```home/<username>``` folder on Linux or the ```C:\Users\<username>``` folder on Windows). In this viewport we now have the possibility to specify other viewports which are relative to the root viewport (just like the ```Users\<username>\Documents``` folder on Windows or ```home/<username>/Downloads``` under Linux). 
+
+The very important thing to realize here is that in order to do anything in this folder (be it creating another sub-folder, or simply saving a file, or whatever), we first need to _create_ the folder and then we need to _navigate_ into it. If you keep this in mind, you will quickly understand the fundamental principle of **grid**.
+
+When we start using the **grid** package, we always start with the 'root' viewport. This is already available, it is created for us, so we don't need to do anything. This is our starting point. The really neat thing about **grid** is that each viewport is, by default, defined as ranging from 0 to 1 in both x and y direction. For example, the lower left corner is defined as `x = 0` and `y = 0`. Accordingly, the lower right corner is `x = 1` and `y = 0`, the upper right corner is `x = 1` and `y = 1` and so on... 
+
+It is, however, possible to specify a myriad of different unit systems (type ```?grid::unit``` to get an overview of what is available). We usually stick to the default settings called `npc` ('Normalised Parent Coordinates') which range from 0 to 1 in each direction, as this makes setting up viewports very intuitive (as demonstrated above).
+
+A viewport needs some basic specifications for it to be located somewhere in the plotting area (the current viewport). These are:
+
+* `x` - location along the x-axis
+* `y` - location along the y -axis
+* `width` - width of the viewport
+* `height` - height of the viewport
+* `just` - justification of the viewport in both x and y directions
+
+Here, `width` and `height` should be rather self-explanatory. On the other hand, `x`, `y` and `just` are a bit more mind-bending. By default, `x = y = 0.5` and `just = cemtre`. This means that the new viewport will be positioned at `x = 0.5` and `y = 0.5`. The default of `just` is `centre` which means that a new viewport will be created at the midpoint of the current viewport (`x, y`) and centered on this point. It helps to think of the `just` specification in the same way that you provide your text justification in an Office software (left, right, centre & justified). Let's try a first example which should highlight the way this works.
+
+```{r, include = FALSE}
+## this is needed to keep the graphical device open so that we can build 
+## our layered grid figure
+knitr::opts_knit$set(global.device = TRUE)
+```
+
+```{r grid-first-vp, tidy = FALSE, fig.cap = "Producing a standard viewport using **grid**.", fig.align = 'center'}
+library(grid)
+grid.newpage() # open a new (i.e. empty) 'root' viewport
+
+grid.rect()
+grid.text("this is the root vp", x = 0.5, y = 0.95, 
+          just = c("centre", "top"))
+
+our_first_vp <- viewport(x = 0.5, y = 0.5, 
+                         height = 0.5, width = 0.5,
+                         just = c("centre", "centre"))
+
+pushViewport(our_first_vp)
+
+grid.rect(gp = gpar(fill = "pink"))
+grid.text("this is our first vp", x = 0.5, y = 0.95, 
+          just = c("centre", "top"))
+```
+
+Okay, so now we have created a new viewport in the middle of the current (i.e. 'root') viewport that is half the height and half the width of its root. Afterwards, we navigated into this new viewport using `pushViewport()` and drew a pink-filled rectangle spanning the entire area using `grid.rect()`.
+
+Note that we didn't leave the viewport yet. This means that, whatever we do now, will happen in the currently active viewport (i.e. the pink one). To illustrate this, we will simply repeat the exact same code from above once more.
+
+```{r grid-second-vp, tidy = FALSE, fig.cap = "Producing a second viewport using **grid**.", fig.align = 'center'}
+our_first_vp <- viewport(x = 0.5, y = 0.5, 
+                         height = 0.5, width = 0.5,
+                         just = c("centre", "centre"))
+
+pushViewport(our_first_vp)
+
+grid.rect(gp = gpar(fill = "cornflowerblue"))
+```
+
+In more practical terms, this means that whatever viewport we are currently in, this one defines our reference system (0 to 1). In case you don't believe that, we can repeat this procedure five times more...
+
+```{r grid-several-vps, tidy = FALSE, fig.cap = "Producing several viewports using **grid**.", fig.align = 'center'}
+for (i in 1:5) {
+  our_first_vp <- viewport(x = 0.5, y = 0.5, 
+                           height = 0.5, width = 0.5,
+                           just = c("centre", "centre"))
+  
+  pushViewport(our_first_vp)
+  
+  grid.circle(gp = gpar(fill = colors()[i*3]))
+}
+```
+
+Now that should be proof enough! We are cascading down viewports always creating a rectangle that fills half the 'mother' viewport at each step. Yet, as the 'mother' viewport becomes smaller and smaller, our rectangles also become smaller along the way (programmers would actually call these steps iterations, but we won't be bothered here...).
+
+So, how do we navigate back? If we counted correctly, we went down 7 rabbit holes. In order to get out of these again, we need to use `upViewport(7)` and, in order to verify that we are back in 'root', we may ask **grid** what viewport we are currently in.
+
+
+```{r grid-back-to-root-vp, tidy = FALSE, fig.keep = 'none'}
+upViewport(7)
+
+current.viewport()
+```
+
+Sweet, we're back in the 'root' viewport... (by the way, `upViewport(0)` would have taken us right up to the 'root' viewport without the requirement for counting, see `?grid::upViewport`).
+
+Now, let's see how this `just` parameter works. As you have seen we are now in the 'root' viewport. Let's try to draw another rectangle that sits right at the top left corner of the pink one. In theory the lower right corner of this viewport should be located at `x = 0.25` and `y = 0.75`. If we specify it like this, we need to adjust the justification, because we do not want to center it on these coordinates. If these coordinates are the point of origin, this viewport should be justified right horizontally and bottom vertically. And the space we have to plot should be `0.25` vertically and `0.25` horizontally. Let's try this...
+
+```{r grid-top-left-vp, tidy = FALSE, fig.cap = "Producing yet another viewport using **grid**.", fig.align = 'center'}
+top_left_vp <- viewport(x = 0.25, y = 0.75, 
+                        height = 0.25, width = 0.25,
+                        just = c("right", "bottom"))
+
+pushViewport(top_left_vp)
+
+grid.rect(gp = gpar(fill = "grey", alpha = 0.5))
+```
+
+```{r dev2, include = FALSE}
+## close the graphical device again
+knitr::opts_knit$set(global.device = FALSE)
+invisible(dev.off())
+```
+
+You should have understood two things now:
+
+1. How to create and navigate between viewports, and
+2. Why it was said earlier that **grid** is a package for drawing.
+
+Assuming that you have understood these two points, let's make use of the first one and use this incredibly flexible plotting framework for arranging multiple plots on one page.
+
+
+## `r tools::toTitleCase("Multiple Plots per page")`
+
+In order to succeed plotting several of our previously created plots on one page, there's two things of importance:
+
+1. The **lattice** and **ggplot2** plot objects need to be printed using `print` , and
+2. We need to set `newpage = FALSE` in the print call so that the previously drawn elements are not deleted.
+
+Let's try and plot some of these plots next to each other on one page by setting up a suitable viewport structure. First of all, we obviously need to produce plots. Note that we will use very basic plots here, but this should work with whatever **lattice** or **ggplot2** object you have created earlier.
+
+```{r grid-multiple, message = FALSE, tidy = FALSE, fig.cap = "Using **grid** to arrange multiple plots on one page.", fig.align = 'center', fig.width = 10, fig.height = 10}
+
+p1_lattice <- xyplot(price ~ carat, data = diamonds)
+p2_lattice <- histogram(~ price, data = diamonds)
+
+p1_ggplot <- ggplot(aes(x = carat, y = price), data = diamonds) +
+  geom_point()
+p2_ggplot <- ggplot(diamonds, aes(x = price)) +
+  geom_histogram()
+
+### clear plot area
+grid.newpage()
+
+### define first plotting region (viewport)
+vp1 <- viewport(x = 0, y = 0, 
+                height = 0.5, width = 0.5,
+                just = c("left", "bottom"),
+                name = "lower left")
+
+### enter vp1 
+pushViewport(vp1)
+
+### show the plotting region (viewport extent)
+grid.rect()
+
+### plot a plot - needs to be printed (and newpage set to FALSE)!!!
+print(p1_lattice, newpage = FALSE)
+
+### leave vp1 - up one level (into root vieport)
+upViewport(1)
+
+### define second plot area
+vp2 <- viewport(x = 1, y = 0, 
+                height = 0.5, width = 0.5,
+                just = c("right", "bottom"),
+                name = "lower right")
+
+### enter vp2
+pushViewport(vp2)
+
+### show the plotting region (viewport extent)
+grid.rect()
+
+### plot another plot
+print(p2_lattice, newpage = FALSE)
+
+### leave vp2
+upViewport(1)
+
+
+vp3 <- viewport(x = 0, y = 1, 
+                height = 0.5, width = 0.5,
+                just = c("left", "top"),
+                name = "upper left")
+
+pushViewport(vp3)
+
+### show the plotting region (viewport extent)
+grid.rect()
+
+print(p1_ggplot, newpage = FALSE)
+
+upViewport(1)
+
+
+vp4 <- viewport(x = 1, y = 1, 
+                height = 0.5, width = 0.5,
+                just = c("right", "top"),
+                name = "upper right")
+
+pushViewport(vp4)
+
+### show the plotting region (viewport extent)
+grid.rect()
+
+print(p2_ggplot, newpage = FALSE)
+
+upViewport(1)
+```
+
+So there we have it. Creating and navigating between viewports enables us to build a graphical layout in whatever way we want. In our opinion, this is way better than saving all the plots to the hard drive and then using some sort of graphics software such as [Adobe Photoshop](https://de.wikipedia.org/wiki/Adobe_Photoshop) or [Inkscape](https://de.wikipedia.org/wiki/Inkscape) to arrange the plots onto one page. After all, sometimes we may have several of these multi-plot pages that we want to produce. As of now, we know how to do this automatically, thus rendering any post-production steps unnecessary.
+
+
+## `r tools::toTitleCase("manipulating existing plots")`
+
+Another application of **grid** is to manipulate an existing plot object. You may have noted that our version of the 2-dimensional density scatter plot produced with **lattice** lacks a color key. Looking at the **ggplot2** version of the density scatter, by contrast, we see that this one already has a color key which is placed to the right of the main plot. 
+
+As regards the **lattice** version, a color key can be easily added using **grid**. Since **lattice** is built upon **grid**, it produces a lot of viewports in the creation of the plots (like our scatter plot). After these have been set up, we can navigate to each of them and edit (or delete) them or add new stuff. Given that we have five panels, we actually have some 'white' space left in the bottom-right corner that we could use for the color key placement, thus making better use of the available space...
+
+In order to do so, we need to know into which of the viewports we need to navigate. Luckily, **lattice** provides a structured naming convention for its viewports, which makes navigating between single viewports rather easy. Since we are interested in the area covered by the main figure only, we will use `trellis.vpname("figure")` to extract the name of the corresponding viewport and pass this on to `downViewport()` in order to navigate to it. You will notice that this is very similar to `pushViewport()`, except for the target viewport being already there. 
+
+Like that, we can set up a new viewport in the main plotting area (the 'figure' viewport) to make use of the existing white space. Remember that the default units of **grid** range from 0 to 1. This means that we can easily calculate the necessary viewport dimensions. Let's see how this is done (note that we are actually creating two new viewports in the figure area, one for the color key and another one for the color key label).
+
+```{r grid-manipulate, fig.width = 10, fig.height = 7, fig.cap = "Using **grid** to add a color key to an existing **lattice** plot object.", fig.align = 'center'}
+my_theme <- trellis.par.get()
+my_theme$strip.background$col <- "grey80"
+my_theme$plot.symbol$pch <- 16
+my_theme$plot.symbol$col <- "grey60"
+my_theme$plot.polygon$col <- "grey90"
+
+scatter_lattice <- xyplot(price ~ carat | cut, 
+                          data = diamonds, 
+                          panel = function(x, y, ...) {
+                            panel.xyplot(x, y, ...)
+                            lm1 <- lm(y ~ x)
+                            lm1sum <- summary(lm1)
+                            r2 <- lm1sum$adj.r.squared
+                            panel.text(labels = 
+                                         bquote(italic(R)^2 == 
+                                                  .(format(r2, 
+                                                           digits = 3))),
+                                       x = 4, y = 1000)
+                            panel.smoother(x, y, method = "lm", 
+                                           col = "black", 
+                                           col.se = "black",
+                                           alpha.se = 0.3)
+                            },
+                          xscale.components = xscale.components.subticks,
+                          yscale.components = yscale.components.subticks,
+                          as.table = TRUE)
+
+l_sc <- update(scatter_lattice, par.settings = my_theme)
+xy <- kde2d(x = diamonds$carat, y = diamonds$price, n = 100) 
+xy_tr <- con2tr(xy)
+offset <- max(xy_tr$z) * 0.2
+z_range <- seq(min(xy_tr$z), max(xy_tr$z) + offset, offset * 0.01)
+
+l_sc <- update(scatter_lattice, aspect = 1, par.settings = my_theme, 
+               between = list(x = 0.3, y = 0.3),
+               panel=function(x,y) {
+                 xy <- kde2d(x,y, n = 100) 
+                 xy_tr <- con2tr(xy)                 
+                 panel.levelplot(xy_tr$x, xy_tr$y, xy_tr$z, asp = 1,
+                                 subscripts = seq(nrow(xy_tr)), 
+                                 contour = FALSE, region = TRUE, 
+                                 col.regions = c("white", 
+                                                 rev(clrs_hcl(10000))),
+                                 at = z_range)
+                 lm1 <- lm(y ~ x)
+                 lm1sum <- summary(lm1)
+                 r2 <- lm1sum$adj.r.squared
+                 panel.abline(a = lm1$coefficients[1], 
+                              b = lm1$coefficients[2])
+                 panel.text(labels = 
+                              bquote(italic(R)^2 == 
+                                       .(format(r2, digits = 3))),
+                            x = 4, y = 1000)
+                 #panel.xyplot(x,y) 
+                 } 
+               ) 
+
+
+grid.newpage()
+#grid.rect()
+print(l_sc, newpage = FALSE)
+#grid.rect()
+downViewport(trellis.vpname(name = "figure"))
+#grid.rect()
+vp1 <- viewport(x = 1, y = 0, 
+                height = 0.5, width = 0.3,
+                just = c("right", "bottom"),
+                name = "legend.vp")
+
+pushViewport(vp1)
+#grid.rect()
+
+vp1_1 <- viewport(x = 0.2, y = 0.5, 
+                  height = 0.7, width = 0.5,
+                  just = c("left", "centre"),
+                  name = "legend.key")
+
+pushViewport(vp1_1)
+#grid.rect()
+
+key <- draw.colorkey(key = list(col = c("white", rev(clrs_hcl(10000))),
+                                at = z_range), draw = TRUE)
+
+seekViewport("legend.vp")
+#grid.rect()
+vp1_2 <- viewport(x = 1, y = 0.5, 
+                  height = 1, width = 0.3,
+                  just = c("right", "centre"),
+                  name = "legend.text", angle = 0)
+
+pushViewport(vp1_2)
+#grid.rect()
+
+grid.text("estimated point density", 
+          x = 0, y = 0.5, rot = 270, 
+          just = c("centre", "bottom"))
+
+upViewport(3)
+
+```
+
+Not too complicated, is it? And, in comparison to the **ggplot2** version, we are utilizing the available space a bit more efficiently. Though, obviously, we could also manipulate the **ggplot2** density scatter plot (or any other plot) in a similar manner. In general, we hope that it has become clear just how useful **grid** can be and how it provides us with tools which enable us to produce individual graphics that satisfy our needs. 
+
+So far, we have put our efforts into plot creation and learned about a variety of tools that can help us achieve what we want. As a next logical step, let's see how we can save our graphics to our hard drive.

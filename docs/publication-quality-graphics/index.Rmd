@@ -1,0 +1,62 @@
+---
+title: "Creating Publication Quality Graphics in R"
+author: "<b>Tim Appelhans and Florian Detsch</b>"
+date: "`r paste('Last modified:', Sys.Date())`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook:
+    split_by: section
+documentclass: book
+bibliography: references.bib
+biblio-style: apalike
+link-citations: yes
+github-repo: marburg-open-courseware/publication-quality-graphics
+---
+
+# Preface {-}
+
+This tutorial was initially developed as part of a one-day workshop held within the Ecosystem Informatics PhD program at the University of Marburg. It has constantly evolved over the years and has lately become an annual course in the [event calendar](https://www.uni-marburg.de/mara/veranstaltungen/workshops/2017/programm_lnw/creating-graphics-using-r?language_sync=1) of the [MArburg University Research Academy (MARA)](https://www.uni-marburg.de/mara). Hence, it is still being updated regularly and its contents presented hereinafter are published under the creative commons license ['Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)'](http://creativecommons.org/licenses/by-sa/3.0/).
+
+![](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)
+
+The tutorial was originally provided as one big document, but for easier digestion of the content, we have decided to break it into several smaller bits. We hope you find parts of this tutorial, if not all of it useful.
+
+Comments, feedback, suggestions and bug reports are always welcome and should be directed to [florian.detsch{at}staff.uni-marburg.de](mailto:florian.detsch@staff.uni-marburg.de).
+
+<b>In this workshop we will</b>
+
+* learn a few things about handling and preparing our data for the creation of meaningful graphs;
+* quickly introduce the two main ways of plot creation in R - base graphics and <b>grid</b> graphics (we will mostly concentrate on the latter later on);
+* become familiar with the two main packages for highly flexible data visualization in R - <b>lattice</b> [@Sarkar2008] and <b>ggplot2</b> [@Wickham2009];
+* learn how to modify the default options of these packages in order to really get what we want; 
+* learn even more flexibility using the <b>grid</b> package to (i) create visualizations comprising multiple plots on one page and (ii) manipulate existing plots to suit our needs; and
+* learn how to save our visualizations in different formats that comply with general publication standards of most academic journals.
+
+TIP: If you study the code provided in this tutorial closely, you will likely find some additional programming gems here and there which are not specifically introduced in this workshop (such as the first few lines of code in Section \@ref(data-handling) ;-)).
+
+<b>In this workshop it is assumed that you</b>
+
+* already know how to get your data into R (`read.table()` etc.);
+* have a basic understanding how particular parts of your data can be accessed (`$`, `[` - in case you do not know what these special characters mean in an R sense, you might want to start at a more basic level, e.g. [here](http://tryr.codeschool.com/)); and
+* are familiar with the notion of object creation and assignment (using either `<-` or `=`).
+
+<b>Note, however, that this workshop is not about statistics (we will only be marginally exposed to very basic statistical principles).</b>
+
+_Before we start, we would like to highlight a few useful web resources for finding help in case you get stuck with a particular task:_
+
+* First and foremost, [Google is your friend](http://www.google.com) - for R related questions just type something like "r lattice how to change plot background color". The crux here is that you provide both the programming language (i.e. R) and the name of the package your question is related to (i.e. <b>lattice</b>). This way you will very likely find useful answers (the web is full of knowledgeable geeks).
+* Using Google in this way, you will most likely end up at [StackOverflow](http://www.stackoverflow.com) at some stage. This is a very helpful platform for all sorts of programming issues with an ever increasing contribution of the R community. To search directly at StackOverflow for R related stuff, type "r" in front of your search.
+* For quick reference on the most useful basic functionality of R, use http://www.statmethods.net.
+* [Rseek](http://www.rseek.org) is a search site dedicated exclusively to R-related stuff.
+* [R-Bloggers](http://www.r-bloggers.com) is a nice site that provides access to all sorts of blog sites dedicated to R from all around the world (in fact, a lot of the material of this workshop is derived from posts found there).
+* Another great tutorial on how to prepare publication quality graphics can be found [here](http://cellbio.emory.edu/bnanes/figures/). This tutorial also uses R as the data analysis tool of choice, but it goes a fair bit further using additional software such as [InkScape](https://inkscape.org/en/) for the final touches of the graphics.
+* Another resource for creating visualizations, with a particular focus on climatological and atmospheric applications, using R can be found at http://metvurst.wordpress.com
+* To see what we are usually up to at Environmental Informatics Marburg, we refer the interested reader to our [homepage](http://www.environmentalinformatics-marburg.de).
+
+Finally, please note that we adhere to the format conventions introduced by @Xie2016 in his [introductory book](https://bookdown.org/yihui/bookdown/) about the R <b>bookdown</b> package. Accordingly, we do not add prompts (`>` and `+`) to the R source code presented herein, and text output is commented out with two hashes (`##`) by default, for example: 
+
+```{r format}
+cat("Hello world.\n")
+```
+
+This is meant to facilitate copying and running the code, while the text output will be automatically ignored since it is commented out. Package names are in bold text (e.g., **grid**), and inline code and file names are formatted in a typewriter font (e.g., `grid::upViewport(0)`). Function names are followed by parentheses (e.g., `grid::viewport()`). The double-colon operator `::` means accessing a function from a particular package.
