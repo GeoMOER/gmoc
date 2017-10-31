@@ -1,7 +1,9 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "If-then-else"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 If-then-else statements are the controlling structures in each program. The most
 simplest form is:
 ```{r}

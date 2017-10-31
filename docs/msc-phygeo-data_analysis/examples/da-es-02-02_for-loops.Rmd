@@ -1,7 +1,9 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "for Loops"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 For loops are the mother of all repeating structures which enable the execution of 
 certain code blocks for multiple times. For loops are usefull if the number of 
 necessary repititions is known at the starting time of the loop (which is not 
