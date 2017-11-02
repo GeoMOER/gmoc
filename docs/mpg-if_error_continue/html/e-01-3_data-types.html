@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>ws-01-1_hello-world</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>e-01-3_data-types</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11775,7 +11775,30 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Hello,-World!">Hello, World!<a class="anchor-link" href="#Hello,-World!">&#182;</a></h2><p>Following an old tradition among programmers, we're going to start our Python adventure with a <a href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">"Hello, world!"</a> program. Similar to other programming languages (e.g. <a href="https://www.r-project.org/">R</a>), Python comes with a <code>print()</code> function that helps us achieve this task.</p>
+<h2 id="Data-types">Data types<a class="anchor-link" href="#Data-types">&#182;</a></h2><p>At this point, it is probably a good idea to take a deeper look at data types. In general, there are five different standard data types in Python:</p>
+<ul>
+<li><em>numbers</em>, </li>
+<li><em>strings</em>, </li>
+<li><em>lists</em>, </li>
+<li><em>tuples</em>, and</li>
+<li><em>dictionaries</em>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+<h4 id="Numbers">Numbers<a class="anchor-link" href="#Numbers">&#182;</a></h4><p>You have already encountered numeric data formats in one of the previous examples. For now, it is important to distinguish between</p>
+<ul>
+<li>signed integers (<code>int</code>) and</li>
+<li>floating point real values (<code>float</code>).</li>
+</ul>
+<p>In order to find out to which numeric format &ndash; or any other kind of data format, for that matter &ndash; an object belongs, simply use <code>type()</code> (remember that you can access the corresponding help pages at any time using <code>?type</code>).</p>
 
 </div>
 </div>
@@ -11785,7 +11808,149 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[1]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>int</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mf">2.5</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>float</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+<h4 id="Brief-digression:-for-loops">Brief digression: <code>for</code> loops<a class="anchor-link" href="#Brief-digression:-for-loops">&#182;</a></h4><p>Of course, we could have easily generated this output in one go. In order to repeat what we have learned about <code>print()</code> and multiple assignments and, at the same time, take a brief look at <code>for</code> loop structures that will be discussed in detail later on, here's one possible solution:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">2.5</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5, &lt;class &#39;int&#39;&gt;
+2.5, &lt;class &#39;float&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And here is what happens inside such a <code>for</code> loop. As said, we will come back to that in a follow-up session...
+<br>
+<br></p>
+<center>
+  <figure>
+    <img src="https://www.tutorialspoint.com/python/images/python_for_loop.jpg" alt="for-loop" height="300">  
+    <figcaption>Source: https://www.tutorialspoint.com/python/python_for_loop.htm</figcaption>
+  </figure> 
+</center>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+<h4 id="Strings">Strings<a class="anchor-link" href="#Strings">&#182;</a></h4><p>Strings (<code>str</code>) are another data type that you have &ndash; perhaps unconsciously &ndash; seen before. In fact, our "Hello, world!" example could have also been written as follows:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">world</span> <span class="o">=</span> <span class="s2">&quot;Hello, world!&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">world</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11815,21 +11980,40 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As seen from the above example, <code>print()</code> takes a textual value (or any other Python object) as input and prints its contents (or information about the object) to a so-called output stream. In our case, this stream is directed to the console window right below the "Hello, World!" code chunk.</p>
-<p>Alright, first step taken! Of course, <code>print()</code> also comes with a set of optional arguments to provide finer control of the created output. A list of, as well as details about, these optional parameters can be retrieved from the corresponding help pages, which also provide further information about the function itself, through putting a question mark (<code>?</code>) right in front of the function's name.</p>
+<p>Here, notice that we no longer feed a sequence of characters directly into <code>print()</code>, but at first create a variable called <code>world</code> of type</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">?</span>print
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">world</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>str</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -11838,23 +12022,31 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The most relevant optional keyword arguments supported by <code>print()</code> are (default values in brackets)</p>
-<ul>
-<li><code>sep</code>: string inserted between the single input values (<code>' '</code>)</li>
-<li><code>end</code>: string appended after the last value (<code>'\n'</code>)</li>
-<li><code>file</code>: a file-like object aka stream (<code>sys.stdout</code>)</li>
-</ul>
-<p>For example, suppose we have two parts of a sentence that we would like to put together to form a complete sentence but, at the same time, separate them by <code>[...]</code>, which is a rather common notation in scientific literature. Taking into account the list of optional parameters, this could then be easily achieved:</p>
+<p>that holds the required string value which is then passed on to <code>print()</code>. And that's basically all there is to know about strings in Python: it is simply a contiguous sequence of characters placed between quotation marks (single <code>''</code> or double quotes <code>""</code>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+<h4 id="Brief-digression:-string-slicing">Brief digression: string slicing<a class="anchor-link" href="#Brief-digression:-string-slicing">&#182;</a></h4><p>This is probably a good point to revolutionize your programming world, at least if you have been working with R until now:</p>
+<blockquote><p>PYTHON STARTS COUNTING AT 0 !</p>
+</blockquote>
+<p>As an example, suppose we want to print out only a subset of words included in <code>world</code>, e.g. 'Hello', and drop the rest, this means that we MUST NOT create a substring from positions 1 to 5 as</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is&quot;</span><span class="p">,</span> <span class="s2">&quot;some text.&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot; [...] &quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">world</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">])</span> 
 </pre></div>
 
 </div>
@@ -11871,7 +12063,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>This is [...] some text.
+<pre>ello,
 </pre>
 </div>
 </div>
@@ -11879,6 +12071,433 @@ div#notebook {
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>but instead start to count from 0 until we reach the character right next to 'o'. Remember that, when using string slicing, the index specified on the right side of the colon (<code>:</code>) specifies the start of the part of our string that needs to be excluded.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">world</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="c1">## or similar:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">world</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello
+Hello
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+<h4 id="Lists">Lists<a class="anchor-link" href="#Lists">&#182;</a></h4><p>Lists (<code>list</code>) probably represent the most flexible standard data structure available in Python in the sense that they can handle multiple data types under the same roof. List declarations start and end with square braquets (<code>[]</code>), and items to be arranged in a list must be separated by commas.</p>
+<p>For example, the above <code>for</code> loop or, more precisely, the iterator variable <code>i</code> iterated over a member sequence comprising different data types (<code>int</code>, <code>float</code>) stored in a list.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[5, 2.5]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Needless to say, this list could be easily extended with strings, among others.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">world</span><span class="p">]</span>
+<span class="n">lst</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[5, 2.5, &#39;Hello, world!&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Indexing such a list, i.e. accessing one or multiple item(s), via square brackets (<code>[]</code>) thereby works much the same way as string slicing. Please note that in addition to the usual counting direction (1, 2, 3, ...), reverse counting is also possible through putting a minus sign (<code>-</code>) in front of the index.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lst</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># 1st and 2nd item</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[5, 2.5]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="c1"># 2nd and last item</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[2.5, &#39;Hello, world!&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, lists can be modified at any point, e.g.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lst2</span> <span class="o">=</span> <span class="n">lst</span>
+<span class="n">lst2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">lst2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="n">lst2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[10, 2.5, &#39;Hello, world!&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Which brings us directly to the next data type...</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+<h4 id="Tuples">Tuples<a class="anchor-link" href="#Tuples">&#182;</a></h4><p>Tuples (<code>tuple</code>) are another way of wrapping up multiple inputs of various data types in a single object, and hence, work in a similar way to lists, with two exceptions:</p>
+<ul>
+<li>tuples are initialized with round brackets (<code>()</code>) and</li>
+<li>represent immutable objects, i.e. cannot be edited afterwards.</li>
+</ul>
+<p>Maybe it helps to think of tuples as "read-only" versions of lists. Accordingly, their creation via</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tpl</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">world</span><span class="p">)</span>
+<span class="n">tpl</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(5, 2.5, &#39;Hello, world!&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>works exactly the same (except for the parenthesis), as is the case with slicing, whereas overwriting an existing item is not possible.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tpl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">tpl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-14-bf3eba7a8b14&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>tpl<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">=</span> tpl<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">*</span> <span class="ansi-cyan-intense-fg ansi-bold">2</span>
+
+<span class="ansi-red-intense-fg ansi-bold">TypeError</span>: &#39;tuple&#39; object does not support item assignment</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Despite being immutable by definition, it is possible to append new items to a tuple &ndash; at least <a href="https://stackoverflow.com/questions/4913397/how-to-add-value-to-a-tuple">taking small detours</a> (although lists would likely be a better option here, see <code>?lst.append</code>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+<h4 id="Dictionaries">Dictionaries<a class="anchor-link" href="#Dictionaries">&#182;</a></h4><p>In contrast to lists, which represent ordered sequences of objects per definitionem, dictionaries are an unordered collection of key-value pairs. Since dealing with unordered sets, single items in a dictionary can be accessed through their corresponding keys rather than an actual index value (so-called <a href="https://en.wikipedia.org/wiki/Associative_array">associative arrays</a>).</p>
+<p>Dictionaries are implemented as <a href="https://en.wikipedia.org/wiki/Hash_table">hash tables</a> in Python and can be initialized using curly brackets (<code>{}</code>). Their keys are usually specified as numbers or strings, whereas values can take on any arbitrary data type. Each key is allowed to appear at most once in a collection and is typically associated (or "mapped") to a certain value.</p>
+<p>To cut a long story short:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">passwords</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;tnauss&quot;</span><span class="p">:</span><span class="mi">123456</span><span class="p">,</span> <span class="s2">&quot;fdetsch&quot;</span><span class="p">:</span><span class="s2">&quot;1q2w3e&quot;</span><span class="p">,</span> <span class="s2">&quot;creudel&quot;</span><span class="p">:(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;OSGeo4Life&quot;</span><span class="p">)}</span>
+
+<span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">passwords</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">passwords</span><span class="p">[</span><span class="n">user</span><span class="p">],</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;: &quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tnauss: 123456
+fdetsch: 1q2w3e
+creudel: (&#39;test&#39;, &#39;OSGeo4Life&#39;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As you can see,</p>
+<ul>
+<li>dictionary keys can be retreived through appending <code>.keys()</code> to the dictionary's name (see <code>?passwords.keys</code>), and</li>
+<li>just like for lists and tuples, numerous data types are accepted as input values.</li>
+</ul>
+<p>Of course, these entries DO NOT represent our true course passwords &ndash; whereby at least the last one could be conceivable... &#9786;</p>
+
+</div>
+</div>
 </div>
     </div>
   </div>
