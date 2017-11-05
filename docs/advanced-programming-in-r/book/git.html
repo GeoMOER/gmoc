@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advanced Programming in R</title>
+  <meta name="description" content="Advanced Programming in R">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Advanced Programming in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Advanced Programming in R" />
+  
+  
+  
+
+<meta name="author" content="Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="towards-a-structured-workflow.html">
+<link rel="next" href="rproj.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Programming in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="towards-a-structured-workflow.html"><a href="towards-a-structured-workflow.html"><i class="fa fa-check"></i><b>1</b> Towards a structured workflow</a><ul>
+<li class="chapter" data-level="1.1" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>1.1</b> Git version control</a></li>
+<li class="chapter" data-level="1.2" data-path="rproj.html"><a href="rproj.html"><i class="fa fa-check"></i><b>1.2</b> RStudio projects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-handling-and-visualization.html"><a href="data-handling-and-visualization.html"><i class="fa fa-check"></i><b>2</b> Data handling and visualization</a><ul>
+<li class="chapter" data-level="2.1" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>2.1</b> Summarizing data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-format-conversions.html"><a href="data-format-conversions.html"><i class="fa fa-check"></i><b>2.2</b> Data format conversions</a></li>
+<li class="chapter" data-level="2.3" data-path="visualizing-data-using-ggplot2.html"><a href="visualizing-data-using-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Visualizing data using <strong>ggplot2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iteration-procedures.html"><a href="iteration-procedures.html"><i class="fa fa-check"></i><b>3</b> Iteration procedures</a><ul>
+<li class="chapter" data-level="3.1" data-path="for.html"><a href="for.html"><i class="fa fa-check"></i><b>3.1</b> <code>for()</code> loops</a></li>
+<li class="chapter" data-level="3.2" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>3.2</b> The <code>*apply</code> family</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>3.2.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-apply-family.html"><a href="the-apply-family.html#lapply-and-sapply"><i class="fa fa-check"></i><b>3.2.2</b> <code>lapply()</code> and <code>sapply()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>3.3</b> Functional programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="functional-programming.html"><a href="functional-programming.html#custom-functions"><i class="fa fa-check"></i><b>3.3.1</b> Custom functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="functional-programming.html"><a href="functional-programming.html#functionals"><i class="fa fa-check"></i><b>3.3.2</b> Functionals</a></li>
+<li class="chapter" data-level="3.3.3" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i><b>3.3.3</b> Closures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="speeding-up-iteration-procedures.html"><a href="speeding-up-iteration-procedures.html"><i class="fa fa-check"></i><b>4</b> Speeding up iteration procedures</a><ul>
+<li class="chapter" data-level="4.1" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>4.1</b> Parallelization</a></li>
+<li class="chapter" data-level="4.2" data-path="c-interconnectivity-via-rcpp.html"><a href="c-interconnectivity-via-rcpp.html"><i class="fa fa-check"></i><b>4.2</b> C++ interconnectivity via <strong>Rcpp</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>5</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Programming in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="git" class="section level2">
+<h2><span class="header-section-number">1.1</span> Git version control</h2>
+<p><b>What is it actually?</b></p>
+<p>GitHub is an online interface which hosts and provides access to the <a href="https://git-scm.com/">Git</a> version control system. Briefly, the software enables multiple users to work on a single (code) project, or workflow, without the need to share a common network. Following the principles of distributed revision control, each change to a file or folder is recorded, thus making any edit you’ve made comprehensible for other developers – and also making it easy to undo changes if something went terribly wrong!</p>
+<p>For example, a short web-based tutorial to get started with the program is available from <a href="https://try.github.io/levels/1/challenges/1">Try Git</a>. At this point, we would like to invite you to take this roughly ten-minute tour to get used to the basic <code>git</code> commands that we are going to use repeatedly during the subsequent lessons.</p>
+<br>
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Hourglass_2.svg" alt="hourglass" style="width: 125px;"/>
+</center>
+<p><br></p>
+<p><br><b>Initialize a new online code repository</b></p>
+<p>Let’s get back to our own personal R business now. In order to be able to add version control to an RStudio project later on, you are required to create a user account at <a href="https://github.com/">GitHub</a>. This involves the specification of a username, e-mail address, and password only and goes without giving away personal data.</p>
+<p>Once your account has been created and you’ve successfully logged in, select ‘New repository’ from the ‘Create new…’ (plus sign) drop-down menu in the top-right corner to create a new GitHub code repository.</p>
+<br>
+<center>
+<img src="http://i.imgur.com/N4ni6RY.png" />
+</center>
+<p><br></p>
+<p>Now, enter ‘advanced-programming-in-r’ as repository name and, optionally, provide a short description of the data it contains (or, more precisely, the data that it is supposed to contain in the future). Finally, hit the ‘Create repository’ button to complete the setup process.</p>
+<br>
+<center>
+<img src="http://i.imgur.com/K9D6NQr.png" />
+</center>
+<p><br></p>
+<p>So far, the code repository thus created is available online only. In order to get a local copy on your hard disk, copy the link to be found when hitting the green ‘Clone or download’ button on the main webpage of your GitHub repository. Next, open up a Git Bash or Terminal (depending on your operating system) and navigate to the folder where you intend to save local copies of your Git repositories in the future. Finally, run</p>
+<pre><code>git clone https://github.com/fdetsch/advanced-programming-in-r.git</code></pre>
+<p>(remember to replace the name) et voilà, all files associated with your online code repository are being downloaded to your destination folder. From now on, this will be the place for you to realize your coding work and, at the end of a day’s work, commit any changes to the online repository to better keep track of the latest changes to your code.</p>
+<p><br><b>Task: Create a local SSH key</b></p>
+<p>Before we can push files to the newly created online code repository, we have to create a SSH key (if not already present) for the local machine you are currently working on. For this purpose, follow the official GitHub tutorial on <a href="https://help.github.com/articles/generating-ssh-keys/">Generating SSH keys</a> and, if necessary, create a SSH key locally and add it in your online account settings.</p>
+<br>
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Hourglass_2.svg" alt="hourglass" style="width: 125px;"/>
+</center>
+<p><br></p>
+<p>Now that you successfully set up your (maybe first) own code repository, it is time to move on to the second crucial step towards establishing a consistently structured workflow in R: Setting up an RStudio Project and trace your tedious coding work using Git version control.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="towards-a-structured-workflow.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rproj.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

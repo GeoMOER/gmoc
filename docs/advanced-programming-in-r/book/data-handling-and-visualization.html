@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advanced Programming in R</title>
+  <meta name="description" content="Advanced Programming in R">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Advanced Programming in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Advanced Programming in R" />
+  
+  
+  
+
+<meta name="author" content="Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="rproj.html">
+<link rel="next" href="summarizing-data.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Programming in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="towards-a-structured-workflow.html"><a href="towards-a-structured-workflow.html"><i class="fa fa-check"></i><b>1</b> Towards a structured workflow</a><ul>
+<li class="chapter" data-level="1.1" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>1.1</b> Git version control</a></li>
+<li class="chapter" data-level="1.2" data-path="rproj.html"><a href="rproj.html"><i class="fa fa-check"></i><b>1.2</b> RStudio projects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-handling-and-visualization.html"><a href="data-handling-and-visualization.html"><i class="fa fa-check"></i><b>2</b> Data handling and visualization</a><ul>
+<li class="chapter" data-level="2.1" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>2.1</b> Summarizing data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-format-conversions.html"><a href="data-format-conversions.html"><i class="fa fa-check"></i><b>2.2</b> Data format conversions</a></li>
+<li class="chapter" data-level="2.3" data-path="visualizing-data-using-ggplot2.html"><a href="visualizing-data-using-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Visualizing data using <strong>ggplot2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iteration-procedures.html"><a href="iteration-procedures.html"><i class="fa fa-check"></i><b>3</b> Iteration procedures</a><ul>
+<li class="chapter" data-level="3.1" data-path="for.html"><a href="for.html"><i class="fa fa-check"></i><b>3.1</b> <code>for()</code> loops</a></li>
+<li class="chapter" data-level="3.2" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>3.2</b> The <code>*apply</code> family</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>3.2.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-apply-family.html"><a href="the-apply-family.html#lapply-and-sapply"><i class="fa fa-check"></i><b>3.2.2</b> <code>lapply()</code> and <code>sapply()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>3.3</b> Functional programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="functional-programming.html"><a href="functional-programming.html#custom-functions"><i class="fa fa-check"></i><b>3.3.1</b> Custom functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="functional-programming.html"><a href="functional-programming.html#functionals"><i class="fa fa-check"></i><b>3.3.2</b> Functionals</a></li>
+<li class="chapter" data-level="3.3.3" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i><b>3.3.3</b> Closures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="speeding-up-iteration-procedures.html"><a href="speeding-up-iteration-procedures.html"><i class="fa fa-check"></i><b>4</b> Speeding up iteration procedures</a><ul>
+<li class="chapter" data-level="4.1" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>4.1</b> Parallelization</a></li>
+<li class="chapter" data-level="4.2" data-path="c-interconnectivity-via-rcpp.html"><a href="c-interconnectivity-via-rcpp.html"><i class="fa fa-check"></i><b>4.2</b> C++ interconnectivity via <strong>Rcpp</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>5</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Programming in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-handling-and-visualization" class="section level1">
+<h1><span class="header-section-number">2</span> Data handling and visualization</h1>
+<p>As noted earlier in this guide, an R workflow basically consists of performing calculations and/or visualizing your data which has previously been imported into R. In the majority of cases, this workflow usually includes an intermediary step referred to as data manipulation meant to get your data into shape for visualization. Note that some packages even require you to provide the data to be displayed in a particular format (of which more later on).</p>
+<p>Within the scope of this short course, we’ll simply assume that you already heard a lot about importing your data into R. Even if this were not the case, there’s plenty of tutorials on the internet demonstrating the use of <code>read.table()</code> and the like. Help on this topic may be found e.g. on <a href="http://www.statmethods.net/input/importingdata.html">Quick-R</a>, <a href="https://cran.r-project.org/doc/manuals/r-release/R-data.html">CRAN</a>, <a href="http://www.r-tutor.com/r-introduction/data-frame/data-import">R-Tutor</a> and so forth. Just remember, Google is your friend ☺</p>
+<p><br><b>Data manipulation</b></p>
+<p>An overview of typical data manipulation steps, including illustrative examples, is provided by the <a href="http://www.cookbook-r.com/Manipulating_data/">R Cookbook</a> and includes, among others,</p>
+<ul>
+<li><em>General operations</em>
+<ul>
+<li>Sorting</li>
+<li>Converting between vector types</li>
+<li>Dealing with duplicate records and missing values</li>
+</ul></li>
+<li><em>Factor operations</em>
+<ul>
+<li>Renaming and re-computing factor levels</li>
+<li>Reordering factor levels (which comes in quite handy when plotting data)</li>
+</ul></li>
+<li><em>Data frame operations</em>
+<ul>
+<li>Adding and removing columns</li>
+<li>Reordering columns</li>
+<li>Merging data frames</li>
+</ul></li>
+<li><em>Restructuring data</em>
+<ul>
+<li>Data format conversions</li>
+<li>Summarizing data</li>
+</ul></li>
+</ul>
+<p>Since I assume that you are already familiar with the basics of data manipulation, we will primarily focus on the latter point which represents an essential step towards conveying your results clearly and vividly to a broader audience.</p>
+<p><br><b>The <code>diamonds</code> dataset</b></p>
+<p>In the following subsections, I’ll introduce the essentials of data restructuring in R on the basis of the <code>diamonds</code> dataset, which is part of the <strong>ggplot2</strong> package. In case you are not already familiar with the dataset, just take a minute and have a look at <code>?diamonds</code> in order to get a more detailed description of the single variables.</p>
+<p>Now, it is important to realize that <code>diamonds</code> is not a standard R <code>data.frame</code> (in fact, it used to be one), but an object of class <code>tbl_df</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">class</span>(diamonds)</code></pre></div>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<p>One good thing about such objects in R is that their <code>print()</code> method largely renders ritual-like <code>head()</code>, <code>tail()</code>, or <code>str()</code> calls unnecessary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds</code></pre></div>
+<pre><code>## # A tibble: 53,940 x 10
+##    carat       cut color clarity depth table price     x     y     z
+##    &lt;dbl&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  0.23     Ideal     E     SI2  61.5    55   326  3.95  3.98  2.43
+##  2  0.21   Premium     E     SI1  59.8    61   326  3.89  3.84  2.31
+##  3  0.23      Good     E     VS1  56.9    65   327  4.05  4.07  2.31
+##  4  0.29   Premium     I     VS2  62.4    58   334  4.20  4.23  2.63
+##  5  0.31      Good     J     SI2  63.3    58   335  4.34  4.35  2.75
+##  6  0.24 Very Good     J    VVS2  62.8    57   336  3.94  3.96  2.48
+##  7  0.24 Very Good     I    VVS1  62.3    57   336  3.95  3.98  2.47
+##  8  0.26 Very Good     H     SI1  61.9    55   337  4.07  4.11  2.53
+##  9  0.22      Fair     E     VS2  65.1    61   337  3.87  3.78  2.49
+## 10  0.23 Very Good     H     VS1  59.4    61   338  4.00  4.05  2.39
+## # ... with 53,930 more rows</code></pre>
+<p>Notice that not only the class and the dimensions of the dataset are displayed, but also the variable types of the single columns. Furthermore, the console output is truncated after the first 10 rows (which would also apply to the displayed columns if we were dealing with a somewhat wider dataset). Practically, this means that the appropriate use of <code>tbl_df</code> lets you kill two birds with one stone compared with the 2-step approach via <code>head</code> and <code>str</code> that is usually required for investigating standard data frames.</p> 
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rproj.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summarizing-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

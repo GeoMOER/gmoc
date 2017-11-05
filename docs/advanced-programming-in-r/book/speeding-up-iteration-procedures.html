@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advanced Programming in R</title>
+  <meta name="description" content="Advanced Programming in R">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Advanced Programming in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Advanced Programming in R" />
+  
+  
+  
+
+<meta name="author" content="Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="functional-programming.html">
+<link rel="next" href="parallelization.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Programming in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="towards-a-structured-workflow.html"><a href="towards-a-structured-workflow.html"><i class="fa fa-check"></i><b>1</b> Towards a structured workflow</a><ul>
+<li class="chapter" data-level="1.1" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>1.1</b> Git version control</a></li>
+<li class="chapter" data-level="1.2" data-path="rproj.html"><a href="rproj.html"><i class="fa fa-check"></i><b>1.2</b> RStudio projects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-handling-and-visualization.html"><a href="data-handling-and-visualization.html"><i class="fa fa-check"></i><b>2</b> Data handling and visualization</a><ul>
+<li class="chapter" data-level="2.1" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>2.1</b> Summarizing data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-format-conversions.html"><a href="data-format-conversions.html"><i class="fa fa-check"></i><b>2.2</b> Data format conversions</a></li>
+<li class="chapter" data-level="2.3" data-path="visualizing-data-using-ggplot2.html"><a href="visualizing-data-using-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Visualizing data using <strong>ggplot2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iteration-procedures.html"><a href="iteration-procedures.html"><i class="fa fa-check"></i><b>3</b> Iteration procedures</a><ul>
+<li class="chapter" data-level="3.1" data-path="for.html"><a href="for.html"><i class="fa fa-check"></i><b>3.1</b> <code>for()</code> loops</a></li>
+<li class="chapter" data-level="3.2" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>3.2</b> The <code>*apply</code> family</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>3.2.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-apply-family.html"><a href="the-apply-family.html#lapply-and-sapply"><i class="fa fa-check"></i><b>3.2.2</b> <code>lapply()</code> and <code>sapply()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>3.3</b> Functional programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="functional-programming.html"><a href="functional-programming.html#custom-functions"><i class="fa fa-check"></i><b>3.3.1</b> Custom functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="functional-programming.html"><a href="functional-programming.html#functionals"><i class="fa fa-check"></i><b>3.3.2</b> Functionals</a></li>
+<li class="chapter" data-level="3.3.3" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i><b>3.3.3</b> Closures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="speeding-up-iteration-procedures.html"><a href="speeding-up-iteration-procedures.html"><i class="fa fa-check"></i><b>4</b> Speeding up iteration procedures</a><ul>
+<li class="chapter" data-level="4.1" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>4.1</b> Parallelization</a></li>
+<li class="chapter" data-level="4.2" data-path="c-interconnectivity-via-rcpp.html"><a href="c-interconnectivity-via-rcpp.html"><i class="fa fa-check"></i><b>4.2</b> C++ interconnectivity via <strong>Rcpp</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>5</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Programming in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="speeding-up-iteration-procedures" class="section level1">
+<h1><span class="header-section-number">4</span> Speeding up iteration procedures</h1>
+<p>At this stage, we assume that you’ve grown familiar with R’s most relevant loop constructs, including <code>for</code> loops and the <code>*apply</code> family of functions. Yet, there’s two other packages we’d like to introduce within the scope of this short course due to their convenient performance when it comes to accelerating certain operations. But first things first… here’s the topics (and the related packages) that we’re gonna cover in the upcoming section on speeding up iteration procedures in R.</p>
+<p><br><b>Parallelization via <code>doParallel</code> (and <code>foreach</code>)</b></p>
+<p>Just a bit of theory ahead.</p>
+<blockquote>
+“Speedup is a common measure of the performance gain from a parallel processor. It is defined as the ratio of the time required to complete the job with one processor to the time required to complete the job with <i>N</i> processors. […] In a machine where work can be dynamically assigned to available processors, it is attained as long as the number of pieces of work ready for processing is at least <i>N</i>.” <span class="citation">(Denning and Tichy <a href="#ref-Denning1990">1990</a>)</span>
+</blockquote>
+<p>Or, to cut a long story short, if you’re performing one and the same iteration again and again, you may as well distribute an equal amount of sub-iterations to each processor available on your local machine. In theory, distributing an operation to <i>N</i> nodes would result in a <em>n</em>-fold speed gain.</p>
+<br>
+<center>
+<img src="https://i2.wp.com/gforge.se/wp-content/uploads/2015/02/Horse_power_smudge_9000.jpg" alt="horses" style="width: 500px;"/>
+</center>
+<p><br></p>
+<p>In this scope, we’ll have a brief look at R’s capabilities in terms of parallel processing using the <strong>doParallel</strong> package along with <strong>foreach</strong> (an other package to deal with loop constructs). Be aware, however, that there are plenty of opportunities to <a href="http://www.r-bloggers.com/how-to-go-parallel-in-r-basics-tips/">“go parallel” in R</a> which you might want to have a look at.</p>
+<p><br><b>“Cross-lingual” programming via <code>Rcpp</code></b></p>
+<p>The <strong>Rcpp</strong> package offers a seamless integration of C++ functionality in R. The underlying reason why such a thing exists in the first place is rather easy to explain: sometimes R code is just not fast enough. But don’t be afraid if you haven’t gotten in touch with C++ so far: we’re barely gonna scratch the surface of what is possibly when combining those two languages. In fact, our short excursion on the topic is merely meant to raise awareness of such things slumbering in the depth of the R universe. In case you’d like to learn more about the subject, we recommend to have a closer look at Hadley Wickham’s comprehensive introduction to <a href="http://adv-r.had.co.nz/Rcpp.html">High performance functions with <strong>Rcpp</strong></a> <span class="citation">(Wickham <a href="#ref-Wickham2014">2014</a>)</span> or, if you’re a fan of hard copies, Dirk Eddelbuettel’s book about “Seamless R and C++ Integration with Rcpp” <span class="citation">(Eddelbuettel <a href="#ref-Eddelbuettel2013">2013</a>)</span>.</p>
+<br>
+<center>
+<img src="http://www.rcpp.org/book/seamless.png" alt="rcpp" style="width: 250px;"/>
+</center>
+<p><br></p> 
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Denning1990">
+<p>Denning, Peter J., and Walter F. Tichy. 1990. “Highly Parallel Computation.” <em>Science</em> 250 (4985). American Association for the Advancement of Science: 1217–22.</p>
+</div>
+<div id="ref-Wickham2014">
+<p>Wickham, Hadley. 2014. <em>Advanced R</em>. Chapman &amp; Hall/CRC the R Series. CRC Press.</p>
+</div>
+<div id="ref-Eddelbuettel2013">
+<p>Eddelbuettel, Dirk. 2013. <em>Seamless R and C++ Integration with <strong>Rcpp</strong></em>. Use R! Springer. doi:<a href="https://doi.org/10.1007/978-1-4614-6868-4">10.1007/978-1-4614-6868-4</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="functional-programming.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="parallelization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

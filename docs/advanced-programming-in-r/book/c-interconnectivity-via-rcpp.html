@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advanced Programming in R</title>
+  <meta name="description" content="Advanced Programming in R">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Advanced Programming in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Advanced Programming in R" />
+  
+  
+  
+
+<meta name="author" content="Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="parallelization.html">
+<link rel="next" href="final-remarks.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Programming in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="towards-a-structured-workflow.html"><a href="towards-a-structured-workflow.html"><i class="fa fa-check"></i><b>1</b> Towards a structured workflow</a><ul>
+<li class="chapter" data-level="1.1" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>1.1</b> Git version control</a></li>
+<li class="chapter" data-level="1.2" data-path="rproj.html"><a href="rproj.html"><i class="fa fa-check"></i><b>1.2</b> RStudio projects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-handling-and-visualization.html"><a href="data-handling-and-visualization.html"><i class="fa fa-check"></i><b>2</b> Data handling and visualization</a><ul>
+<li class="chapter" data-level="2.1" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>2.1</b> Summarizing data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-format-conversions.html"><a href="data-format-conversions.html"><i class="fa fa-check"></i><b>2.2</b> Data format conversions</a></li>
+<li class="chapter" data-level="2.3" data-path="visualizing-data-using-ggplot2.html"><a href="visualizing-data-using-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Visualizing data using <strong>ggplot2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iteration-procedures.html"><a href="iteration-procedures.html"><i class="fa fa-check"></i><b>3</b> Iteration procedures</a><ul>
+<li class="chapter" data-level="3.1" data-path="for.html"><a href="for.html"><i class="fa fa-check"></i><b>3.1</b> <code>for()</code> loops</a></li>
+<li class="chapter" data-level="3.2" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>3.2</b> The <code>*apply</code> family</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>3.2.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-apply-family.html"><a href="the-apply-family.html#lapply-and-sapply"><i class="fa fa-check"></i><b>3.2.2</b> <code>lapply()</code> and <code>sapply()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>3.3</b> Functional programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="functional-programming.html"><a href="functional-programming.html#custom-functions"><i class="fa fa-check"></i><b>3.3.1</b> Custom functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="functional-programming.html"><a href="functional-programming.html#functionals"><i class="fa fa-check"></i><b>3.3.2</b> Functionals</a></li>
+<li class="chapter" data-level="3.3.3" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i><b>3.3.3</b> Closures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="speeding-up-iteration-procedures.html"><a href="speeding-up-iteration-procedures.html"><i class="fa fa-check"></i><b>4</b> Speeding up iteration procedures</a><ul>
+<li class="chapter" data-level="4.1" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>4.1</b> Parallelization</a></li>
+<li class="chapter" data-level="4.2" data-path="c-interconnectivity-via-rcpp.html"><a href="c-interconnectivity-via-rcpp.html"><i class="fa fa-check"></i><b>4.2</b> C++ interconnectivity via <strong>Rcpp</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>5</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Programming in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="c-interconnectivity-via-rcpp" class="section level2">
+<h2><span class="header-section-number">4.2</span> C++ interconnectivity via <strong>Rcpp</strong></h2>
+<p><b>Prerequisites</b></p>
+<p>In order for <strong>Rcpp</strong> to work, we have to make sure your local system is capable of building packages. On Linux-based systems, this shouldn’t be much of a problem since things just generally tend to work whereas on Windows (or OS X), you will possible be required to install <a href="https://cran.r-project.org/bin/windows/Rtools/"><strong>Rtools</strong></a> (or <a href="https://itunes.apple.com/us/app/xcode/id497799835?mt=12"><strong>Xcode</strong></a>) to be able to compile C++ functions and make them available in R. Further information on package development prerequisites can be found <a href="https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites">here</a>.</p>
+<p>You may easily check if everything works by running the following code chunk.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## load &#39;Rcpp&#39; package
+<span class="kw">library</span>(Rcpp)
+
+## try to evaluate c++ expression
+<span class="kw">evalCpp</span>(<span class="st">&quot;1 + 1&quot;</span>)</code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>If this expression does <u>not</u> evaluate to ‘2’, there’s something wrong with your local setup and you should possibly contact one of the lecturers for troubleshooting.</p>
+<p><br><b>How to make your C++ code available in R</b></p>
+<p><strong>Rcpp</strong> offers two ways to import C++ functions into R, namely</p>
+<ul>
+<li><code>cppFunction()</code> and</li>
+<li><code>sourceCpp()</code>.</li>
+</ul>
+<p>While the former takes an entire C++ source code as input argument, the latter behaves very similar to base-R <code>source()</code> in the sense that it sources a code file (<code>.cpp</code>) and makes the functions included therein available in your<br />
+global R environment. During this short overview, however, we’ll primarily focus on the first approach while the latter is introduced only briefly.</p>
+<ol style="list-style-type: decimal">
+<li><i>No input, scalar output</i></li>
+</ol>
+<p>No matter which approach you will use in the end, <strong>Rcpp</strong> will take the C++ code, compile it and transform it into a proper R function. Imagine, for instance, the following code (which is heavily based on Hadley Wickham’s tutorial on <a href="http://adv-r.had.co.nz/Rcpp.html">High performance functions with Rcpp</a> <span class="citation">(Wickham <a href="#ref-Wickham2014">2014</a>)</span>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## function that returns &#39;1&#39;
+<span class="kw">cppFunction</span>(<span class="st">&#39;int one() {</span>
+<span class="st">  return 1;</span>
+<span class="st">}&#39;</span>)
+
+<span class="kw">one</span>()</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Note that C++ requires you to specify the output type of <code>one()</code> which, in this particular case, is obviously an integer (<code>int</code>). Accordingly, R variables of type ‘numeric’, ‘character’ and ‘logical’ are referred to as <code>double</code>, <code>String</code> and <code>bool</code> in C++ language. Let’s move on to our next example.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><i>Scalar input, scalar output</i></li>
+</ol>
+<p>When working with C++ code, you are required to not only specify the output type of your function, but also the type(s) of the input argument(s). The next code chunk defines a function <code>signC()</code> that takes an integer input <code>x</code> and, depending on the arithmetic sign of <code>x</code>, returns one of ‘1’, ‘0’, and ‘-1’.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## function that returns 1 if &#39;x&#39; is positive, -1 if &#39;x&#39; is negative, 0 otherwise
+<span class="kw">cppFunction</span>(<span class="st">&#39;int signC(int x) {</span>
+<span class="st">  if (x &gt; 0) {</span>
+<span class="st">    return 1;</span>
+<span class="st">  } else if (x == 0) {</span>
+<span class="st">    return 0;</span>
+<span class="st">  } else {</span>
+<span class="st">    return -1;</span>
+<span class="st">  }</span>
+<span class="st">}&#39;</span>)
+
+<span class="kw">signC</span>(<span class="op">-</span><span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] -1</code></pre>
+<p>Note also that <code>if</code> statements in C++ look very similar to their R equivalent. The only obvious differences are</p>
+<ul>
+<li>the need to explicitly include a <code>return</code> statement and</li>
+<li>the semicolons (<code>;</code>) terminating each line of code.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><i>Vector input, scalar output</i></li>
+</ol>
+<p>Although this seems hardly necessary, let’s assume for now that we wanted to rewrite the base-R <code>sum</code> function in C++. Rather than supplying a scalar input argument, we need the function to work with a vector of numbers for obvious reasons. Similar to the different scalar inputs depicted above, base-R ‘integer’, ‘numeric’, ‘character’ and ‘logical’ vectors are represented as <code>IntegerVector</code>, <code>NumericVector</code>, <code>CharacterVector</code> and <code>LogicalVector</code> in C++. This time, it also makes sense to define the input type as <code>NumericVector</code> and, accordingly, the output type as <code>double</code> since we’d possibly like to supply numbers with decimal places instead of raw integers.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cppFunction</span>(<span class="st">&#39;double sumC(NumericVector x) {</span>
+<span class="st">  int n = x.size();</span>
+<span class="st">  double total = 0;</span>
+<span class="st">  for(int i = 0; i &lt; n; ++i) {</span>
+<span class="st">    total += x[i];</span>
+<span class="st">  }</span>
+<span class="st">  return total;</span>
+<span class="st">}&#39;</span>)
+
+<span class="kw">sumC</span>(<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>))</code></pre></div>
+<pre><code>## [1] 5.5</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><i>Matrix input, vector output</i></li>
+</ol>
+<p><strong>Rcpp</strong> also comes with a number of so-called ‘sugars’ that help newcomers to find their way by providing C++-equivalents of a number of built-in R functions. A short overview of featured functions is e.g. given by <span class="citation">Eddelbuettel and Francois (<a href="#ref-Eddelbuettel2011">2011</a>)</span>. Among others, these include</p>
+<ul>
+<li><em>math functions</em>, e.g. <code>abs</code>, <code>ceiling</code>, <code>floor</code>, <code>exp</code>, <code>log</code>;</li>
+<li><em>scalar summaries</em>, e.g. <code>mean</code>, <code>min</code>, <code>max</code>, <code>sum</code>, <code>sd</code>, `var;</li>
+<li><em>vector summaries</em>, e.g. <code>cumsum</code>, <code>diff</code>;</li>
+<li><em>finding utilities</em>, e.g. <code>which_max</code>, <code>which_min</code>, <code>match</code>;</li>
+<li><em>finding duplicates</em>, e.g. <code>duplicated</code>, <code>unique</code>.</li>
+</ul>
+<p>In order to demonstrate the proper use of such ‘sugars’ and, at the same time, introduce <code>NumericMatrix</code> (<code>NumericVector</code>) as further input (output) variable types, let’s replicate the previous example on the use of <code>apply</code> to calculate mean values from each single variable column of the <code>diamonds</code> dataset using <strong>Rcpp</strong> functionality. For the sake of simplicity of this demonstration, let’s again focus on the numeric columns only (note also the use of <code>sapply()</code> to create an index vector of (non-)numeric columns).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## subset with numeric columns only
+num_cols &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(diamonds), <span class="cf">function</span>(i) {
+  <span class="kw">is.numeric</span>(<span class="kw">data.frame</span>(diamonds)[, i])
+})
+diamonds_sub &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(diamonds[, num_cols])
+
+## c++-version of &#39;colMeans&#39;
+<span class="kw">cppFunction</span>(<span class="st">&quot;NumericVector colMeansC(NumericMatrix x) {</span>
+<span class="st">  </span>
+<span class="st">  // number of rows and columns</span>
+<span class="st">  int nCol = x.ncol();</span>
+<span class="st">  int nRow = x.nrow();</span>
+<span class="st">  </span>
+<span class="st">  // temporary variable of size nrow(x) to store column values in</span>
+<span class="st">  NumericVector nVal(nRow);</span>
+<span class="st">  </span>
+<span class="st">  // initialize output vector</span>
+<span class="st">  NumericVector out(nCol);</span>
+<span class="st">  </span>
+<span class="st">  // loop over each column</span>
+<span class="st">  for (int i = 0; i &lt; nCol; i++) {</span>
+<span class="st">    </span>
+<span class="st">    // values in current column</span>
+<span class="st">    nVal = x(_, i);</span>
+<span class="st">    </span>
+<span class="st">    // store mean of current &#39;nVal&#39; in &#39;out[i]&#39;</span>
+<span class="st">    out[i] = mean(nVal);</span>
+<span class="st">  }</span>
+<span class="st">  </span>
+<span class="st">  return out;</span>
+<span class="st">}&quot;</span>)
+
+means &lt;-<span class="st"> </span><span class="kw">colMeansC</span>(diamonds_sub)
+<span class="kw">names</span>(means) &lt;-<span class="st"> </span><span class="kw">colnames</span>(diamonds_sub)
+means</code></pre></div>
+<pre><code>##        carat        depth        table        price            x 
+##    0.7979397   61.7494049   57.4571839 3932.7997219    5.7311572 
+##            y            z 
+##    5.7345260    3.5387338</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## speed check
+<span class="kw">microbenchmark</span>(
+  val_apply &lt;-<span class="st"> </span><span class="kw">apply</span>(diamonds_sub, <span class="dv">2</span>, mean), 
+  val_cpp &lt;-<span class="st"> </span><span class="kw">colMeansC</span>(diamonds_sub)
+, <span class="dt">times =</span> 20L)</code></pre></div>
+<pre><code>## Unit: milliseconds
+##                                       expr      min       lq     mean
+##  val_apply &lt;- apply(diamonds_sub, 2, mean) 5.142534 5.187900 5.385949
+##         val_cpp &lt;- colMeansC(diamonds_sub) 1.158980 1.170475 1.242834
+##    median       uq      max neval cld
+##  5.339393 5.476106 6.158233    20   b
+##  1.248274 1.308215 1.320326    20  a</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## similarity check
+<span class="kw">identical</span>(val_apply, means)</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>It’s milliseconds we are talking about here, but still - <code>colMeansC()</code> runs more than 5 times faster as compared to the <code>apply()</code> approach!</p>
+<p><br><b>What’s the point of that?</b></p>
+<p>You might guess that we did not decide to include this chapter on C++ interconnectivity just for fun. The actual reason is that C++ code performs much faster as compared to R when it comes to <code>for()</code> loops. Without going too much into detail, one of the underlying reason is the very efficient memory management of the C++ language as compared to the massive overhead that R produces during each intermediary step. But find out for yourselves…</p>
+<p><br><b>Task: <code>sumR()</code> vs. <code>sumC()</code></b></p>
+<p>Write a function <code>sumR()</code> (do <u>not</u> use the built-in <code>sum</code> function) as an equivalent to the above <code>sumC()</code> function and have a look at the time it takes to run <code>sumR(1:1e4)</code> using <code>system.time()</code> (or <code>microbenchmark()</code>).</p>
+<br>
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Hourglass_2.svg" alt="hourglass" style="width: 125px;"/>
+</center>
+<p><br></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## speed check
+<span class="kw">microbenchmark</span>(
+  <span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e4</span>), <span class="co"># built-in `sum` function</span>
+  <span class="kw">sumR</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e4</span>), <span class="co"># base-R version</span>
+  <span class="kw">sumC</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e4</span>)  <span class="co"># rcpp version</span>
+, <span class="dt">times =</span> 100L)</code></pre></div>
+<pre><code>## Unit: microseconds
+##           expr     min       lq      mean  median      uq      max neval
+##   sum(1:10000)  13.138  14.3700  15.60138  14.781  15.602   30.792   100
+##  sumR(1:10000) 557.936 560.4000 675.62845 562.247 580.106 6391.835   100
+##  sumC(1:10000)  29.560  32.8445  34.59753  34.076  35.308   51.319   100
+##  cld
+##   a 
+##    b
+##   a</code></pre>
+<p>As you can see, <code>sumC()</code> runs more than 40 times faster than <code>sumR()</code> and, at the same time, takes only slightly longer as compared to the highly optimized (because vectorized) built-in <code>sum()</code> function. You cannot imagine what’s possible with <strong>Rcpp</strong> when it comes to more complex operations!</p>
+<p><br><b>A short note on the use of <code>sourceCpp</code></b></p>
+<p>For such short operations, the use of <code>cppFunction()</code> seems reasonable. However, we recommend to use <code>sourceCpp()</code> when it comes to more complex C++ functions. Take, for example, the following peace of C++ code that reproduces the built-in <code>cor()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cppFunction</span>(<span class="st">&#39;double corC(NumericVector x, NumericVector y) {</span>
+<span class="st">  int nx = x.size(), ny = y.size();</span>
+<span class="st">  </span>
+<span class="st">  if (nx != ny) stop(&quot;Input vectors must have equal length!&quot;);</span>
+<span class="st">  </span>
+<span class="st">  double sum_x = sum(x), sum_y = sum(y);</span>
+<span class="st">  </span>
+<span class="st">  NumericVector xy = x * y;</span>
+<span class="st">  NumericVector x_squ = x * x, y_squ = y * y;</span>
+<span class="st">  </span>
+<span class="st">  double sum_xy = sum(xy);</span>
+<span class="st">  double sum_x_squ = sum(x_squ), sum_y_squ = sum(y_squ);</span>
+<span class="st">  </span>
+<span class="st">  double out = ((nx * sum_xy) - (sum_x * sum_y)) / sqrt((nx * sum_x_squ - pow(sum_x, 2.0)) * (nx * sum_y_squ - pow(sum_y, 2.0)));</span>
+<span class="st">  </span>
+<span class="st">  return out;</span>
+<span class="st">}&#39;</span>)</code></pre></div>
+<p>Quite confusing, isn’t it? Not the least because the inline C++ is not formatted properly. Luckily, RStudio comes with a C++ editor that allows you to write stand-alone <code>.cpp</code> functions – including code formatting! For that purpose, select ‘C++ file’ from the top-left drop-down menu and paste the code that we initially passed as <code>character</code> input to <code>cppFunction()</code>.</p>
+<br>
+<center>
+<img src="http://i.imgur.com/nKf0QZH.png" alt="new_cpp" style="width: 125px;"/>
+</center>
+<p><br></p>
+<p>In order to ensure compatibility with <strong>Rcpp</strong> and make the C++ function available in R, we need to add a header to our <code>.cpp</code> file (see below). In the end, this should look as follows.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+<span class="dt">double</span> corC(NumericVector x, NumericVector y) {
+  <span class="dt">int</span> nx = x.size(), ny = y.size();
+  
+  <span class="cf">if</span> (nx != ny) stop(<span class="st">&quot;Input vectors must have equal length!&quot;</span>);
+  
+  <span class="dt">double</span> sum_x = sum(x), sum_y = sum(y);
+  
+  NumericVector xy = x * y;
+  NumericVector x_squ = x * x, y_squ = y * y;
+  
+  <span class="dt">double</span> sum_xy = sum(xy);
+  <span class="dt">double</span> sum_x_squ = sum(x_squ), sum_y_squ = sum(y_squ);
+  
+  <span class="dt">double</span> out = ((nx * sum_xy) - (sum_x * sum_y)) / sqrt((nx * sum_x_squ - pow(sum_x, <span class="fl">2.0</span>)) * (nx * sum_y_squ - pow(sum_y, <span class="fl">2.0</span>)));
+  
+  <span class="cf">return</span> out;
+}</code></pre></div>
+<p>Save the file in <code>src/corC.cpp</code>, for example, and go back to R. Then run</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## source &#39;corC&#39; function (remember to adjust the path)
+<span class="kw">sourceCpp</span>(<span class="st">&quot;src/corC.cpp&quot;</span>)
+
+## correlation of &#39;carat&#39; and &#39;price&#39;  
+<span class="kw">microbenchmark</span>(
+  <span class="kw">cor</span>(diamonds<span class="op">$</span>carat, diamonds<span class="op">$</span>price), 
+  <span class="kw">corC</span>(diamonds<span class="op">$</span>carat, diamonds<span class="op">$</span>price) 
+, <span class="dt">times =</span> 20L)</code></pre></div>
+<pre><code>## Unit: microseconds
+##                                  expr     min       lq     mean   median
+##   cor(diamonds$carat, diamonds$price) 776.349 795.2335 889.1878 852.5055
+##  corC(diamonds$carat, diamonds$price) 720.924 787.0230 837.4791 809.8080
+##        uq      max neval cld
+##  918.8085 1271.881    20   a
+##  851.8895 1225.078    20   a</code></pre>
+<p>Wow, <code>corC()</code> performs even faster than the built-in and highly optimized <code>cor()</code> function – at least on my machine. Just imagine the speed gain as compared to a self-written <code>corR()</code> function!</p>
+
+</div>
+<!-- </div> -->
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Wickham2014">
+<p>Wickham, Hadley. 2014. <em>Advanced R</em>. Chapman &amp; Hall/CRC the R Series. CRC Press.</p>
+</div>
+<div id="ref-Eddelbuettel2011">
+<p>Eddelbuettel, Dirk, and Romain Francois. 2011. “<strong>Rcpp</strong>: Seamless R and C++ Integration.” <em>Journal of Statistical Software</em> 40 (8): 1–18. doi:<a href="https://doi.org/10.18637/jss.v040.i08">10.18637/jss.v040.i08</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="parallelization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="final-remarks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

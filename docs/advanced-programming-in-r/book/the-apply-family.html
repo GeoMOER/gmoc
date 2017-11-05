@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advanced Programming in R</title>
+  <meta name="description" content="Advanced Programming in R">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Advanced Programming in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Advanced Programming in R" />
+  
+  
+  
+
+<meta name="author" content="Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="for.html">
+<link rel="next" href="functional-programming.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Programming in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="towards-a-structured-workflow.html"><a href="towards-a-structured-workflow.html"><i class="fa fa-check"></i><b>1</b> Towards a structured workflow</a><ul>
+<li class="chapter" data-level="1.1" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>1.1</b> Git version control</a></li>
+<li class="chapter" data-level="1.2" data-path="rproj.html"><a href="rproj.html"><i class="fa fa-check"></i><b>1.2</b> RStudio projects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-handling-and-visualization.html"><a href="data-handling-and-visualization.html"><i class="fa fa-check"></i><b>2</b> Data handling and visualization</a><ul>
+<li class="chapter" data-level="2.1" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>2.1</b> Summarizing data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-format-conversions.html"><a href="data-format-conversions.html"><i class="fa fa-check"></i><b>2.2</b> Data format conversions</a></li>
+<li class="chapter" data-level="2.3" data-path="visualizing-data-using-ggplot2.html"><a href="visualizing-data-using-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Visualizing data using <strong>ggplot2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iteration-procedures.html"><a href="iteration-procedures.html"><i class="fa fa-check"></i><b>3</b> Iteration procedures</a><ul>
+<li class="chapter" data-level="3.1" data-path="for.html"><a href="for.html"><i class="fa fa-check"></i><b>3.1</b> <code>for()</code> loops</a></li>
+<li class="chapter" data-level="3.2" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>3.2</b> The <code>*apply</code> family</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>3.2.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-apply-family.html"><a href="the-apply-family.html#lapply-and-sapply"><i class="fa fa-check"></i><b>3.2.2</b> <code>lapply()</code> and <code>sapply()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>3.3</b> Functional programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="functional-programming.html"><a href="functional-programming.html#custom-functions"><i class="fa fa-check"></i><b>3.3.1</b> Custom functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="functional-programming.html"><a href="functional-programming.html#functionals"><i class="fa fa-check"></i><b>3.3.2</b> Functionals</a></li>
+<li class="chapter" data-level="3.3.3" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i><b>3.3.3</b> Closures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="speeding-up-iteration-procedures.html"><a href="speeding-up-iteration-procedures.html"><i class="fa fa-check"></i><b>4</b> Speeding up iteration procedures</a><ul>
+<li class="chapter" data-level="4.1" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>4.1</b> Parallelization</a></li>
+<li class="chapter" data-level="4.2" data-path="c-interconnectivity-via-rcpp.html"><a href="c-interconnectivity-via-rcpp.html"><i class="fa fa-check"></i><b>4.2</b> C++ interconnectivity via <strong>Rcpp</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>5</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Programming in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="the-apply-family" class="section level2">
+<h2><span class="header-section-number">3.2</span> The <code>*apply</code> family</h2>
+<p>You have possibly heard of this family of functions and may have wondered what they are all about and how they differ from classic loop structures.</p>
+<p>In this course we will familiarize ourselves with</p>
+<ul>
+<li><code>apply()</code> as well as</li>
+<li><code>lapply()</code> and <code>sapply()</code>.</li>
+</ul>
+<p>First of all, we need to recognize that these structures are pretty much unique to R. The reason for this is that R is at its very core a so-called <em>functional programming language</em>. This means nothing else than “every operation in R is carried out by an appropriate function”. In fact, even the classical <code>&lt;-</code> assignment operator is defined in the same way as any other function in R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="dv">3</span>
+a</code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;&lt;-&quot;</span>(b, <span class="dv">15</span>)
+b</code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;+&quot;</span>(a, b)</code></pre></div>
+<pre><code>## [1] 18</code></pre>
+<p>You may wonder why this is relevant to understand <code>*apply</code>? Well, the one thing that all <code>*apply</code> functions have in common is that they are all so-called functionals that can take a function as an argument. Usually, these functionals take some object and some function as input and then apply the function to every entry of the object. The difference between the various <code>*apply</code> functions is basically the type of object they are designed for and hence each of these has slightly different requirements for the structure of the supplied function.</p>
+<div id="apply" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> <code>apply()</code></h3>
+<p>First, let’s have a look at <code>apply()</code>. It has three main arguments:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>X</code></td>
+<td>A matrix (or array) or ‘clean’ data.frame that can be coerced to a matrix, i.e. no mixture of classes in the columns (see example below).</td>
+</tr>
+<tr class="even">
+<td><code>MARGIN</code></td>
+<td>An integer specifying whether to apply the supplied function across the rows (1) or columns (2).</td>
+</tr>
+<tr class="odd">
+<td><code>FUN</code></td>
+<td>The function to be applied.</td>
+</tr>
+</tbody>
+</table>
+<p>Other function-related arguments such as <code>na.rm</code> can also be supplied. Let’s try this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## subset diamonds to only numerical columns
+diamonds_num &lt;-<span class="st"> </span>diamonds[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>)]
+
+## apply function mean to all columns of diamonds
+col_means &lt;-<span class="st"> </span><span class="kw">apply</span>(diamonds_num, <span class="dv">2</span>, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+col_means</code></pre></div>
+<pre><code>##        carat        depth        table        price            x 
+##    0.7979397   61.7494049   57.4571839 3932.7997219    5.7311572 
+##            y            z 
+##    5.7345260    3.5387338</code></pre>
+<p><br><b>Task: apply sd to rows</b></p>
+<p>Similar to the example above, calculate the standard deviation for each row of <code>diamonds</code>.</p>
+<br>
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Hourglass_2.svg" alt="hourglass" style="width: 125px;"/>
+</center>
+<p><br></p>
+<p>In R, <code>apply()</code> is the classical function to be used with data in matrix-like form to quickly iterate over one dimension (rows or columns). It is optimized for this kind of action and is much quicker than looping over rows or columns with <code>for()</code> loops which is the standard way in other languages such as Python or C++.</p>
+</div>
+<div id="lapply-and-sapply" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> <code>lapply()</code> and <code>sapply()</code></h3>
+<p>More powerful than <code>apply()</code> is <code>lapply()</code>. The ‘l’ stands for list and simply means that whatever is returned from an iterative process will be stored in a list. In R, lists are the most flexible way of storing things but their structure may need a little getting used to. Basically, you can store any combination of objects in lists. Matrices, for example, are much less versatile.</p>
+<p>Let’s have a look at what these <code>list</code> objects look like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lst &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, 
+            <span class="st">&quot;Hello&quot;</span>, 
+            mean,
+            <span class="kw">mean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>),
+            <span class="cf">function</span>(x) x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, 
+            <span class="kw">data.frame</span>(<span class="dt">col1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="dt">col2 =</span> <span class="kw">runif</span>(<span class="dv">10</span>)),
+            <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">3</span>))
+lst</code></pre></div>
+<pre><code>## [[1]]
+##  [1]  1  2  3  4  5  6  7  8  9 10
+## 
+## [[2]]
+## [1] &quot;Hello&quot;
+## 
+## [[3]]
+## function (x, ...) 
+## standardGeneric(&quot;mean&quot;)
+## &lt;environment: 0x0000000004e72c50&gt;
+## attr(,&quot;generic&quot;)
+## [1] &quot;mean&quot;
+## attr(,&quot;generic&quot;)attr(,&quot;package&quot;)
+## [1] &quot;base&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;base&quot;
+## attr(,&quot;group&quot;)
+## list()
+## attr(,&quot;valueClass&quot;)
+## character(0)
+## attr(,&quot;signature&quot;)
+## [1] &quot;x&quot;
+## attr(,&quot;default&quot;)
+## Method Definition (Class &quot;derivedDefaultMethod&quot;):
+## 
+## function (x, ...) 
+## UseMethod(&quot;mean&quot;)
+## &lt;bytecode: 0x0000000004e9d008&gt;
+## &lt;environment: namespace:base&gt;
+## 
+## Signatures:
+##         x    
+## target  &quot;ANY&quot;
+## defined &quot;ANY&quot;
+## attr(,&quot;skeleton&quot;)
+## (function (x, ...) 
+## UseMethod(&quot;mean&quot;))(x, ...)
+## attr(,&quot;class&quot;)
+## [1] &quot;standardGeneric&quot;
+## attr(,&quot;class&quot;)attr(,&quot;package&quot;)
+## [1] &quot;methods&quot;
+## 
+## [[4]]
+## [1] 5.5
+## 
+## [[5]]
+## function (x) 
+## x + 1
+## &lt;environment: 0x000000002e36b488&gt;
+## 
+## [[6]]
+##           col1      col2
+## 1  -0.06285000 0.6071539
+## 2  -0.94548327 0.2171210
+## 3  -0.45460562 0.3913435
+## 4  -0.81519648 0.7245288
+## 5   1.56819163 0.8119677
+## 6   0.37902423 0.5936339
+## 7   1.67091219 0.6219313
+## 8  -0.06446247 0.1376078
+## 9  -0.59308771 0.2528668
+## 10  0.48095465 0.5529387
+## 
+## [[7]]
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<p>As you can see we can combine any odd type of objects. Note how each list entry is numbered. We could have supplied names as well, but it is less common to do so if your list is the result of an interative procedure. And accessing lists via their numbered entries is quite straightforward, yet a little different from the classical <code>$</code> notation of data frames. To ‘navigate’ to one of the entries we need to use double square brackets <code>[[x]]</code>. This is important as this will be the notion we need to keep in mind when iterating over lists.</p>
+<p><code>lapply()</code> can basically be used just like a <code>for()</code> loop, though the semantics are a little different. The two main differences are:</p>
+<ol style="list-style-type: decimal">
+<li>We can store the whole result of the <code>lapply()</code> call in an object (a <code>list</code>), and</li>
+<li>we need to write the bit that does the calculation part as a function.</li>
+</ol>
+<p>So, if we were to recreate the first example from the previous chapter on <code>for()</code> loops:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="cf">function</span>(i) i)
+result</code></pre></div>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 4
+## 
+## [[5]]
+## [1] 5</code></pre>
+<p>The only time we will use <code>sapply()</code> in this tutorial is right here. <code>sapply()</code> and <code>lapply()</code> are very similar, so that it is sufficient to cover only one in detail. The ‘s’ stands for ‘simplify’ which means that <code>sapply()</code> will try to return an object of simple structure, such as a vector or a matrix.</p>
+<p>Let’s repeat the above with <code>sapply()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="cf">function</span>(i) i)
+result</code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<p>Getting a vector as a result is great if the calculation produces a vector, however, this won’t work if the result is e.g. a function, a <strong>ggplot2</strong> object or something along those lines. Therefore, <code>lapply()</code> is simply the more versatile of the two as it can handle any type of result.</p>
+<p>To highlight this, let’s use <code>lapply()</code> to read in the numerous chunks of data we have previously saved.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fls &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;results&quot;</span>, <span class="dt">pattern =</span> <span class="kw">glob2rx</span>(<span class="st">&quot;*subset*.csv&quot;</span>),
+                  <span class="dt">full.names =</span> <span class="ot">TRUE</span>)
+
+dat_lst &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="kw">seq</span>(fls), <span class="cf">function</span>(i) {
+  <span class="kw">read.csv</span>(fls[i])
+})
+
+<span class="kw">str</span>(dat_lst, <span class="dv">1</span>)</code></pre></div>
+<pre><code>## List of 27
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    2000 obs. of  10 variables:
+##  $ :&#39;data.frame&#39;:    1940 obs. of  10 variables:</code></pre>
+<p>Great, you might say, but now we have a list of multiple data frames instead of one complete data frame. In our case this seems rather silly, but think about situations where you want to analyze the same sort of data only from different dates or different locations or patients or … – you probably get the idea.</p>
+<p>Also, recombining these individual data frames back into one is straightforward.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds_df &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;rbind&quot;</span>, dat_lst)
+<span class="kw">str</span>(diamonds_df)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    53940 obs. of  10 variables:
+##  $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
+##  $ cut    : Factor w/ 5 levels &quot;Fair&quot;,&quot;Good&quot;,..: 3 4 2 4 2 5 5 5 1 5 ...
+##  $ color  : Factor w/ 7 levels &quot;D&quot;,&quot;E&quot;,&quot;F&quot;,&quot;G&quot;,..: 2 2 2 6 7 7 6 5 2 5 ...
+##  $ clarity: Factor w/ 8 levels &quot;I1&quot;,&quot;IF&quot;,&quot;SI1&quot;,..: 4 3 5 6 4 8 7 3 6 5 ...
+##  $ depth  : num  61.5 59.8 56.9 62.4 63.3 62.8 62.3 61.9 65.1 59.4 ...
+##  $ table  : num  55 61 65 58 58 57 57 55 61 61 ...
+##  $ price  : int  326 326 327 334 335 336 336 337 337 338 ...
+##  $ x      : num  3.95 3.89 4.05 4.2 4.34 3.94 3.95 4.07 3.87 4 ...
+##  $ y      : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
+##  $ z      : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...</code></pre>
+<p>Fianlly, let’s look at a slightly more involved example of how to use <code>lapply()</code>. A standard analysis workflow likely involves some sort of statistical analysis and the visualization of the results. Here, we will create linear models between ‘carat’ and ‘price’ and the corresponding scatter plots for all levels of ‘cut’, but only for those diamonds of ‘color = D’.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## split diamonds by cut
+cut_lst &lt;-<span class="st"> </span><span class="kw">split</span>(diamonds, <span class="dt">f =</span> diamonds<span class="op">$</span>cut)
+
+my_result_list &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="kw">seq</span>(cut_lst), <span class="cf">function</span>(i) {
+  
+  ## subset to color = D
+  dat &lt;-<span class="st"> </span>cut_lst[[i]]
+  dat_d &lt;-<span class="st"> </span><span class="kw">subset</span>(dat, dat<span class="op">$</span>color <span class="op">==</span><span class="st"> &quot;D&quot;</span>)
+  
+  ## calculate linear model
+  lm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(price <span class="op">~</span><span class="st"> </span>carat, <span class="dt">data =</span> dat_d)
+  
+  ## create scatterplot
+  scatter_ggplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price), <span class="dt">data =</span> dat_d)
+  g_sc &lt;-<span class="st"> </span>scatter_ggplot <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">colour =</span> <span class="st">&quot;grey60&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>, 
+                <span class="dt">fill =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">     </span><span class="kw">geom_text</span>(<span class="dt">data =</span> <span class="ot">NULL</span>, 
+               <span class="dt">x =</span> <span class="kw">min</span>(dat_d<span class="op">$</span>carat, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.2</span>,  
+               <span class="dt">y =</span> <span class="kw">max</span>(dat_d<span class="op">$</span>price, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">*</span><span class="st"> </span><span class="fl">0.98</span>, 
+               <span class="dt">label =</span> <span class="kw">unique</span>(dat_d<span class="op">$</span>cut))
+  
+  ## return both the linear model and the plot as a list
+  <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">linmod =</span> lm1,
+              <span class="dt">plt =</span> g_sc))
+})
+
+## set names of list for clarity
+<span class="kw">names</span>(my_result_list) &lt;-<span class="st"> </span><span class="kw">names</span>(cut_lst)
+
+<span class="kw">str</span>(my_result_list, <span class="dv">2</span>)</code></pre></div>
+<pre><code>## List of 5
+##  $ Fair     :List of 2
+##   ..$ linmod:List of 12
+##   .. ..- attr(*, &quot;class&quot;)= chr &quot;lm&quot;
+##   ..$ plt   :List of 9
+##   .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;gg&quot; &quot;ggplot&quot;
+##  $ Good     :List of 2
+##   ..$ linmod:List of 12
+##   .. ..- attr(*, &quot;class&quot;)= chr &quot;lm&quot;
+##   ..$ plt   :List of 9
+##   .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;gg&quot; &quot;ggplot&quot;
+##  $ Very Good:List of 2
+##   ..$ linmod:List of 12
+##   .. ..- attr(*, &quot;class&quot;)= chr &quot;lm&quot;
+##   ..$ plt   :List of 9
+##   .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;gg&quot; &quot;ggplot&quot;
+##  $ Premium  :List of 2
+##   ..$ linmod:List of 12
+##   .. ..- attr(*, &quot;class&quot;)= chr &quot;lm&quot;
+##   ..$ plt   :List of 9
+##   .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;gg&quot; &quot;ggplot&quot;
+##  $ Ideal    :List of 2
+##   ..$ linmod:List of 12
+##   .. ..- attr(*, &quot;class&quot;)= chr &quot;lm&quot;
+##   ..$ plt   :List of 9
+##   .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;gg&quot; &quot;ggplot&quot;</code></pre>
+<p>This lets us now quickly access each of the analyses individually. To view the scatter plot for diamonds of ‘cut = Premium’, we simply navigate down to the respective entry:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_result_list<span class="op">$</span>Premium<span class="op">$</span>plt</code></pre></div>
+<p><img src="main_files/figure-html/list-scatter-1.svg" width="672" /></p>
+<p>Note that we can now use the common <code>$</code> notation for the navigation given that we have set the names for the resulting lists. We can, however, still navigate using double square brackets (<code>[[]]</code>). To get the summary of the linear model for ‘cut = Ideal’:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(my_result_list[[<span class="dv">5</span>]][[<span class="dv">1</span>]])</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = price ~ carat, data = dat_d)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9239.6  -611.1   -38.9   419.5 10759.7 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -2490.89      51.89  -48.01   &lt;2e-16 ***
+## carat        9049.65      81.06  111.64   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1292 on 2832 degrees of freedom
+## Multiple R-squared:  0.8148, Adjusted R-squared:  0.8148 
+## F-statistic: 1.246e+04 on 1 and 2832 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>I hope this highlights how useful and flexible <code>lapply()</code> can be. Another scenario that is quite common is to carry out different calculations on the same set of data. This can easily be done using <code>lapply()</code> by iterating over the different functions and calling them on the same data set within the <code>lapply()</code> loop.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="for.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="functional-programming.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advanced Programming in R</title>
+  <meta name="description" content="Advanced Programming in R">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Advanced Programming in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Advanced Programming in R" />
+  
+  
+  
+
+<meta name="author" content="Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="github-version-control.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="towards-a-structured-workflow.html"><a href="towards-a-structured-workflow.html"><i class="fa fa-check"></i><b>1</b> Towards a structured workflow</a><ul>
+<li class="chapter" data-level="1.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html"><i class="fa fa-check"></i><b>1.1</b> RStudio projects</a></li>
+<li class="chapter" data-level="1.2" data-path="github-version-control.html"><a href="github-version-control.html"><i class="fa fa-check"></i><b>1.2</b> GitHub version control</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="advanced-programming-in-r.html"><a href="advanced-programming-in-r.html"><i class="fa fa-check"></i><b>2</b> Advanced Programming in R</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Programming in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="advanced-programming-in-r" class="section level1">
+<h1><span class="header-section-number">2</span> Advanced Programming in R</h1>
+<div id="course-given-within-the-scope-of-the-marburg-research-academy-mara-program-on-october-9-2015-by-florian-detsch-florian.detschstaff.uni-marburg.de-and-tim-appelhans-tim.appelhansstaff.uni-marburg.de." class="section level4">
+<h4><span class="header-section-number">2.0.0.1</span> Course given within the scope of the Marburg Research Academy (MARA) program on October 9, 2015 by Florian Detsch (<a href="mailto:florian.detsch@staff.uni-marburg.de">florian.detsch@staff.uni-marburg.de</a>) and Tim Appelhans (<a href="mailto:tim.appelhans@staff.uni-marburg.de">tim.appelhans@staff.uni-marburg.de</a>).</h4>
+<p><br> The following R tutorial is not for beginners. This might seem odd at first since most tutorials tend to start with the very basics of the language, e.g.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>or, when it comes to using variables instead of calculator functionalities,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="dv">1</span>
+b &lt;-<span class="st"> </span><span class="dv">1</span>
+
+a <span class="op">+</span><span class="st"> </span>b</code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>Well, let’s assume you are already familiar with such things. In fact, maybe it is because of the overwhelming number of R tutorials on the web that this particular tutorial starts a little later, after the first excitement has settled and one has grown familiar with the syntax and the basic commands.</p>
+<p>That is all very well, but soon you will notice that you could use a little more of the stuff you heard R was capable of. There is, for instance, the saying that using <code>for</code> loops in R is not quite convenient - as opposed to other programming languages, including C++! So how is that, and what should I use as an alternative?</p>
+<p>The same possibly applies for base graphics. Sure thing, everyone of us has been excited at some stage about the professional default style of R’s artworks, not least because of the rather awkward MS Excel style that is still widely applied, amongst others, in the fields of academic research. Well, decide for yourselves which of the following figures is more appealing for you.</p>
+<p><img src="main_files/figure-html/figures-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>It could also be conceivable that you came across a work step that requires massive computational power, and thus takes quite long to perform. R, by default, uses only one core on your machine, which could likely be the reason for the slow performance of your code. If you haven’t heard, you can actually tell R to use multiple cores to reasonably split up slow peaces of code and make certain operations perform much fast. Today, most machines come with at least 4 internal cores which makes it easy to do such stuff.</p>
+<p>You see, there’s plenty of applications that definitely go beyond the scope of a base-R programmer’s skills. In case you’ve felt a continuously rising interest while reading this short introduction, you might want to browse the following chapters of this tutorial on ‘Advanced Programming in R’ and see for yourselves.</p>
+
+<div id="refs" class="references">
+<div>
+<p>“Improving the Performance of Time-Constrained Workflow Processing.” 2001. <em>Journal of Systems and Software</em> 58 (3): 211–19. doi:<a href="https://doi.org/10.1016/S0164-1212(01)00039-5&quot;">10.1016/S0164-1212(01)00039-5&quot;</a>.</p>
+</div>
+<div>
+<p>Xie, Yihui. 2016. <em><strong>bookdown</strong>: Authoring Books and Technical Documents with R Markdown</em>. Chapman &amp; Hall/CRC the R. CRC Press.</p>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="github-version-control.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

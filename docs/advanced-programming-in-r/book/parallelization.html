@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advanced Programming in R</title>
+  <meta name="description" content="Advanced Programming in R">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Advanced Programming in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Advanced Programming in R" />
+  
+  
+  
+
+<meta name="author" content="Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="speeding-up-iteration-procedures.html">
+<link rel="next" href="c-interconnectivity-via-rcpp.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Programming in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="towards-a-structured-workflow.html"><a href="towards-a-structured-workflow.html"><i class="fa fa-check"></i><b>1</b> Towards a structured workflow</a><ul>
+<li class="chapter" data-level="1.1" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>1.1</b> Git version control</a></li>
+<li class="chapter" data-level="1.2" data-path="rproj.html"><a href="rproj.html"><i class="fa fa-check"></i><b>1.2</b> RStudio projects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-handling-and-visualization.html"><a href="data-handling-and-visualization.html"><i class="fa fa-check"></i><b>2</b> Data handling and visualization</a><ul>
+<li class="chapter" data-level="2.1" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>2.1</b> Summarizing data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-format-conversions.html"><a href="data-format-conversions.html"><i class="fa fa-check"></i><b>2.2</b> Data format conversions</a></li>
+<li class="chapter" data-level="2.3" data-path="visualizing-data-using-ggplot2.html"><a href="visualizing-data-using-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Visualizing data using <strong>ggplot2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iteration-procedures.html"><a href="iteration-procedures.html"><i class="fa fa-check"></i><b>3</b> Iteration procedures</a><ul>
+<li class="chapter" data-level="3.1" data-path="for.html"><a href="for.html"><i class="fa fa-check"></i><b>3.1</b> <code>for()</code> loops</a></li>
+<li class="chapter" data-level="3.2" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>3.2</b> The <code>*apply</code> family</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>3.2.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-apply-family.html"><a href="the-apply-family.html#lapply-and-sapply"><i class="fa fa-check"></i><b>3.2.2</b> <code>lapply()</code> and <code>sapply()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>3.3</b> Functional programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="functional-programming.html"><a href="functional-programming.html#custom-functions"><i class="fa fa-check"></i><b>3.3.1</b> Custom functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="functional-programming.html"><a href="functional-programming.html#functionals"><i class="fa fa-check"></i><b>3.3.2</b> Functionals</a></li>
+<li class="chapter" data-level="3.3.3" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i><b>3.3.3</b> Closures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="speeding-up-iteration-procedures.html"><a href="speeding-up-iteration-procedures.html"><i class="fa fa-check"></i><b>4</b> Speeding up iteration procedures</a><ul>
+<li class="chapter" data-level="4.1" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>4.1</b> Parallelization</a></li>
+<li class="chapter" data-level="4.2" data-path="c-interconnectivity-via-rcpp.html"><a href="c-interconnectivity-via-rcpp.html"><i class="fa fa-check"></i><b>4.2</b> C++ interconnectivity via <strong>Rcpp</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>5</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Programming in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="parallelization" class="section level2">
+<h2><span class="header-section-number">4.1</span> Parallelization</h2>
+<p>As regards multi-core operations, there’s actually a whole bunch of packages that allow you to distribute particular processing steps to multiple cores on your local machine. Out of those, we decided to focus on <strong>doParallel</strong> (in conjunction with <strong>foreach</strong>) as it represents a straightforward solution that does not require the user to manually export objects from the global environment to the single nodes (e.g. required by <code>par*apply</code> from <strong>parallel</strong>).</p>
+<p><br><b>Getting started</b></p>
+<p>Let’s start straight away with detecting the number of cores available on your machine using <code>parallel::detectCores()</code>. In the end, there’s no use in trying to split a certain task into 5 parts when there are only 4 horses available, is it? 😉</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(doParallel)
+
+## detect number of cores
+nodes =<span class="st"> </span><span class="kw">detectCores</span>()
+nodes</code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>In our case, there are 4 nodes available for parallelization among which iteration procedures may be divided. Note that this number typically varies between computers. Note also that <code>library(doParallel)</code> automatically attaches the <strong>foreach</strong> package which we will require later on, so there’s no need to manually load it. In fact, this would only be required if we decided to use <code>foreach()</code> on a single core, but for such operations, we highly recommend to use <code>*apply</code> instead.</p>
+<p>Next, let’s create a socket cluster for parallel processing via <code>makeCluster()</code>. Think of this as a set of workers among which a particular work step should be divided equally – just like in the image on the previous page. With <code>registerDoParallel()</code>, we tell R that it should use the cluster <code>cl</code> for any further multi-core operations performed with <code>foreach()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## create and register parallel backend
+cl &lt;-<span class="st"> </span><span class="kw">makeCluster</span>(<span class="fl">0.75</span> <span class="op">*</span><span class="st"> </span>nodes)
+<span class="kw">registerDoParallel</span>(cl)</code></pre></div>
+<p>You will probably notice that we just told R to use 3 nodes to work with. ‘Why not use<br />
+all 4 nodes?’, you might wonder. Well, parallel processing distributed among all nodes available tends to slow down your computer considerably. Since we’d possibly like to perform some other actions while R is occupied (e.g. browsing the internet, checking e-mails), it is wise to leave some remaining computational power for such operations as well.</p>
+<p><br><b>The <code>foreach()</code> syntax</b></p>
+<p>Now that we’re set up properly, it’s time to give our cluster something to work with. Remember the previous example on calculating the linear relationship between ‘carat’ and ‘price’ for each ‘cut’ quality iteratively? We’re gonna do the same thing again now except this time it’s <strong>foreach</strong> we’ll be working with. Similar to <code>*apply</code>, <code>foreach()</code> requires a set of input data and a function to perform on the very same. Have a look at the following example.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## calculate square root, return list
+<span class="kw">foreach</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%do%</span><span class="st"> </span><span class="kw">sqrt</span>(i)</code></pre></div>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 1.414214
+## 
+## [[3]]
+## [1] 1.732051
+## 
+## [[4]]
+## [1] 2</code></pre>
+<p>Similar to <code>lapply()</code>, <code>foreach()</code> returns an object of class <code>list</code> by default. The function body, by contrast, is connected with the part on variable definition via the binary operator <code>%do%</code>. This might seem odd at first, but you will notice later on that this syntax comes in quite handy when forwarding <code>foreach()</code>-related operations to a parallel cluster.</p>
+<p>We may easily change the output type here by telling R how to <code>.combine</code> the results of the single iterations via</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## calculate sqare root, return vector
+<span class="kw">foreach</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">.combine =</span> <span class="st">&quot;c&quot;</span>) <span class="op">%do%</span><span class="st"> </span><span class="kw">sqrt</span>(i)</code></pre></div>
+<pre><code>## [1] 1.000000 1.414214 1.732051 2.000000</code></pre>
+<p>Et voilà, we transformed the <code>lapply</code>-style list output of our loop into an <code>sapply</code>-style vector output.</p>
+<p><br><b>Task: apply <code>lm()</code> to selected columns using <code>foreach()</code></b></p>
+<p>Let’s now come back to the <code>diamonds</code> dataset. Since you may just take the function body from the previous application with <code>lapply()</code>, it’s up to you to calculate the linear model between ‘carat’ and ‘price’ for each group of ‘cut’. Remember to <code>split()</code> the <code>diamonds</code> dataset first and pass the thus created list (with each list entry representing a group of uniform cuts) to <code>foreach()</code>.</p>
+<br>
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Hourglass_2.svg" alt="hourglass" style="width: 125px;"/>
+</center>
+<p><br></p>
+<p><br><b>How <em>not</em> to use parallel features</b></p>
+<p>Let’s see how long this code chunk takes to perform. The <strong>microbenchmark</strong> package is just the right thing for such an operation.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## load &#39;microbenchmark&#39; package
+<span class="kw">library</span>(microbenchmark)
+
+## load &#39;ggplot2&#39; and split &#39;diamonds&#39; dataset
+<span class="kw">library</span>(ggplot2)
+ls_diamonds &lt;-<span class="st"> </span><span class="kw">split</span>(diamonds, <span class="dt">f =</span> diamonds<span class="op">$</span>cut)
+
+## speed test (this might take some time)
+<span class="kw">microbenchmark</span>({
+  <span class="kw">foreach</span>(<span class="dt">i =</span> ls_diamonds) <span class="op">%do%</span><span class="st"> </span><span class="kw">lm</span>(carat <span class="op">~</span><span class="st"> </span>price, <span class="dt">data =</span> i)
+}, <span class="dt">times =</span> 20L) <span class="co"># number of times to evaluate the expression</span></code></pre></div>
+<pre><code>## Unit: milliseconds
+##                                                               expr
+##  {     foreach(i = ls_diamonds) %do% lm(carat ~ price, data = i) }
+##       min       lq    mean   median       uq      max neval
+##  57.30358 58.29157 59.1779 58.94188 60.13144 62.36893    20</code></pre>
+<p>Hm, quite some time. Let’s see how long it takes on when using multiple cores. The only thing that’s required in order to let this operation run on multiple cores is to replace <code>%do%</code> with <code>%dopar%</code>. In doing so (and distributing the iterative <code>lm()</code> calculation to multiple cores), the operation should perform much faster, right?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">microbenchmark</span>({
+  <span class="kw">foreach</span>(<span class="dt">i =</span> ls_diamonds) <span class="op">%dopar%</span><span class="st"> </span><span class="kw">lm</span>(carat <span class="op">~</span><span class="st"> </span>price, <span class="dt">data =</span> i)
+}, <span class="dt">times =</span> 20L)</code></pre></div>
+<pre><code>## Unit: milliseconds
+##                                                                  expr
+##  {     foreach(i = ls_diamonds) %dopar% lm(carat ~ price, data = i) }
+##       min      lq     mean   median       uq      max neval
+##  95.02029 98.5116 252.5694 104.7193 144.6324 2749.455    20</code></pre>
+<p>Oops, what’s going on now? Obviously, this action doesn’t perform faster at all although we told R to run in parallel. In fact, this is a bad example for the parallelized use of <code>foreach()</code>. <code>lm()</code> is a highly optimized base-R function that performs quite fast without the need to go parallel.</p>
+<blockquote>
+<p>“With [such] small tasks, the overhead of scheduling the task and returning the result can be greater than the time to execute the task itself, resulting in poor performance.” <span class="citation">(Weston and Calaway <a href="#ref-Weston2014">2014</a>)</span></p>
+</blockquote>
+<p><br><b>How to use parallel features</b></p>
+<p>Now that you’ve learned how <em>not</em> to use <code>%dopar%</code>, let’s see what a proper use would look like. ‘Proper’ in this prospect refers to a piece of code that is computationally expensive and needs to be repeated at least a couple of times. For example, let’s assume we wanted to separately predict ‘cut’, ‘color’ and ‘carat’ for each specimen from <code>diamonds</code> based on all the remaining variables. Using <code>foreach()</code> (or <code>lapply()</code>), the referring code would roughly look as follows.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(party)
+
+<span class="kw">system.time</span>({
+  
+  ## conditional inference trees 
+  ls_ct &lt;-<span class="st"> </span><span class="kw">foreach</span>(<span class="dt">i =</span> <span class="kw">c</span>(<span class="st">&quot;cut&quot;</span>, <span class="st">&quot;color&quot;</span>, <span class="st">&quot;carat&quot;</span>)) <span class="op">%do%</span><span class="st"> </span>{
+  
+    <span class="co"># formula</span>
+    frml &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="kw">paste</span>(i, <span class="st">&quot;.&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot; ~ &quot;</span>))
+  
+    <span class="co"># classification</span>
+    <span class="kw">ctree</span>(frml, <span class="dt">data =</span> diamonds,
+          <span class="dt">controls =</span> <span class="kw">ctree_control</span>(<span class="dt">testtype =</span> <span class="st">&quot;MonteCarlo&quot;</span>,
+                                   <span class="dt">nresample =</span> <span class="dv">999</span>,
+                                   <span class="dt">mincriterion =</span> <span class="fl">0.999</span>,
+                                   <span class="dt">maxdepth =</span> <span class="dv">3</span>))
+  }
+})</code></pre></div>
+<pre><code>##    user  system elapsed 
+##   34.79    0.00   34.81</code></pre>
+<p><code>ctree()</code> from <strong>party</strong> performs rather slowly which is particularly owing to the <code>nresample</code> argument that tells the function to perform 1000 internal Monte-Carlo replications. Luckily, we can easily split this operation into 3 parts, i.e. one node takes ‘cut’ as response variable, another node ‘color’, and a third node ‘carat’ – at the same time!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
+  
+  ## conditional inference trees 
+  ls_ct &lt;-<span class="st"> </span><span class="kw">foreach</span>(<span class="dt">i =</span> <span class="kw">c</span>(<span class="st">&quot;cut&quot;</span>, <span class="st">&quot;color&quot;</span>, <span class="st">&quot;carat&quot;</span>), 
+                   <span class="dt">.packages =</span> <span class="st">&quot;party&quot;</span>) <span class="op">%dopar%</span><span class="st"> </span>{
+  
+    <span class="co"># formula</span>
+    frml &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="kw">paste</span>(i, <span class="st">&quot;.&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot; ~ &quot;</span>))
+  
+    <span class="co"># classification</span>
+    <span class="kw">ctree</span>(frml, <span class="dt">data =</span> diamonds,
+          <span class="dt">controls =</span> <span class="kw">ctree_control</span>(<span class="dt">testtype =</span> <span class="st">&quot;MonteCarlo&quot;</span>,
+                                   <span class="dt">nresample =</span> <span class="dv">999</span>,
+                                   <span class="dt">mincriterion =</span> <span class="fl">0.999</span>,
+                                   <span class="dt">maxdepth =</span> <span class="dv">3</span>))
+  }
+})</code></pre></div>
+<pre><code>##    user  system elapsed 
+##   1.416   0.296  16.357</code></pre>
+<p>Of course, this is seconds we are talking about. Nonetheless, everyone of you will eventually end up with quite big datasets upon which computationally expensive operations need to be performed in an iterative manner. It might be hours or even days (trust me on this…) that one single operation takes to perform – and here, the <code>%dopar%</code> might come in quite handy.</p>
+<p><br><b>Closing a parallel backend</b></p>
+<p>One final remark on the proper use of parallel backends in R. When working on multiple cores, you can easily lose track of how many parallel backends, if any, you registered during your current session, especially when some error prevents your script from finishing. If you should ever find yourself in such a situation, do not hesitate to use <code>showConnections()</code> to print information on currently open connections to the R console.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">showConnections</span>()</code></pre></div>
+<pre><code>##    description               class            mode  text     isopen  
+## 3  &quot;&lt;-DESKTOP-989003N:11679&quot; &quot;sockconn&quot;       &quot;a+b&quot; &quot;binary&quot; &quot;opened&quot;
+## 4  &quot;&lt;-DESKTOP-989003N:11679&quot; &quot;sockconn&quot;       &quot;a+b&quot; &quot;binary&quot; &quot;opened&quot;
+## 5  &quot;&lt;-DESKTOP-989003N:11679&quot; &quot;sockconn&quot;       &quot;a+b&quot; &quot;binary&quot; &quot;opened&quot;
+## 7  &quot;output&quot;                  &quot;textConnection&quot; &quot;wr&quot;  &quot;text&quot;   &quot;opened&quot;
+## 8  &quot;&lt;-DESKTOP-989003N:11679&quot; &quot;sockconn&quot;       &quot;a+b&quot; &quot;binary&quot; &quot;opened&quot;
+## 9  &quot;&lt;-DESKTOP-989003N:11679&quot; &quot;sockconn&quot;       &quot;a+b&quot; &quot;binary&quot; &quot;opened&quot;
+## 10 &quot;&lt;-DESKTOP-989003N:11679&quot; &quot;sockconn&quot;       &quot;a+b&quot; &quot;binary&quot; &quot;opened&quot;
+##    can read can write
+## 3  &quot;yes&quot;    &quot;yes&quot;    
+## 4  &quot;yes&quot;    &quot;yes&quot;    
+## 5  &quot;yes&quot;    &quot;yes&quot;    
+## 7  &quot;no&quot;     &quot;yes&quot;    
+## 8  &quot;yes&quot;    &quot;yes&quot;    
+## 9  &quot;yes&quot;    &quot;yes&quot;    
+## 10 &quot;yes&quot;    &quot;yes&quot;</code></pre>
+<p>There’s 3 socket connections (i.e. cores) registered at the moment, just as we initially defined via <code>registerDoParallel</code>. In order to close these connections (which we recommend to explicitly do at the end of each parallelized R script), simply perform</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stopCluster</span>(cl)</code></pre></div>
+<p>which closes the implicitly created cluster (except for the ‘textConnection’ required to create this very <strong>bookdown</strong> document, of course 😉).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">showConnections</span>()</code></pre></div>
+<pre><code>##   description               class            mode  text     isopen  
+## 3 &quot;&lt;-DESKTOP-989003N:11679&quot; &quot;sockconn&quot;       &quot;a+b&quot; &quot;binary&quot; &quot;opened&quot;
+## 4 &quot;&lt;-DESKTOP-989003N:11679&quot; &quot;sockconn&quot;       &quot;a+b&quot; &quot;binary&quot; &quot;opened&quot;
+## 5 &quot;&lt;-DESKTOP-989003N:11679&quot; &quot;sockconn&quot;       &quot;a+b&quot; &quot;binary&quot; &quot;opened&quot;
+## 7 &quot;output&quot;                  &quot;textConnection&quot; &quot;wr&quot;  &quot;text&quot;   &quot;opened&quot;
+##   can read can write
+## 3 &quot;yes&quot;    &quot;yes&quot;    
+## 4 &quot;yes&quot;    &quot;yes&quot;    
+## 5 &quot;yes&quot;    &quot;yes&quot;    
+## 7 &quot;no&quot;     &quot;yes&quot;</code></pre>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Weston2014">
+<p>Weston, Steve, and Rich Calaway. 2014. <em>Getting Started with <strong>doParallel</strong> and <strong>foreach</strong></em>. <a href="https://CRAN.R-project.org/package=doParallel" class="uri">https://CRAN.R-project.org/package=doParallel</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="speeding-up-iteration-procedures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="c-interconnectivity-via-rcpp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

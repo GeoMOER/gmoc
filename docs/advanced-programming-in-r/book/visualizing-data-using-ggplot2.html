@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advanced Programming in R</title>
+  <meta name="description" content="Advanced Programming in R">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Advanced Programming in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Advanced Programming in R" />
+  
+  
+  
+
+<meta name="author" content="Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="data-format-conversions.html">
+<link rel="next" href="iteration-procedures.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Programming in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="towards-a-structured-workflow.html"><a href="towards-a-structured-workflow.html"><i class="fa fa-check"></i><b>1</b> Towards a structured workflow</a><ul>
+<li class="chapter" data-level="1.1" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>1.1</b> Git version control</a></li>
+<li class="chapter" data-level="1.2" data-path="rproj.html"><a href="rproj.html"><i class="fa fa-check"></i><b>1.2</b> RStudio projects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-handling-and-visualization.html"><a href="data-handling-and-visualization.html"><i class="fa fa-check"></i><b>2</b> Data handling and visualization</a><ul>
+<li class="chapter" data-level="2.1" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>2.1</b> Summarizing data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-format-conversions.html"><a href="data-format-conversions.html"><i class="fa fa-check"></i><b>2.2</b> Data format conversions</a></li>
+<li class="chapter" data-level="2.3" data-path="visualizing-data-using-ggplot2.html"><a href="visualizing-data-using-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Visualizing data using <strong>ggplot2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iteration-procedures.html"><a href="iteration-procedures.html"><i class="fa fa-check"></i><b>3</b> Iteration procedures</a><ul>
+<li class="chapter" data-level="3.1" data-path="for.html"><a href="for.html"><i class="fa fa-check"></i><b>3.1</b> <code>for()</code> loops</a></li>
+<li class="chapter" data-level="3.2" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>3.2</b> The <code>*apply</code> family</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>3.2.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-apply-family.html"><a href="the-apply-family.html#lapply-and-sapply"><i class="fa fa-check"></i><b>3.2.2</b> <code>lapply()</code> and <code>sapply()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>3.3</b> Functional programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="functional-programming.html"><a href="functional-programming.html#custom-functions"><i class="fa fa-check"></i><b>3.3.1</b> Custom functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="functional-programming.html"><a href="functional-programming.html#functionals"><i class="fa fa-check"></i><b>3.3.2</b> Functionals</a></li>
+<li class="chapter" data-level="3.3.3" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i><b>3.3.3</b> Closures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="speeding-up-iteration-procedures.html"><a href="speeding-up-iteration-procedures.html"><i class="fa fa-check"></i><b>4</b> Speeding up iteration procedures</a><ul>
+<li class="chapter" data-level="4.1" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>4.1</b> Parallelization</a></li>
+<li class="chapter" data-level="4.2" data-path="c-interconnectivity-via-rcpp.html"><a href="c-interconnectivity-via-rcpp.html"><i class="fa fa-check"></i><b>4.2</b> C++ interconnectivity via <strong>Rcpp</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>5</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Programming in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visualizing-data-using-ggplot2" class="section level2">
+<h2><span class="header-section-number">2.3</span> Visualizing data using <strong>ggplot2</strong></h2>
+<p>Now that you’ve grown familiar with the basics of data manipulation using <strong>dplyr</strong> and <strong>reshape2</strong>, the next logical step in our workflow is to visualize the data that we’ve exhaustively prepared. Be aware that there are plenty of marvellous graphics packages available in R depending on which tasks you’d like to perform. Within the scope of our short course, <strong>ggplot2</strong> will do just fine not least because it is closely linked to the previously performed manipulation tasks (maybe because of the same author).</p>
+<p>In <strong>ggplot2</strong>, every plot we want to draw consists of incremental calls on how to represent the individual plot components (basically <code>x</code> and <code>y</code>). This means a much more consistent way of <em>building</em> visualizations as compared, for instance, to the much more conventional style of <strong>lattice</strong>, but it also means that things are rather different from what you might have learned about syntax and structure of (plotting) objects in R so far.</p>
+<p>Note also that the brief examples shown below are mainly taken from another MARA course about <a href="https://oer.uni-marburg.de/data/mriliasmooc/lm_data/lm_1901/index.html">Creating publication quality graphs using R</a>. Feel free to browse the code tutorial or the accompanying <a href="http://moc.online.uni-marburg.de/doku.php?id=courses:sp:pqgr">course slides</a> in case you’re not entirely satisfied with the rather shallow introduction given here or if you wish to learn more about <strong>lattice</strong>-style figures.</p>
+<p><br><b>Scatter plots</b></p>
+<p>Scatter plots are produced by invoking <code>geom_points()</code>. If we wanted to plot variables ‘price’ and ‘carat’ from <code>diamonds</code> against each other, the <code>ggplot()</code> call would be as follows.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+
+<span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price), <span class="dt">data =</span> diamonds) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:gg-scat"></span>
+<img src="main_files/figure-html/gg-scat-1.svg" alt="A basic scatter plot created with **ggplot2**." width="672" />
+<p class="caption">
+Figure 2.1: A basic scatter plot created with <strong>ggplot2</strong>.
+</p>
+</div>
+<p>Let’s look at the above code in a little more detail. The first line is the fundamental definition of <em>what</em> we want to plot. We provide the ‘aesthetics’ for the plot (<code>aes()</code>) and state that we want the values on the <code>x</code>-axis (<code>y</code>-axis) to represent ‘carat’ (‘price’). The <code>data</code> to take these variables from is our <code>diamonds</code> dataset. That’s basically it, and this will not change a hell of a lot in the subsequent plotting routines.</p>
+<p>What will change in the code chunks that follow is <em>how</em> we want the relationship between these variables to be represented in our plot. This is done by defining so-called geometries (<code>geom_*()</code>). In this first case we stated that we want the relationship between <code>x</code> and <code>y</code> to be represented as points, hence we used <code>geom_point()</code>.</p>
+<p>For the sake of practicing, let’s add another layer to our plot. In order to provide the regression line, for instance, we need a function called <code>stat_smooth()</code>. Note that we also specify the smoothing <code>method</code> and the line <code>colour</code>, <code>size</code> and <code>linetype</code>. <code>se = FALSE</code> tells the function not to display confidence intervals for the moment. See <code>?stat_smooth</code> for a more detailed overview of costumization possibilities.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price), <span class="dt">data =</span> diamonds) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, 
+              <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:gg-scat-stat"></span>
+<img src="main_files/figure-html/gg-scat-stat-1.svg" alt="A **ggplot2** scatter plot incl. regression line." width="672" />
+<p class="caption">
+Figure 2.2: A <strong>ggplot2</strong> scatter plot incl. regression line.
+</p>
+</div>
+<p>If we wanted to provide a plot showing the relationship between ‘price’ and ‘carat’ in panels representing the quality of the diamonds, we need what in <strong>ggplot2</strong> is called facetting (similar to panels in <strong>lattice</strong>). To achive this, we simply repeat our plotting call from earlier and add another layer to the call which does the facetting. Note that this time, confidence intervals are included via <code>se = TRUE</code> and <code>fill</code>-ed grey.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price), <span class="dt">data =</span> diamonds) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>, 
+              <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey35&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>cut)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:gg-scat-facet"></span>
+<img src="main_files/figure-html/gg-scat-facet-1.svg" alt="A facetted scatter plot created with **ggplot2**." width="672" />
+<p class="caption">
+Figure 2.3: A facetted scatter plot created with <strong>ggplot2</strong>.
+</p>
+</div>
+<p>One thing that some people dislike about the default settings in <strong>ggplot2</strong> is the grey background of the plots. This grey background is, in my opinion, a good idea when colors are involved as it tends to increase the contrast of the colors. If, however, the plot is a simple black-and-white scatter plot, a white facet background seems more reasonable. We can easily change this using a pre-defined theme called <code>theme_bw()</code>. Note that in the following, we also change the axis titles (<code>labs()</code>) and the number of rows (<code>nrow</code>) and columns (<code>ncol</code>) into which the facets should be arranged – simple and straightforward, isnt’t it?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price), <span class="dt">data =</span> diamonds) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour =</span> <span class="st">&quot;grey65&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>, 
+              <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey35&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>cut, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Carat&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Price ($)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:gg-scat-facet-bw"></span>
+<img src="main_files/figure-html/gg-scat-facet-bw-1.svg" alt="A facetted scatter plot created with **ggplot2** and using a modified theme." width="672" />
+<p class="caption">
+Figure 2.4: A facetted scatter plot created with <strong>ggplot2</strong> and using a modified theme.
+</p>
+</div>
+<p><br><b>Box and whisker plots</b></p>
+<p>Box and whisker plots (in the following ‘boxplots’) drawn with <strong>ggplot2</strong> look quite nice and, in contrast to <strong>lattice</strong>, do not require the user to exhaustively modify graphical parameter settings in order to get an acceptable result. But see for yourselves (using the default settings).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## basic frame
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> color, <span class="dt">y =</span> price), <span class="dt">data =</span> diamonds)
+
+## add boxplot
+p_bw &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()
+
+## print
+<span class="kw">print</span>(p_bw)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:gg-bw"></span>
+<img src="main_files/figure-html/gg-bw-1.svg" alt="A basic boxplot created with **ggplot2**." width="672" />
+<p class="caption">
+Figure 2.5: A basic boxplot created with <strong>ggplot2</strong>.
+</p>
+</div>
+<p>Note that this time, we stored the basic frame of our plot in a variable <code>p</code> and added the desired <code>geom_boxplot()</code> layer afterwards. In order to keep a clear structure, this is possibly the ideal way to create graphics using <strong>ggplot2</strong> - so stick to it!</p>
+<p>As we’ve already seen, facetting and modifying the default theme require also just one more line of code each.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## add faceted boxplots
+p_bw &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill =</span> <span class="st">&quot;grey90&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>cut) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()
+
+<span class="kw">print</span>(p_bw)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:gg-bw-facet"></span>
+<img src="main_files/figure-html/gg-bw-facet-1.svg" alt="A facetted boxplot created with **ggplot2** and using a modified theme." width="672" />
+<p class="caption">
+Figure 2.6: A facetted boxplot created with <strong>ggplot2</strong> and using a modified theme.
+</p>
+</div>
+<p><br><b>Histograms and density plots</b></p>
+<p>Much like with boxplots, <strong>ggplot2</strong> produces quite nice histograms and density plots when using the default settings.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## new basic frame
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> price), <span class="dt">data =</span> diamonds)
+
+## add histogram
+p_hist &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>()
+
+<span class="kw">print</span>(p_hist)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:gg-hist"></span>
+<img src="main_files/figure-html/gg-hist-1.svg" alt="A basic histogram produced with **ggplot2**." width="672" />
+<p class="caption">
+Figure 2.7: A basic histogram produced with <strong>ggplot2</strong>.
+</p>
+</div>
+<p>When working with density plots in <strong>ggplot2</strong>, it is quite easy to fill the area under the curve which really contributes to the visual representation of the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## add densityplot
+p_dens &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)
+
+<span class="kw">print</span>(p_dens)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:gg-dens"></span>
+<img src="main_files/figure-html/gg-dens-1.svg" alt="A basic density plot produced with ggplot2" width="672" />
+<p class="caption">
+Figure 2.8: A basic density plot produced with ggplot2
+</p>
+</div>
+<p>In addition to <code>theme_bw()</code>, there’s a lot of different <code>theme()</code> settings that let you customize your plots at will. For instance, let us slightly rotate the tick labels on the x-axis and move them horizontally a little bit. <code>element_text()</code> is an essential function to achieve such things as it allows you to modify, among others,</p>
+<ul>
+<li>font <code>family</code> and <code>face</code> (e.g. ‘bold’),</li>
+<li>text <code>colour</code> and <code>size</code>,</li>
+<li>horizontal (<code>hjust</code>) and vertical (<code>vjust</code>) justification as well as</li>
+<li><code>angle</code> of the tick labels.</li>
+</ul>
+<p>(In case you prefer American English, <code>element_text()</code> – or for that matter any <strong>ggplot2</strong> function – also understands <code>color</code> instead of <code>colour</code> ☺)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p_dens &lt;-<span class="st"> </span>p <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(color <span class="op">~</span><span class="st"> </span>cut) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))
+
+<span class="kw">print</span>(p_dens)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:gg-facet-density"></span>
+<img src="main_files/figure-html/gg-facet-density-1.svg" alt="A facetted density plot conditioned according to 2 variables created with **ggplot2**." width="672" />
+<p class="caption">
+Figure 2.9: A facetted density plot conditioned according to 2 variables created with <strong>ggplot2</strong>.
+</p>
+</div>
+
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-format-conversions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="iteration-procedures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

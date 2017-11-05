@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advanced Programming in R</title>
+  <meta name="description" content="Advanced Programming in R">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Advanced Programming in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Advanced Programming in R" />
+  
+  
+  
+
+<meta name="author" content="Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="data-handling-and-visualization.html">
+<link rel="next" href="data-format-conversions.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Programming in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="towards-a-structured-workflow.html"><a href="towards-a-structured-workflow.html"><i class="fa fa-check"></i><b>1</b> Towards a structured workflow</a><ul>
+<li class="chapter" data-level="1.1" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>1.1</b> Git version control</a></li>
+<li class="chapter" data-level="1.2" data-path="rproj.html"><a href="rproj.html"><i class="fa fa-check"></i><b>1.2</b> RStudio projects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-handling-and-visualization.html"><a href="data-handling-and-visualization.html"><i class="fa fa-check"></i><b>2</b> Data handling and visualization</a><ul>
+<li class="chapter" data-level="2.1" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>2.1</b> Summarizing data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-format-conversions.html"><a href="data-format-conversions.html"><i class="fa fa-check"></i><b>2.2</b> Data format conversions</a></li>
+<li class="chapter" data-level="2.3" data-path="visualizing-data-using-ggplot2.html"><a href="visualizing-data-using-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Visualizing data using <strong>ggplot2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iteration-procedures.html"><a href="iteration-procedures.html"><i class="fa fa-check"></i><b>3</b> Iteration procedures</a><ul>
+<li class="chapter" data-level="3.1" data-path="for.html"><a href="for.html"><i class="fa fa-check"></i><b>3.1</b> <code>for()</code> loops</a></li>
+<li class="chapter" data-level="3.2" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>3.2</b> The <code>*apply</code> family</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>3.2.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-apply-family.html"><a href="the-apply-family.html#lapply-and-sapply"><i class="fa fa-check"></i><b>3.2.2</b> <code>lapply()</code> and <code>sapply()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>3.3</b> Functional programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="functional-programming.html"><a href="functional-programming.html#custom-functions"><i class="fa fa-check"></i><b>3.3.1</b> Custom functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="functional-programming.html"><a href="functional-programming.html#functionals"><i class="fa fa-check"></i><b>3.3.2</b> Functionals</a></li>
+<li class="chapter" data-level="3.3.3" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i><b>3.3.3</b> Closures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="speeding-up-iteration-procedures.html"><a href="speeding-up-iteration-procedures.html"><i class="fa fa-check"></i><b>4</b> Speeding up iteration procedures</a><ul>
+<li class="chapter" data-level="4.1" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>4.1</b> Parallelization</a></li>
+<li class="chapter" data-level="4.2" data-path="c-interconnectivity-via-rcpp.html"><a href="c-interconnectivity-via-rcpp.html"><i class="fa fa-check"></i><b>4.2</b> C++ interconnectivity via <strong>Rcpp</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>5</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Programming in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="summarizing-data" class="section level2">
+<h2><span class="header-section-number">2.1</span> Summarizing data</h2>
+<p>The <strong>dplyr</strong> package is a marvelous and very intuitive set of tools to perform fast and easy data manipulation and summarization in preparation e.g. for visualization. In the following, we’ll guide you through a selection of operations you may find helpful within the course of future R workflows on the basis of the <code>diamonds</code> dataset. Based on a very comprehensive <a href="https://rpubs.com/justmarkham/dplyr-tutorial">RPubs tutorial</a>, these include</p>
+<ul>
+<li><code>filter()</code>,</li>
+<li><code>select()</code>,</li>
+<li><code>arrange()</code>,</li>
+<li><code>mutate()</code>, and</li>
+<li><code>summarise()</code> (incl. <code>group_by()</code>),</li>
+</ul>
+<p>each of which will be accompanied by an equivalent base-R approach.</p>
+<p><br><b>Subsetting data via <code>filter()</code></b></p>
+<p>Just like base-R <code>subset()</code> or simply indexing via conditional expressions included in square brackets, <code>filter()</code> creates a subset of your data based on some user-defined criteria. Before we dive any deeper into this, let’s check your subsetting abilities.</p>
+<p><br><b>Task: base-R subsetting</b></p>
+<p>Suppose we want to create a subset of <code>diamonds</code> keeping all D-, E- or F-colored specimen with a ‘Premium’ or ‘Ideal’ cut quality and a weight of more than 3 carat. Try to figure out two different solutions, one <u>with</u> and one <u>without</u> using <code>subset</code>.</p>
+<br>
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Hourglass_2.svg" alt="hourglass" style="width: 125px;"/>
+</center>
+<p><br></p>
+<p>Using <code>filter()</code> is straightforward and very similar to <code>subset()</code>. The first argument represents the dataset under investigation, whereas any subsequent argument represents a logical expression to filter particular rows. Note that in contrast to the direct subsetting via square brackets, you are not required to repeat the name of the dataset with every single condition.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+
+<span class="kw">filter</span>(diamonds, carat <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span>
+<span class="st">         </span>cut <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Premium&quot;</span>, <span class="st">&quot;Ideal&quot;</span>) <span class="op">&amp;</span>
+<span class="st">         </span>color <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>, <span class="st">&quot;F&quot;</span>))</code></pre></div>
+<pre><code>## # A tibble: 2 x 10
+##   carat     cut color clarity depth table price     x     y     z
+##   &lt;dbl&gt;   &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  3.01 Premium     F      I1  62.2    56  9925  9.24  9.13  5.73
+## 2  3.05 Premium     E      I1  60.9    58 10453  9.26  9.25  5.66</code></pre>
+<p><br><b>Selecting columns via <code>select()</code></b></p>
+<p>Selecting specific columns from a dataset follows a similar syntax to <code>filter()</code> and works analogous to SQL standards. Again, the first argument represents the dataset under consideration followed by the desired column names (without double quotes).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dplyr<span class="op">::</span><span class="kw">select</span>(diamonds, carat, cut, color, clarity)</code></pre></div>
+<pre><code>## # A tibble: 53,940 x 4
+##    carat       cut color clarity
+##    &lt;dbl&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt;
+##  1  0.23     Ideal     E     SI2
+##  2  0.21   Premium     E     SI1
+##  3  0.23      Good     E     VS1
+##  4  0.29   Premium     I     VS2
+##  5  0.31      Good     J     SI2
+##  6  0.24 Very Good     J    VVS2
+##  7  0.24 Very Good     I    VVS1
+##  8  0.26 Very Good     H     SI1
+##  9  0.22      Fair     E     VS2
+## 10  0.23 Very Good     H     VS1
+## # ... with 53,930 more rows</code></pre>
+<p>Note that both the use of <code>c()</code> to combine the single column names into a vector as well as the need for double quotes became obsolete. In addition to this, column names may be treated analogous to numeric indices, eliminating the need to count columns when desiring to extract several consecutive columns from a rather wide datasets.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dplyr<span class="op">::</span><span class="kw">select</span>(diamonds, carat<span class="op">:</span>clarity, price)</code></pre></div>
+<pre><code>## # A tibble: 53,940 x 5
+##    carat       cut color clarity price
+##    &lt;dbl&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;int&gt;
+##  1  0.23     Ideal     E     SI2   326
+##  2  0.21   Premium     E     SI1   326
+##  3  0.23      Good     E     VS1   327
+##  4  0.29   Premium     I     VS2   334
+##  5  0.31      Good     J     SI2   335
+##  6  0.24 Very Good     J    VVS2   336
+##  7  0.24 Very Good     I    VVS1   336
+##  8  0.26 Very Good     H     SI1   337
+##  9  0.22      Fair     E     VS2   337
+## 10  0.23 Very Good     H     VS1   338
+## # ... with 53,930 more rows</code></pre>
+<p>There’s also a set of additional helper functions, including <code>starts_with()</code>, <code>ends_with()</code>, <code>matches()</code> and <code>contains()</code>, which definitely go beyond the scope of this short introduction. Still, it’s good to know that such things existed in case you needed any of them.</p>
+<p><br><b>A brief note on chaining (or pipelining)</b></p>
+<p>Now suppose we wanted to select the same columns from the previously created subset of data. Traditionally, this would either require a 2-step approach, generating otherwise unnecessary intermediate results, via</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## first, create subset
+diamonds_sub &lt;-<span class="st"> </span><span class="kw">filter</span>(diamonds, carat <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span>
+<span class="st">                         </span>cut <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Premium&quot;</span>, <span class="st">&quot;Ideal&quot;</span>) <span class="op">&amp;</span>
+<span class="st">                         </span>color <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>, <span class="st">&quot;F&quot;</span>))
+
+## second, select columns
+<span class="kw">select</span>(diamonds_sub, carat<span class="op">:</span>clarity, price)</code></pre></div>
+<p>or nested function calls which are usually hard to read.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## all-in-one nested solution
+<span class="kw">select</span>(
+  <span class="kw">filter</span>(diamonds, carat <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span>
+<span class="st">           </span>cut <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Premium&quot;</span>, <span class="st">&quot;Ideal&quot;</span>) <span class="op">&amp;</span>
+<span class="st">           </span>color <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>, <span class="st">&quot;F&quot;</span>)), 
+  carat<span class="op">:</span>clarity, price
+)</code></pre></div>
+<p><strong>dplyr</strong> introduces the <code>%&gt;%</code> operator which is meant to bridge a set of connected processing steps, thus eliminating the need for intermediary variables (e.g. <code>diamonds_sub</code> in the above example) or nested function calls. Just think of <code>%&gt;%</code> as a “then” connecting two parts of a sentence.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(carat <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span>
+<span class="st">           </span>cut <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Premium&quot;</span>, <span class="st">&quot;Ideal&quot;</span>) <span class="op">&amp;</span>
+<span class="st">           </span>color <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>, <span class="st">&quot;F&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(carat<span class="op">:</span>clarity, price)</code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   carat     cut color clarity price
+##   &lt;dbl&gt;   &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;int&gt;
+## 1  3.01 Premium     F      I1  9925
+## 2  3.05 Premium     E      I1 10453</code></pre>
+<p>Note that chaining comes in handy when performing multiple operations at once, rendering your code much more elegant and reducing the accumulated overhead significantly. The single worksteps can be read from left to right and from top to bottom, just like you would read the pages of a book.</p>
+<p><br><b>Reordering rows via <code>arrange()</code></b></p>
+<p><code>arrange()</code> ensures a fast and easy rearrangement of rows based on certain variables. Although this can be done using base-R, its necessity soon becomes clear when dealing with rearrangements based on multiple variables as the <strong>dplyr</strong> approach requires far less typing.</p>
+<p><br><b>Task: base-R rearrangement of rows</b></p>
+<p>Here’s a tricky one. Let’s assume we wanted to rearrange the rows of a subset of <code>diamonds</code> (color, price, carat) according to color, with the best color (D) on top. Since we’re also interested in a preferably low price, the diamonds of uniform color should be sorted according to their price, with cheapest ones on top. Finally, for each set of diamonds with a specified color and price, we want their weights arranged in descending order, with the heaviest specimen on top.</p>
+<br>
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Hourglass_2.svg" alt="hourglass" style="width: 125px;"/>
+</center>
+<p><br></p>
+<p>Again, the <strong>dplyr</strong> approach is much simpler and can be done in one go.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(color, price, carat) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(color, price, <span class="kw">desc</span>(carat))</code></pre></div>
+<pre><code>## # A tibble: 53,940 x 3
+##    color price carat
+##    &lt;ord&gt; &lt;int&gt; &lt;dbl&gt;
+##  1     D   357  0.23
+##  2     D   357  0.23
+##  3     D   361  0.32
+##  4     D   362  0.23
+##  5     D   367  0.24
+##  6     D   367  0.20
+##  7     D   367  0.20
+##  8     D   367  0.20
+##  9     D   373  0.24
+## 10     D   373  0.23
+## # ... with 53,930 more rows</code></pre>
+<p><br><b>Adding new columns via <code>mutate()</code></b></p>
+<p><code>mutate()</code> lets you add new variables to an existing data frame. It is basically an extended version of base-R <code>transform()</code> in the sense that it allows you to directly work with columns you’ve just created.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(color, carat, price) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ppc =</span> price <span class="op">/</span><span class="st"> </span>carat, 
+         <span class="dt">ppc_rnd =</span> <span class="kw">round</span>(ppc, <span class="dv">2</span>))</code></pre></div>
+<pre><code>## # A tibble: 53,940 x 5
+##    color carat price      ppc ppc_rnd
+##    &lt;ord&gt; &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+##  1     E  0.23   326 1417.391 1417.39
+##  2     E  0.21   326 1552.381 1552.38
+##  3     E  0.23   327 1421.739 1421.74
+##  4     I  0.29   334 1151.724 1151.72
+##  5     J  0.31   335 1080.645 1080.65
+##  6     J  0.24   336 1400.000 1400.00
+##  7     I  0.24   336 1400.000 1400.00
+##  8     H  0.26   337 1296.154 1296.15
+##  9     E  0.22   337 1531.818 1531.82
+## 10     H  0.23   338 1469.565 1469.57
+## # ... with 53,930 more rows</code></pre>
+<p><br><b>Summarise values via <code>summarise()</code></b></p>
+<p>Similar to <code>plyr::summarise()</code>, the <strong>dplyr</strong> version of <code>summarise()</code> lets you melt a dataset into a single row depending on the supplied function. The function works quite similar to base-R <code>aggregate()</code>. However, the ease of use is definitely on the side of <code>summarise()</code>.</p>
+<p><br><b>Task: base-R data aggregation</b></p>
+<p>In order to demonstrate <strong>dplyr</strong>’s ease of use in terms of data summarization, try to <code>aggregate()</code> the <code>diamonds</code> dataset in such a fashion that you end up with a data frame showing the minimum, mean and maximum price per diamond color.</p>
+<br>
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Hourglass_2.svg" alt="hourglass" style="width: 125px;"/>
+</center>
+<p><br></p>
+<p>As for the <strong>dplyr</strong> solution, the <code>group_by</code> function comes in handy when trying to calculate metrics from sub-groups of data, e.g. depending on the diamonds’ color, rather than from the entire data frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(color) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MIN =</span> <span class="kw">min</span>(price), <span class="dt">MEAN =</span> <span class="kw">mean</span>(price), <span class="dt">MAX =</span> <span class="kw">max</span>(price))</code></pre></div>
+<pre><code>## # A tibble: 7 x 4
+##   color   MIN     MEAN   MAX
+##   &lt;ord&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+## 1     D   357 3169.954 18693
+## 2     E   326 3076.752 18731
+## 3     F   342 3724.886 18791
+## 4     G   354 3999.136 18818
+## 5     H   337 4486.669 18803
+## 6     I   334 5091.875 18823
+## 7     J   335 5323.818 18710</code></pre>
+<p>In order to summarize an entire variable into one single value, just drop the <code>group_by</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(diamonds, <span class="dt">min =</span> <span class="kw">min</span>(price), <span class="dt">mean =</span> <span class="kw">mean</span>(price), <span class="dt">max =</span> <span class="kw">max</span>(price))</code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##     min   mean   max
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1   326 3932.8 18823</code></pre>
+<p>Now that you’re familiar with the basics of data manipulation via <strong>dplyr</strong> and before moving on to actual data visualization via <strong>ggplot2</strong>, it’s time to have a brief look at data format conversion from wide to long format which is essential for displaying numerous groups of data in one single plot.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-handling-and-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-format-conversions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

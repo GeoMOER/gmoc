@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advanced Programming in R</title>
+  <meta name="description" content="Advanced Programming in R">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Advanced Programming in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="marburg-open-courseware/publication-quality-graphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Advanced Programming in R" />
+  
+  
+  
+
+<meta name="author" content="Florian Detsch">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="the-apply-family.html">
+<link rel="next" href="speeding-up-iteration-procedures.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Programming in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="towards-a-structured-workflow.html"><a href="towards-a-structured-workflow.html"><i class="fa fa-check"></i><b>1</b> Towards a structured workflow</a><ul>
+<li class="chapter" data-level="1.1" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>1.1</b> Git version control</a></li>
+<li class="chapter" data-level="1.2" data-path="rproj.html"><a href="rproj.html"><i class="fa fa-check"></i><b>1.2</b> RStudio projects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-handling-and-visualization.html"><a href="data-handling-and-visualization.html"><i class="fa fa-check"></i><b>2</b> Data handling and visualization</a><ul>
+<li class="chapter" data-level="2.1" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>2.1</b> Summarizing data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-format-conversions.html"><a href="data-format-conversions.html"><i class="fa fa-check"></i><b>2.2</b> Data format conversions</a></li>
+<li class="chapter" data-level="2.3" data-path="visualizing-data-using-ggplot2.html"><a href="visualizing-data-using-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Visualizing data using <strong>ggplot2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iteration-procedures.html"><a href="iteration-procedures.html"><i class="fa fa-check"></i><b>3</b> Iteration procedures</a><ul>
+<li class="chapter" data-level="3.1" data-path="for.html"><a href="for.html"><i class="fa fa-check"></i><b>3.1</b> <code>for()</code> loops</a></li>
+<li class="chapter" data-level="3.2" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>3.2</b> The <code>*apply</code> family</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>3.2.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-apply-family.html"><a href="the-apply-family.html#lapply-and-sapply"><i class="fa fa-check"></i><b>3.2.2</b> <code>lapply()</code> and <code>sapply()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>3.3</b> Functional programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="functional-programming.html"><a href="functional-programming.html#custom-functions"><i class="fa fa-check"></i><b>3.3.1</b> Custom functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="functional-programming.html"><a href="functional-programming.html#functionals"><i class="fa fa-check"></i><b>3.3.2</b> Functionals</a></li>
+<li class="chapter" data-level="3.3.3" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i><b>3.3.3</b> Closures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="speeding-up-iteration-procedures.html"><a href="speeding-up-iteration-procedures.html"><i class="fa fa-check"></i><b>4</b> Speeding up iteration procedures</a><ul>
+<li class="chapter" data-level="4.1" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>4.1</b> Parallelization</a></li>
+<li class="chapter" data-level="4.2" data-path="c-interconnectivity-via-rcpp.html"><a href="c-interconnectivity-via-rcpp.html"><i class="fa fa-check"></i><b>4.2</b> C++ interconnectivity via <strong>Rcpp</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="final-remarks.html"><a href="final-remarks.html"><i class="fa fa-check"></i><b>5</b> Final remarks</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with <b>bookdown</b></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Programming in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="functional-programming" class="section level2">
+<h2><span class="header-section-number">3.3</span> Functional programming</h2>
+<p>As mentioned in the previous chapter, R is at its core a functional programming language. Put more general, we can say that</p>
+<ul>
+<li>everything that exists is an object and</li>
+<li>everything that happens is a function call.</li>
+</ul>
+<div id="custom-functions" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Custom functions</h3>
+<p>The biggest draw-back of point-and-click statistics software is that they are usually limited in the functionality they provide. In fact, they provide you with a suite of pre-defined analysis tools and algorithms but usually it is rather tedious to extend these. R, on the other hand, is a full-blown programming language which means that there are next to no limits to what you can do. One of the most important features to expand existing functionality is to write your own functions, i.e. functions that do not exist elsewhere. In fact, this is the main reason behind R package development.</p>
+<p>So, let’s try and create a custom function. A function to calculate the Pythagorean Theorem does not exist in base R. Sure, it may exist in some package somewhere, but I argue that it is much easier and quicker to write this yourself.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pythagoreanTheorem &lt;-<span class="st"> </span><span class="cf">function</span>(a, b) {
+  c &lt;-<span class="st"> </span><span class="kw">sqrt</span>(a<span class="op">*</span>a <span class="op">+</span><span class="st"> </span>b<span class="op">*</span>b)
+  <span class="kw">return</span>(c)
+}
+
+<span class="kw">pythagoreanTheorem</span>(<span class="dv">3</span>, <span class="dv">4</span>)</code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>Easy! Creating custom functions thereby always follows the same procedure:</p>
+<ol style="list-style-type: decimal">
+<li>Provide a meaningful name and use <code>&lt;-</code> (or <code>=</code>) to assign <code>function(x, y, z)</code> where</li>
+<li><code>x, y, z</code> are an arbitrary number of arbitrarily named arguments that are needed for the calculation(s) in the</li>
+<li>function body that does all the calculation(s) using the supplied arguments.</li>
+<li>Finally, a <code>return()</code> call to specify what the function will return. If this is not supplied, the result of the last calculation is returned</li>
+</ol>
+<p>Now it is time for you to try this yourselves.</p>
+<p><br><b>Task: write your own function</b></p>
+<p>In R, we can easily calculate a population’s standard deviation around the mean using <code>sd()</code>, but there is no default implementation for the <a href="https://en.wikipedia.org/wiki/Standard_error">standard error of the mean</a>. Therefore, it is up to you to write one now.</p>
+<p>Note, there are far more standard error statistics for which R does not provide standard base functions, such as the <a href="https://en.wikipedia.org/wiki/Root-mean-square_deviation">root mean square error (RMSE)</a> or the <a href="https://en.wikipedia.org/wiki/Approximation_error">absolute error (AE)</a>. Therefore, if you’re keen go ahead and practice writing functions to provide these.</p>
+<br>
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Hourglass_2.svg" alt="hourglass" style="width: 125px;"/>
+</center>
+<p><br></p>
+</div>
+<div id="functionals" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Functionals</h3>
+<p>We’ve already seen <em>functionals</em>, functions that take other functions as arguments. However, so far we have only used these with standard, i.e. base R functions. But we can also supply a custom function to a functional.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">1</span>, <span class="dv">24</span>, <span class="dv">2</span>),
+                  <span class="dt">b =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">12</span>, <span class="dv">5</span>))
+
+<span class="kw">sapply</span>(<span class="kw">seq</span>(<span class="kw">nrow</span>(dat)), <span class="cf">function</span>(i) <span class="kw">pythagoreanTheorem</span>(dat[i, <span class="dv">1</span>], dat[i, <span class="dv">2</span>]))</code></pre></div>
+<pre><code>## [1]  5.000000  7.615773 11.180340  3.162278 26.832816  5.385165</code></pre>
+<p>Given that R comes equipped with a great variety of <code>*apply()</code> functionals, it is usually not necessary to write a functional yourself.</p>
+</div>
+<div id="closures" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Closures</h3>
+<p>The counterpart to functionals are so-called <em>closures</em>. These are functions that return (or build) a function according to some supplied argument. To illustrate this, let’s consider the following situation:</p>
+<p>We have a bunch of possible predictor variables, a bunch of response variables, and we want to figure out the best combination in explaining the variances.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### generate some random data
+<span class="kw">set.seed</span>(<span class="dv">123</span>)
+pred &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">pred1 =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">2</span>, <span class="dv">1</span>),
+                   <span class="dt">pred2 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,
+                   <span class="dt">pred3 =</span> <span class="kw">rpois</span>(<span class="dv">100</span>, <span class="dv">2</span>),
+                   <span class="dt">pred4 =</span> <span class="dv">200</span><span class="op">:</span><span class="dv">101</span>)
+
+<span class="kw">set.seed</span>(<span class="dv">234</span>)
+resp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">resp1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,
+                   <span class="dt">resp2 =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">2</span>, <span class="dv">1</span>),
+                   <span class="dt">resp3 =</span> <span class="dv">200</span><span class="op">:</span><span class="dv">101</span>,
+                   <span class="dt">resp4 =</span> <span class="kw">rpois</span>(<span class="dv">100</span>, <span class="dv">2</span>))</code></pre></div>
+<p>We could simply use copy and paste to claculate each combination.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(resp<span class="op">$</span>resp1 <span class="op">~</span><span class="st"> </span>pred<span class="op">$</span>pred1))<span class="op">$</span>r.squared
+<span class="kw">summary</span>(<span class="kw">lm</span>(resp<span class="op">$</span>resp2 <span class="op">~</span><span class="st"> </span>pred<span class="op">$</span>pred1))<span class="op">$</span>r.squared
+<span class="kw">summary</span>(<span class="kw">lm</span>(resp<span class="op">$</span>resp2 <span class="op">~</span><span class="st"> </span>pred<span class="op">$</span>pred1))<span class="op">$</span>r.squared
+<span class="kw">summary</span>(<span class="kw">lm</span>(resp<span class="op">$</span>resp4 <span class="op">~</span><span class="st"> </span>pred<span class="op">$</span>pred1))<span class="op">$</span>r.squared
+
+<span class="kw">summary</span>(<span class="kw">lm</span>(resp<span class="op">$</span>resp1 <span class="op">~</span><span class="st"> </span>pred<span class="op">$</span>pred2))<span class="op">$</span>r.squared
+<span class="kw">summary</span>(<span class="kw">lm</span>(resp<span class="op">$</span>resp2 <span class="op">~</span><span class="st"> </span>pred<span class="op">$</span>pred2))<span class="op">$</span>r.squared
+<span class="kw">summary</span>(<span class="kw">lm</span>(resp<span class="op">$</span>resp3 <span class="op">~</span><span class="st"> </span>pred<span class="op">$</span>pred2))<span class="op">$</span>r.squared
+<span class="kw">summary</span>(<span class="kw">lm</span>(resp<span class="op">$</span>resp4 <span class="op">~</span><span class="st"> </span>pred<span class="op">$</span>pred3))<span class="op">$</span>r.squared
+
+<span class="co"># ... and so forth</span></code></pre></div>
+<p>This is far from being optimal. Despite the fact that we have to type a lot, we are very prone to introduce errors (can you spot them?) and it is particularly hard to debug. Here, defining a closure can be of great help.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### define closure
+calcRsq &lt;-<span class="st"> </span><span class="cf">function</span>(pred) {
+  <span class="cf">function</span>(y) {
+    <span class="kw">summary</span>(<span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>pred))<span class="op">$</span>r.squared
+  }
+}</code></pre></div>
+<p>We now have a universal way of defining functions to calculate R-squared values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## create function using pred$v1 as predictor
+calcRsq_pred1 &lt;-<span class="st"> </span><span class="kw">calcRsq</span>(pred<span class="op">$</span>pred1)
+<span class="kw">calcRsq_pred1</span>(resp<span class="op">$</span>resp1)</code></pre></div>
+<pre><code>## [1] 0.006369369</code></pre>
+<p>Using it explicitly like above doesn’t really help us much, although we have made sure to not introduce any errors related to the respective predictor being used as this is now fixed within the function <code>calcRsq_pred1()</code>. However, given that we now have a function which calculates the R-squared value between a fixed predictor and whatever response we give it, we can now use a functional such as <code>apply()</code> to calculate the relationship between the predictor and a bunch of responses.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(resp, <span class="dv">2</span>, calcRsq_pred1)</code></pre></div>
+<pre><code>##       resp1       resp2       resp3       resp4 
+## 0.006369369 0.012977823 0.006369369 0.038727184</code></pre>
+<p>But why stop here? Taking advantage of <code>sapply()</code>, we can calculate every possible combination in one go.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(<span class="kw">seq</span>(<span class="kw">ncol</span>(pred)), <span class="cf">function</span>(i) {
+  f &lt;-<span class="st"> </span><span class="kw">calcRsq</span>(pred[, i])
+  <span class="kw">apply</span>(resp, <span class="dv">2</span>, f)
+})</code></pre></div>
+<pre><code>##              [,1]        [,2]        [,3]        [,4]
+## resp1 0.006369369 1.000000000 0.006326898 1.000000000
+## resp2 0.012977823 0.012414970 0.006192994 0.012414970
+## resp3 0.006369369 1.000000000 0.006326898 1.000000000
+## resp4 0.038727184 0.002312083 0.007719519 0.002312083</code></pre>
+<p>In words, we</p>
+<ol style="list-style-type: decimal">
+<li>iterate over the columns of pred - <code>seq(ncol(pred))</code>,</li>
+<li>define a function <code>f</code> by setting the closure to use the column of the current iteration – <code>f &lt;- calcRsq(pred[, i])</code>, and</li>
+<li>apply this function <code>f</code> to all columns of resp - <code>apply(resp, 2, f)</code>.</li>
+</ol>
+<p>The result is equivalent to what <code>cor(resp, pred)</code> produces.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(resp, pred)<span class="op">^</span><span class="dv">2</span></code></pre></div>
+<pre><code>##             pred1       pred2       pred3       pred4
+## resp1 0.006369369 1.000000000 0.006326898 1.000000000
+## resp2 0.012977823 0.012414970 0.006192994 0.012414970
+## resp3 0.006369369 1.000000000 0.006326898 1.000000000
+## resp4 0.038727184 0.002312083 0.007719519 0.002312083</code></pre>
+<p>So you see that the combination of functionals and closures is a powerful, flexible and elegant way of generalizing computations. In fact, it is so flexible that we can now use the same functions for any data frames.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(diamonds[, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>)])
+df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(diamonds[, <span class="dv">7</span><span class="op">:</span><span class="dv">10</span>])
+
+<span class="kw">sapply</span>(<span class="kw">seq</span>(<span class="kw">ncol</span>(df1)), <span class="cf">function</span>(i) {
+  f &lt;-<span class="st"> </span><span class="kw">calcRsq</span>(df1[, i])
+  <span class="kw">apply</span>(df2, <span class="dv">2</span>, f)
+})</code></pre></div>
+<pre><code>##            [,1]         [,2]       [,3]
+## price 0.8493305 0.0001133672 0.01616303
+## x     0.9508088 0.0006395460 0.03815939
+## y     0.9057751 0.0008608750 0.03376779
+## z     0.9089475 0.0090105434 0.02277947</code></pre>
+<p>This is especially valuable for large calculations that require iterating over a set of objects. A classic scenario for using closures in combination with functionals is to find a ‘best’ value, i.e. some parameter that optimizes a fit or something along those lines.</p>
+<p>A very detailed tutorial on how to use functional programming in R can be found in Hadley Wickham’s book <a href="http://adv-r.had.co.nz/Functional-programming.html">Advanced R</a> <span class="citation">(Wickham <a href="#ref-Wickham2014">2014</a>)</span>. This goes quite a bit deeper than what is outlined here and has a rather neat example of how to use functional programming to flexibly deal with encodings for missing data (e.g. -99, -999, -9999, etc.).</p>
+
+</div>
+</div>
+<!-- </div> -->
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Wickham2014">
+<p>Wickham, Hadley. 2014. <em>Advanced R</em>. Chapman &amp; Hall/CRC the R Series. CRC Press.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="the-apply-family.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="speeding-up-iteration-procedures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
