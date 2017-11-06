@@ -1,7 +1,9 @@
-<!---
-Version: "2016-10-22"
-Copyright (C) 2016 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "Visual data exploration"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 Visual data exploration should be one of the first steps in data analysis. In fact, it should start right after reading a data set. The following examples are based on a data set showing the percentage fraction of settlement, recreational, agricultural, and forest areas for each rural district in Germany. The data has been provided through the [Regional Database Germany](https://www.regionalstatistik.de/genesis/online/).
 
 Within this example, we will focus on basic R graphics. Of course, all of the example could also be realized using more advanced plotting libraries like `lattice` or `ggplot`.
@@ -9,7 +11,7 @@ Within this example, we will focus on basic R graphics. Of course, all of the ex
 ```{r, include=FALSE}
 # Set path ---------------------------------------------------------------------
 if(Sys.info()["sysname"] == "Windows"){
-  filepath_base <- "D:/active/moc/msc-phygeo-data-analysis/"
+  filepath_base <- "C:/Users/tnauss/permanent/edu/gmoc_data/msc-phygeo-data-analysis/"
 } else {
   filepath_base <- "/media/permanent/active/moc/msc-phygeo-data-analysis/"
 }

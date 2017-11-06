@@ -1,7 +1,9 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "CSV I/O"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 #### Readading data from csv files
 
 Reading csv files is realized using the `read.table` function from R's utils

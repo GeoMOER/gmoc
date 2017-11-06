@@ -1,7 +1,9 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "Aggregation statistics"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 #### Summarizing a data set
 
 The most straight forward function which returns some aggregated statistical
