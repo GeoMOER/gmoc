@@ -1,0 +1,86 @@
+---
+title: "Intro to hsdar"
+author: "Lukas Lehnert, Hanna Meyer"
+date: "November 8, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE}
+rm(list=ls())
+setwd("/home/hanna/Documents/Lehre/WS1718/Hyperspekki/data/W04/")
+```
+
+## Load data and set data path
+
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+library(hsdar)
+spectra <- read.csv("spectra_FACE.csv") #spectra
+wl <- read.csv("wl_FACE.csv") # wavelengths
+si <- read.csv("si_FACE.csv") # supporting information (attribute table)
+
+```
+
+## create a Speclib
+```{r echo=TRUE, warning=FALSE}
+spectraldat <- speclib(spectra=as.matrix(spectra),
+                       wavelength=wl[,1],
+                       SI=si)
+
+par(mfrow=c(2,2))
+plot(spectraldat) #plot all spectra
+plot(spectraldat[1,]) # only the first spectrum
+plot(spectraldat[,1:500]) #only the first 500 wavelengths 
+plot(spectraldat[1:5,1:500]) #the first 5 spectra and first 500 wavelengths
+```
+
+## Apply different filter
+```{r echo=TRUE, warning=FALSE}
+mean_5 <- smoothSpeclib(spectraldat[1,],"mean",p=5)
+mean_25 <- smoothSpeclib(spectraldat[1,],"mean",p=25)
+sgolay <- smoothSpeclib(spectraldat[1,],"sgolay",n=5)
+lowess <- smoothSpeclib(spectraldat[1,],"lowess",f=1/50)
+
+plot(spectraldat[1,],col="black",xlim=c(600,1000),ylim=c(0,50))
+plot(mean_5,new=FALSE,col="blue")
+plot(mean_25,new=FALSE,col="red")
+plot(sgolay,new=FALSE,col="green")
+plot(lowess,new=FALSE,col="purple")
+legend("topleft",lwd=1,col=c("black","blue","red","green","purple"),
+       legend=c("no","mean p=5","mean p=25","sgolay","lowess"),
+       bty="n",cex=0.7)
+```
+
+## Compare distance between filtered spectra
+```{r echo=TRUE, warning=FALSE}
+filter <- merge(spectraldat[1,], mean_5, mean_25,
+                        sgolay, lowess)
+
+comp <- sam_distance(filter)
+colnames(comp)<-c("no","mean p=5","mean p=25","sgolay","lowess")
+rownames(comp)<-c("no","mean p=5","mean p=25","sgolay","lowess")
+comp
+```
+
+## Compare the spectral distance between a soil spectrum and two vegetation spectra
+
+```{r echo=TRUE, warning=FALSE}
+veg <- PROSAIL(LAI = 5)
+soil <- PROSAIL(LAI = 0)
+fewVeg <- PROSAIL(LAI = 1)
+
+plot(soil, col = "brown", ylim = c(0, 0.6))
+plot(veg, col = "darkgreen", new = FALSE)
+plot(fewVeg, col = "green", new = FALSE)
+legend("topright",col=c("brown","darkgreen","green"),
+       legend=c("soil","dense vegetation","sparse vegetation"),bty="n",lty=1)
+comp <- sam_distance(merge(soil, veg, fewVeg))
+colnames(comp)<- c("soil","dense vegetation","sparse vegetation")
+rownames(comp)<- c("soil","dense vegetation","sparse vegetation")
+comp
+```
