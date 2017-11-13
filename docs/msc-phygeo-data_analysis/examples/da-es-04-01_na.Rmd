@@ -1,8 +1,10 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
-#### 
+---
+title: "Missing values"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
+
 
 Handling missing values is straight forward. Let's start with a vector with one
 NA value at position 3. Please note that NA is not inside quotation marks since

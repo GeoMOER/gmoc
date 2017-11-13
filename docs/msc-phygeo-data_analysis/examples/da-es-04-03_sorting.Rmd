@@ -1,7 +1,9 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "Sorting"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 #### Sorting vectors or lists
 Vectors can be sorted using the `sort` function. If you want to sort a list,
 you have to access the actual elements since sort requires atomic vectors.
