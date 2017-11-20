@@ -11,7 +11,7 @@ library. The function will return a data frame which contains the information of
 the csv file.
 
 ```{r}
-df <- read.table("D:/active/moc/msc-phygeo-data-analysis/data/csv/AI001_gebiet_flaeche.csv",
+df <- read.table("C:/Users/tnauss/permanent/edu/gmoc_data/msc-phygeo-data-analysis/data/csv/AI001_gebiet_flaeche.csv",
                  skip = 4, header = TRUE, sep = ";", dec = ",")
 ```
 
@@ -40,7 +40,7 @@ head(df,2)
 #### Writing data to csv files
 Writing data is as easy as reading it. Just use the `write.table` function.
 ```{r}
-write.table(df, file = "D:/active/moc/msc-phygeo-data-analysis/temp/new.csv", 
+write.table(df, file = "C:/Users/tnauss/permanent/edu/gmoc_data/msc-phygeo-data-analysis/temp/new.csv", 
             sep = ",", dec = ".")
 ```
 As you can see, you can define any column or decimal separator.
