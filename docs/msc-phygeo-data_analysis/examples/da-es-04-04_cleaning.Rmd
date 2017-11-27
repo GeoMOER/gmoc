@@ -127,7 +127,7 @@ Obviously, the only information stored in the third column is "Kreisfreie Stadt"
 ```{r, warning=FALSE}
 unique(place_df$B[!is.na(place_df$C)])
 ```
-OK, if the place is one of "Landeshauptstadt", "Hansestadt" or "Universitätsstadt", then the third column contains the information "Kreisfreie Stadt". Hence, if we want to group by "Kreisfreie Stadt", we actually would need the third column. 
+OK, if the place is one of "Landeshauptstadt", "Hansestadt" or "Universitaetsstadt", then the third column contains the information "Kreisfreie Stadt". Hence, if we want to group by "Kreisfreie Stadt", we actually would need the third column. 
 
 One strategy could be to make a structure which shows the name in the first column, the general type of the place in the second column and additional (not mandatory information) in the third column. If one follows this strategy, the content of column two and three has to be switched for the rows with a non-NA entry in the third column:
 ```{r, warning=FALSE}
