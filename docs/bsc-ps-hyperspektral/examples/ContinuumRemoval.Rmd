@@ -30,7 +30,7 @@ plot(spectral_data_prepoc)
 ## Convex hull
 ```{r echo=TRUE, warning=FALSE}
 #convex hull:
-ch_cline <- transformSpeclib(spectral_data_prepoc[16:30,], method= "ch", out ="raw")
+ch_cline <- transformSpeclib(spectral_data_prepoc, method= "ch", out ="raw")
 #...and band depth:
 ch_bd <- transformSpeclib(spectral_data_prepoc, method= "ch", out="bd")
 ```
@@ -38,7 +38,7 @@ ch_bd <- transformSpeclib(spectral_data_prepoc, method= "ch", out="bd")
 ## Segmented hull
 ```{r echo=TRUE, warning=FALSE}
 #segmented hull
-sh_cline <- transformSpeclib(spectral_data_prepoc[16:30,], method= "sh", out = "raw")
+sh_cline <- transformSpeclib(spectral_data_prepoc, method= "sh", out = "raw")
 #...and band depth:
 sh_bd <- transformSpeclib(spectral_data_prepoc, method= "sh", out= "bd")
 ```
@@ -83,7 +83,7 @@ SI(sp_cut)$color[SI(sp_cut)$season == "spring"] <- "darkgreen"
 
 
 par(mfrow = c(3,3))
-for (i in 5:12){
+for (i in 5:8){
   
   plot(SI(sp_cut)[,i] ~ SI(sp_cut)$chlorophyll, xlab = "Chlorophyll",
        ylab = names(SI(sp_cut))[i], col = SI(sp_cut)$color)
