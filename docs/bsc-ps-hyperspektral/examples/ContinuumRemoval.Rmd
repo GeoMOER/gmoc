@@ -1,0 +1,91 @@
+---
+title: "Continuum Removal"
+author: "Lukas Lehnert, Hanna Meyer"
+date: "November 27, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE}
+rm(list=ls())
+#setwd("/home/hanna/Documents/Lehre/WS1718/Hyperspekki/data/W04/")
+```
+
+## Load data and preprocess
+
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+library(hsdar)
+data("spectral_data")
+spectral_data_prepoc <- smoothSpeclib(spectral_data, method= "sgolay", n=5) #filter
+spectral_data_prepoc<- spectral_data_prepoc[,10:1000] #remove first and last wavelengths
+plot(spectral_data_prepoc)
+
+```
+
+## Convex hull
+```{r echo=TRUE, warning=FALSE}
+#convex hull:
+ch_cline <- transformSpeclib(spectral_data_prepoc[16:30,], method= "ch", out ="raw")
+#...and band depth:
+ch_bd <- transformSpeclib(spectral_data_prepoc, method= "ch", out="bd")
+```
+
+## Segmented hull
+```{r echo=TRUE, warning=FALSE}
+#segmented hull
+sh_cline <- transformSpeclib(spectral_data_prepoc[16:30,], method= "sh", out = "raw")
+#...and band depth:
+sh_bd <- transformSpeclib(spectral_data_prepoc, method= "sh", out= "bd")
+```
+
+## Plot the hulls and band depths
+```{r echo=TRUE, warning=FALSE}
+par(mfrow= c(2,2))
+plot(ch_cline, ispec=1, numeratepoints= FALSE, main= "Convex hull-Continuum line")
+plot(ch_bd, ispec=1, main="Convex hull_ Band depth")
+
+plot(sh_cline, ispec=1, numeratepoints=FALSE, main= "Segmented hull - Continuum line")
+plot(sh_bd, ispec=1, main= "Segmented hull-Band depth")
+```
+
+## Define absorption features
+```{r echo=TRUE, warning=FALSE}
+# if a old version of hsdar is used:
+#sh_bd <- define.features(sh_bd) #and continue from here
+sp <- specfeat(sh_bd, FWL = 680)
+#cut the feature:
+sp_cut <- cut_specfeat(sp, fnumber = 1, 
+                       limits = c(550, 800))
+#add feature properties to speclib:
+sp_cut <- feature_properties(sp_cut)
+head(SI(sp_cut))
+
+```
+
+### Correlation between feature properties and chlorophyll content
+```{r echo=TRUE, warning=FALSE}
+plot(SI(sp_cut)$f680_area~
+        SI(sp_cut)$chlorophyll)
+cor.test(SI(sp_cut)$f680_area,
+  SI(sp_cut)$chlorophyll)
+```
+
+### Plot all correlations
+```{r echo=TRUE, warning=FALSE}
+#separate spring and summer spectra
+SI(sp_cut)$color = "red"
+SI(sp_cut)$color[SI(sp_cut)$season == "spring"] <- "darkgreen"
+
+
+par(mfrow = c(3,3))
+for (i in 5:12){
+  
+  plot(SI(sp_cut)[,i] ~ SI(sp_cut)$chlorophyll, xlab = "Chlorophyll",
+       ylab = names(SI(sp_cut))[i], col = SI(sp_cut)$color)
+}
+```
