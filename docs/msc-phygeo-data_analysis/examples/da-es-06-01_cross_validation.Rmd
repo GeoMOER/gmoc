@@ -1,7 +1,9 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "Cross-validation"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 Test statistics can describe the quality or accuracy of regression models if the assumptions of the models are met. However, the assessment would still be based on a model that is perfectly fitted to a given sample. To assess the prediction performance of a model in a more independent manner, the accuracy must be computed based on an independent (sub)-sample.
 
 The straight-forward way for a test on an independent sample is of course the one which actually fits the model on sample 1 and tests it on a completely different sample 2. However, in real-world applications, the required sample size is not givin in many cases. Therefore, cross-validation - althgough not entierly independent - is a good alternative to get an idea of the model performance for data values which have not been part of the model fitting. In principal, there are to strategies for cross-validation:
