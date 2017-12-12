@@ -1,7 +1,9 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "Feature selection in multiple variable models"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 So far, the models have only considered one explanatory (i.e. independent) variable. If another variable should be explained or predicted by more than one variable, decissions have to be made regarding the best combination of independent variables.
 
 In the following, we will start with a short example which illustrates one of the problems of multi-variable models. Afterwards, the two major concepts of variable selection will be briefly introduced:
