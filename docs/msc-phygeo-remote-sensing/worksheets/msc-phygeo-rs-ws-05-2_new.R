@@ -4,7 +4,7 @@
 
 # Set environment --------------------------------------------------------------
 if(Sys.info()["sysname"] == "Windows"){
-  source("D:/active/moc/msc-ui/scripts/msc-phygeo-ei/src/functions/set_environment.R")
+  source("C:/Users/tnauss/permanent/edu/gmoc/docs/msc-phygeo-remote-sensing/functions/set_environment.R")
 } else {
   source("/media/permanent/active/moc/msc-ui/scripts/msc-phygeo-ei/src/functions/set_environment.R")
 }
@@ -12,12 +12,13 @@ if(Sys.info()["sysname"] == "Windows"){
 
 # Merge shape files ------------------------------------------------------------
 # Read names of shape files
+# Version 2016
 shp_names <- list.files(path_muf_set1m_lcc_ta, 
                         pattern = glob2rx("*.shp"), full.names = TRUE)
 shp_names <- shp_names[c(-3, -4)]
 
 shps_cmb(shp_names = shp_names, 
-         outfile = paste0(path_muf_set1m_lcc_ta, "muf_training.shp"))
+         outfile = paste0(path_muf_set1m_lcc_ta, "muf_training_2017.shp"))
 
 shp_final <- readOGR(paste0(path_muf_set1m_lcc_ta, "muf_training.shp"),
                      "muf_training")
@@ -28,3 +29,18 @@ shp_final <- crop(shp_final, extent(muf))
 writeOGR(shp_final, paste0(path_muf_set1m_lcc_ta, "muf_training.shp"),
          "muf_training", overwrite = TRUE, driver = "ESRI Shapefile")
 
+# Version 2017
+shp_names <- list.files(path_muf_set1m_lcc_ta_2017, 
+                        pattern = glob2rx("*.shp"), full.names = TRUE)
+
+shps = lapply(shp_names, function(f){
+  shp = readOGR(f, ogrListLayers(f))
+  shp@data$LN = as.numeric(as.character(shp@data$LN))
+  return(shp)
+})
+shps = do.call("rbind", shps)
+shps = spTransform(shps, CRS("+init=epsg:25832"))
+plot(shps)
+outfile = paste0(path_muf_set1m_lcc_ta_2017, "muf_training_2017.shp")
+writeOGR(shps, outfile, file_path_sans_ext(basename(outfile)),
+         driver = "ESRI Shapefile", overwrite = TRUE)
