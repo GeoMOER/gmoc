@@ -53,6 +53,7 @@ library(rgeos)
 library(satelliteTools)
 library(metTools)
 library(sp)
+library(tools)
 
 
 # Functions --------------------------------------------------------------------

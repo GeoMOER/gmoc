@@ -1,7 +1,9 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: " Generalized additive models"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 So far, the models have only considered linear relationships. The corresponding model type to simple linear models would be an additive model and for poisson or logistic linear regression, it would be the generalized additive model (GAM). Since (all?) implementations of GAM also allow for additive models (i.e. using gaussian instead of e.g. poisson distribution functions), we will not distinguish between AM and GAM in the following.
 
 To illustrate non-linear fittings, we stay with the [anscombe dataset](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/anscombe.html) but modify variable x3 and use y1 and y2.

@@ -41,6 +41,21 @@ shps = lapply(shp_names, function(f){
 shps = do.call("rbind", shps)
 shps = spTransform(shps, CRS("+init=epsg:25832"))
 plot(shps)
+
+shps$LN_New = -1
+
+old_vals = sort(unique(shps$LN))
+i = 20
+for(i in seq(length(unique(shps$LN)))){
+  ov = old_vals[i]
+  shps@data$LN_New[shps@data$LN == ov] = i
+}
+shps@data$LN_New
+
+# shps@data$LN_New = as.character(shps@data$LN_New)
+summary(shps)
 outfile = paste0(path_muf_set1m_lcc_ta_2017, "muf_training_2017.shp")
 writeOGR(shps, outfile, file_path_sans_ext(basename(outfile)),
          driver = "ESRI Shapefile", overwrite = TRUE)
+
+
