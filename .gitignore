@@ -34,3 +34,4 @@ vignettes/*.pdf
 
 # Jupyter Notebook checkpoints
 *.ipynb_checkpoints/
+.Rproj.user

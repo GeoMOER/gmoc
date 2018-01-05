@@ -1,0 +1,8 @@
+name: "gmoc"
+navbar:
+  title: "Marburg Open Educational Resources"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
