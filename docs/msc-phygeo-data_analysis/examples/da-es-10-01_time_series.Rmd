@@ -1,14 +1,16 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "Time series"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 While we had already got in contact with some temporal datasets, we did not have a closer formal look on time series analysis. Time series datasets often inhibit some kind of autocorrelation which is a no go for the models we have used so far. The first more formal contact with time series will therefore highlight these characteristics. The structure of this example follows Zuur et al. 2007 to a certain degree.
 
 To illustrate time series analysis, an air temperature record of the weather station in Coelbe (which is closest to the Marburg university forest) will be used. The data has been supplied by the German weatherservice [German weather service](ftp://ftp-cdc.dwd.de/pub/CDC/observations_germany/).
 
 ```{r, warning=FALSE, echo=FALSE}
 if(Sys.info()["sysname"] == "Windows"){
-  filepath_base <- "D:/active/moc/msc-phygeo-data-analysis/"
+  filepath_base <- "C:/Users/tnauss/permanent/edu/msc-phygeo-data_analysis/"
 } else {
   filepath_base <- "/media/permanent/active/moc/msc-phygeo-data-analysis/"
 }

@@ -1,14 +1,16 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "Tics"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 
 The following plotting examples will revisit R's generic plotting functions
 and pimp them up a little bit. The underlaying example data is taken from our data set showing the percentage fraction of settlement, recreational, agricultural, and forest areas for each rural district in Germany.
 ```{r, echo=FALSE, warning=FALSE}
 # Set path ---------------------------------------------------------------------
 if(Sys.info()["sysname"] == "Windows"){
-  filepath_base <- "D:/active/moc/msc-phygeo-data-analysis/"
+  filepath_base <- "C:/Users/tnauss/permanent/edu/msc-phygeo-data_analysis/"
 } else {
   filepath_base <- "/media/permanent/active/moc/msc-phygeo-data-analysis/"
 }

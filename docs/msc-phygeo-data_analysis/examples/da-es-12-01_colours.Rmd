@@ -1,7 +1,9 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "Colours"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 
 Before we expand our plotting capabilities, we want to spend a bit more time 
 thinking about colours and colour spaces. A careful study of colour-spaces (e.g., [here](http://statmath.wu.ac.at/~zeileis/papers/Zeileis+Hornik+Murrell-2009.pdf), [here](http://hclwizard.org/hcl-color-scheme/), [here](http://vis4.net/blog/posts/avoid-equidistant-hsv-colors/) or [here](https://en.wikipedia.org/wiki/HSL_and_HSV)) leads to the conclusion that the ```hcl``` colour space is preferable when mapping a variable to colour (be it factorial or continuous).

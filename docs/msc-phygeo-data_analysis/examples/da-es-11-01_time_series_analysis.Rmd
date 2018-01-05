@@ -1,11 +1,13 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "Time series decomposition"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 After looking into time-series forecasting, we will now switch to some basics of describing time series. To illustrate this, we will again use the (mean monthly) air temperature record of the weather station in Coelbe (which is closest to the Marburg university forest). The data has been supplied by the German weatherservice [German weather service](ftp://ftp-cdc.dwd.de/pub/CDC/observations_germany/). For simplicity, we will remove the first 6 entries (July to Dezember 2006 to have full years).
 ```{r, warning=FALSE, echo=FALSE, message= FALSE}
 if(Sys.info()["sysname"] == "Windows"){
-  filepath_base <- "D:/active/moc/msc-phygeo-data-analysis/"
+  filepath_base <- "C:/Users/tnauss/permanent/edu/msc-phygeo-data_analysis/"
 } else {
   filepath_base <- "/media/permanent/active/moc/msc-phygeo-data-analysis/"
 }

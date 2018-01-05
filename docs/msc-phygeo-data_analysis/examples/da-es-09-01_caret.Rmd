@@ -1,7 +1,9 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "Caret"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 So far, we have writen most of our (simple) model tuning and variable selection routines from scratch. Now it is time to switch to a very valueable package called [caret](http://topepo.github.io/caret/index.html) which takes care of at least some of our duties.
 
 To illustrate the caret package, we use the iris dataset from the base R package.

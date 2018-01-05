@@ -1,14 +1,16 @@
-<!---
-Version: "2013-10-23"
-Copyright (C) 2013 Thomas Nauss, GNU GPL (>=3)
--->
+---
+title: "Predicting time series"
+author: "Thomas Nauss"
+date: "19 Oktober 2017"
+output: html_document
+---
 Time-series analysis can generally be divided into forecasting future dynamics or describing and potentially explaining past patterns. Since the later often requires continous i.e. gap-free observations, we start with a simple forecasting procedure which can also be used for gap-filling in some cases.
 
 To illustrate the forecasting, we will again use the (mean monthly) air temperature record of the weather station in Coelbe (which is closest to the Marburg university forest). The data has been supplied by the German weatherservice [German weather service](ftp://ftp-cdc.dwd.de/pub/CDC/observations_germany/). 
 
 ```{r, warning=FALSE, echo=FALSE}
 if(Sys.info()["sysname"] == "Windows"){
-  filepath_base <- "D:/active/moc/msc-phygeo-data-analysis/"
+  filepath_base <- "C:/Users/tnauss/permanent/edu/msc-phygeo-data_analysis/"
 } else {
   filepath_base <- "/media/permanent/active/moc/msc-phygeo-data-analysis/"
 }
