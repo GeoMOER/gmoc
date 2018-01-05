@@ -18,6 +18,7 @@ print(my_vector_3)
 
 my_vector_4 <- seq(from=0, to=30, by=10)
 print(my_vector_4)
+plot(my_vector_4)
 ```
 You can skip the `print` function but just type the variable name if your 
 standard out is the console. We will assume that from now on.
