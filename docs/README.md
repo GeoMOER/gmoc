@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Welcome to Marburg Open Educational Resources
 
 You can use the [editor on GitHub](https://github.com/marburg-open-courseware/gmoc/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
