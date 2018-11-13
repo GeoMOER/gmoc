@@ -1,7 +1,7 @@
 ---
 title: "Continuum Removal"
 author: "Lukas Lehnert, Hanna Meyer"
-date: "November 27, 2017"
+date: "November 2018"
 output: html_document
 ---
 

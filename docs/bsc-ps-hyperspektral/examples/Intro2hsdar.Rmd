@@ -1,17 +1,18 @@
 ---
 title: "Intro to hsdar"
 author: "Lukas Lehnert, Hanna Meyer"
-date: "November 8, 2017"
+date: "November 2018"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = '/home/hanna/Documents/Lehre/WS1819/hyperspektral/data/W04/')
 ```
 
 ```{r echo=FALSE, message=FALSE}
 rm(list=ls())
-setwd("/home/hanna/Documents/Lehre/WS1718/Hyperspekki/data/W04/")
+#setwd("/home/hanna/Documents/Lehre/WS1819/hyperspektral/data/W04/")
 ```
 
 ## Load data and set data path
